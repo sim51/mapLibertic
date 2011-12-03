@@ -1,6 +1,27 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+project.name=Libertic
+error=Erreur !
+error.checkform=Veuillez vérifier les informations que vous avez saisi.
+
+page.home=Accueil
+page.home.carte=La Carte de France
+page.home.legende=Légende
+
+page.about=A propos
+page.about.txt=<p>Ce projet a été créé dans le cadre du hackathon internation de l'opendata.et hop hop</p><a href="http://wwww.google.fr">Google</a>
+page.about.thanks=Remerciements
+page.about.thanks.txt=Merci aux personnes suivantes d'avoir représenter la France au hackathon international de l'opendata.
+
+page.contact=Contact
+page.contact.txt=N'hésitez pas à nous envoyer un petit mot ...
+page.contact.author=Votre nom
+page.contact.email=Votre adresse mail
+page.contact.message=Votre message
+page.contact.security=Code de sécurité
+page.contact.send=Envoyer
+
 node.date =Date de sortie
 node.url=Url de la plateforme
 node.TBL=Note TBL

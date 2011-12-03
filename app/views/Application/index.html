@@ -1,8 +1,12 @@
-#{extends 'main.html' /}
-#{set title:'Home' /}
+#{extends 'main.html' /} 
+#{set title:'Libertic - Carte opendata de la France' /}
 
-<iframe width="500" 
-        height="300" 
-        frameBorder="0" 
-        src="${url}">
-</iframe>
+<div class="row">
+    <div class="span12">
+        <h2>&{'page.home.carte'}</h2>
+        <iframe width="680" height="500" frameBorder="0" src="${url}"> </iframe>
+    </div>
+    <div class="span2">
+        <h3>&{'page.home.legende'}</h3>
+    </div>
+</div>

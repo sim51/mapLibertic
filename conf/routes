@@ -4,6 +4,9 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /about                                  Application.about
+GET     /contact                                Application.contact
+POST    /contact                                Application.sendContact
 GET		/map/bubble								Application.bubble
 
 # Ignore favicon requests

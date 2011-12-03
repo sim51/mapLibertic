@@ -1,0 +1,5 @@
+Bonjour,
+
+${author} souhaite vous contacter et a laissé ce message :
+
+${message}
