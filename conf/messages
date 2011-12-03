@@ -1,0 +1,11 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+node.date =Date de sortie
+node.url=Url de la plateforme
+node.TBL=Note TBL
+node.typology=Typologie
+node.state=Etat
+node.licence=Licence
+node.numberOfData=Nombre de données libérées
+node.categories=Catégories

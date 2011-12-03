@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+
+#{set title:'Bubble works !!!' /}
+
+
+<div class="bubble">
+    <ul>
+        #{if node.date != null}
+            <li>&{'node.date'} :  ${node.date.format('dd MMM yyyy')}</li>
+        #{/if}
+        
+        #{if node.url != null}
+            <li>&{'node.url'} : ${node.url}</li>
+        #{/if}
+        
+        #{if node.TBL != null}
+            <li>&{'node.TBL'} : ${node.TBL}</li>
+        #{/if}
+        
+        #{if node.typology != null}
+            <li>&{'node.typology'} : ${node.typology}</li>
+        #{/if}
+        
+        #{if node.state != null}
+            <li>&{'node.state'} : ${node.state}</li>
+        #{/if}
+        
+        #{if node.licence != null}
+            <li>&{'node.licence'} : ${node.licence}</li>
+        #{/if}
+        
+        #{if node.numberOfData != null}
+            <li>&{'node.numberOfData'} : ${node.numberOfData}</li>
+        #{/if}
+        
+        #{if node.categories.size() > 0}
+            <li>
+                &{'node.categories'} :
+                <ul>
+                    #{list items:node.categories, as:'category'}
+                    <li>${category}</li>
+                    #{/list}
+                </ul>
+                
+            </li>
+        #{/if}
+    </ul>
+
+</div>
