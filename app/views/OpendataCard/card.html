@@ -1,0 +1,221 @@
+#{extends 'main.html' /} 
+#{set title:"Libertic - Admin - Carte d'idendité de l'opendata" /}
+
+<div class="row">
+    <div class="span14">
+        <h2>&{'page.opendataCard.title'} ${name}</h2>
+        <br/><br/>
+        #{form @OpendataCard.saveCard()}
+        
+            #{ifErrors}
+                <div class="alert-message error">
+                    <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
+                </div>
+            #{/ifErrors}
+             #{if flash.success}
+                <div class="alert-message success">
+                    <p>${flash.success}</p>
+                </div>
+            #{/if}
+            
+            <input type="hidden" name="card.id" value="${card?.id}"/>
+            <input type="hidden" name="id" value="${id}"/>
+            <input type="hidden" name="level" value="${level}"/>
+            <input type="hidden" name="name" value="${name}"/>
+            
+            <div class="clearfix">
+                <label for="status">&{'page.opendataCard.status'}</label>
+                <div class="input">
+                    #{if card?.status > 0}
+                        #{select 'card.status', value:card.status, id:'status', class:'medium'}
+                            #{option 0}N/A#{/option}
+                            #{option 1}&{'page.opendataCard.status.ok'}#{/option}
+                            #{option 2}&{'page.opendataCard.status.inprogress'}#{/option}
+                            #{option 3}&{'page.opendataCard.status.thinking'}#{/option}
+                        #{/select}
+                    #{/if}
+                    #{else}
+                        #{select 'card.status', id:'status', class:'medium'}
+                            #{option 0}N/A#{/option}
+                            #{option 1}&{'page.opendataCard.status.ok'}#{/option}
+                            #{option 2}&{'page.opendataCard.status.inprogress'}#{/option}
+                            #{option 3}&{'page.opendataCard.status.thinking'}#{/option}
+                        #{/select}
+                    #{/else}
+                    #{if errors.forKey('card.status')}
+                        <span class="label important">#{error 'card.status' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="isThereCitizenMvt">&{'page.opendataCard.citizenMvt'}</label>
+                <div class="input">
+                    <input type="checkbox" id="isThereCitizenMvt" name="card.isThereCitizenMvt" value="1" #{if card?.isThereCitizenMvt}checked#{/if} />
+                    #{if errors.forKey('card.isThereCitizenMvt')}
+                        <span class="label important">#{error 'card.isThereCitizenMvt' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="url">&{'page.opendataCard.url'}</label>
+                <div class="input">
+                    <input class="span6" type="text" id="url" name="card.url" placeholder="http://www.example.com" value="${card?.url}"/>
+                    #{if errors.forKey('card.url')}
+                        <span class="label important">#{error 'card.url' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="plateform">&{'page.opendataCard.plateforme'}</label>
+                <div class="input">
+                    <input class="span6" type="text" id="plateform" name="card.plateform" placeholder="CKAN" value="${card?.plateform}"/>
+                    #{if errors.forKey('card.plateform')}
+                        <span class="label important">#{error 'card.plateform' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="numOfData">&{'page.opendataCard.numOfData'}</label>
+                <div class="input">
+                    <input class="span2" type="text" id="numOfData" name="card.numOfData" placeholder="0" value="${card?.numOfData}"/>
+                    #{if errors.forKey('card.numOfData')}
+                        <span class="label important">#{error 'card.numOfData' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="opening">&{'page.opendataCard.opening'}</label>
+                <div class="input">
+                    <input class="span2" type="text" id="opening" name="card.opening" placeholder="dd/mm/yyyy" value="${card?.opening?.format('dd/MM/yyyy')}"/>
+                    #{if errors.forKey('card.opening')}
+                        <span class="label important">#{error 'card.opening' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="lastUpdate">&{'page.opendataCard.lastUpdate'}</label>
+                <div class="input">
+                    <input class="span2" type="text" id="lastUpdate" name="card.lastUpdate" placeholder="dd/mm/yyyy" value="${card?.lastUpdate?.format('dd/MM/yyyy')}"/>
+                    #{if errors.forKey('card.lastUpdate')}
+                        <span class="label important">#{error 'card.lastUpdate' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="bernersLeeRate">&{'page.opendataCard.bernersLeeRate'}</label>
+                <div class="input">
+                    #{if card?.bernersLeeRate > 0}
+                        #{select 'card.bernersLeeRate', value:card.bernersLeeRate, id:'bernersLeeRate', class:'small'}
+                            #{option}N/A#{/option}
+                            #{option 0.0}0#{/option}
+                            #{option 0.5}0.5#{/option}
+                            #{option 1.0}1#{/option}
+                            #{option 1.5}1.5#{/option}
+                            #{option 2.0}2#{/option}
+                            #{option 2.5}2.5#{/option}
+                            #{option 3.0}3#{/option}
+                            #{option 3.5}3.5#{/option}
+                            #{option 4.0}4#{/option}
+                            #{option 4.5}4.5#{/option}
+                            #{option 5.0}5#{/option}
+                        #{/select}
+                    #{/if}
+                    #{else}
+                        #{select 'card.bernersLeeRate', id:'bernersLeeRate', class:'small'}
+                            #{option}N/A#{/option}
+                            #{option 0.0}0#{/option}
+                            #{option 0.5}0.5#{/option}
+                            #{option 1.0}1#{/option}
+                            #{option 1.5}1.5#{/option}
+                            #{option 2.0}2#{/option}
+                            #{option 2.5}2.5#{/option}
+                            #{option 3.0}3#{/option}
+                            #{option 3.5}3.5#{/option}
+                            #{option 4.0}4#{/option}
+                            #{option 4.5}4.5#{/option}
+                            #{option 5.0}5#{/option}
+                        #{/select}
+                    #{/else}
+                    #{if errors.forKey('card.bernersLeeRate')}
+                        <span class="label important">#{error 'card.bernersLeeRate' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="license">&{'page.opendataCard.license'}</label>
+                <div class="input">
+                    <input class="span8" type="text" id="license" name="card.license" placeholder="ODBl" value="${card?.license}"/>
+                    #{if errors.forKey('card.license')}
+                        <span class="label important">#{error 'card.license' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="description">&{'page.opendataCard.description'}</label>
+                <div class="input">
+                    <textarea name="card.description" id="description" class="xxlarge" rows="3">${card?.description}</textarea>
+                    #{if errors.forKey('card.description')}
+                        <span class="label important">#{error 'card.description' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="thematic">&{'page.opendataCard.thematic'}</label>
+                <div class="input">
+                    <textarea name="card.thematic" id="thematic" class="xxlarge" rows="3">${card?.thematic}</textarea>
+                    #{if errors.forKey('card.thematic')}
+                        <span class="label important">#{error 'card.thematic' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="dataOwners">&{'page.opendataCard.dataOwners'}</label>
+                <div class="input">
+                    <textarea name="card.dataOwners" id="dataOwners" class="xxlarge" rows="3">${card?.dataOwners}</textarea>
+                    #{if errors.forKey('card.dataOwners')}
+                        <span class="label important">#{error 'card.dataOwners' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="formats">&{'page.opendataCard.formats'}</label>
+                <div class="input">
+                    <textarea name="card.formats" id="formats" class="xxlarge" rows="3">${card?.formats}</textarea>
+                    #{if errors.forKey('card.formats')}
+                        <span class="label important">#{error 'card.formats' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="contacts">&{'page.opendataCard.contacts'}</label>
+                <div class="input">
+                    <textarea name="card.contacts" id="contacts" class="xxlarge" rows="3">${card?.contacts}</textarea>
+                    #{if errors.forKey('card.contacts')}
+                        <span class="label important">#{error 'card.contacts' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="actions">
+                <input class="btn primary" type="submit" value="&{'page.opendataCard.save'}" />
+                <button class="btn" type="reset">&{'cancel'}</button>
+            </div>
+            
+        #{/form}    
+    
+    </div>
+
+</div>

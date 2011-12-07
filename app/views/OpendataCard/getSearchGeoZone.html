@@ -1,0 +1,150 @@
+#{extends 'main.html' /} 
+#{set title:"Libertic - Admin - recherche d'une zone géographique" /}
+
+<div class="row">
+    <div class="span14">
+        <h2>&{'page.searchGeoZone.title'}</h2>
+        <br/><br/>
+        #{form @OpendataCard.searchGeoZone()}
+        
+            #{ifErrors}
+                <div class="alert-message error">
+                    <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
+                </div>
+            #{/ifErrors}
+            
+            <div class="clearfix">
+                    <label>&{'page.searchGeoZone.level'}</label>
+                    <div class="input">
+                        <ul class="inputs-list">
+                            <li>
+                                <label for="level0">
+                                    <input id="level0" type="radio" name="level" value="0" #{if params['level'] == '0'}checked#{/if} />
+                                    <span>&{'page.searchGeoZone.level0'}</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="level1">
+                                    <input id="level1" type="radio" name="level" value="1" #{if params['level'] == '1'}checked#{/if}/>
+                                    <span>&{'page.searchGeoZone.level1'}</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="level2">
+                                    <input id="level2" type="radio" name="level" value="2" #{if params['level'] == '2'}checked#{/if}/>
+                                    <span>&{'page.searchGeoZone.level2'}</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="level3">
+                                    <input id="level3" type="radio" name="level" value="3" #{if params['level'] == '3'}checked#{/if}/>
+                                    <span>&{'page.searchGeoZone.level3'}</span>
+                                </label>
+                            </li>
+                        </ul>
+                        #{if errors.forKey('level')}
+                            <span class="label important">#{error 'level' /}</span>
+                        #{/if}
+                    </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="query">&{'page.searchGeoZone.query'}</label>
+                <div class="input">
+                    <input id="query" type="text" name="query" value="${params.query}" />
+                    #{if errors.forKey('query')}
+                        <span class="label important">#{error 'query' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="actions">
+                <input class="btn primary" type="submit" value="&{'page.searchGeoZone.search'}" />
+                <button class="btn" type="reset">&{'cancel'}</button>
+            </div>
+            
+        #{/form}
+    </div>
+ </div>
+ 
+ <div class="row">
+    
+    #{if countries?.size() > 0 || zone1?.size() > 0 || zone2?.size() > 0 || cities?.size() > 0}
+    <div class="span14">
+        <h3>&{'page.searchGeoZone.searchResult'}</h3>
+        #{if countries?.size() > 0}
+            <table class="bordered-table zebra-striped">
+                <thead>
+                    <tr>
+                        <th>&{'page.searchGeoZone.countryCode'}</th>
+                        <th>&{'page.searchGeoZone.name'}</th>
+                    </tr>  
+                </thead>
+                <tbody>  
+                    #{list items:countries, as:'country'}
+                        <tr>
+                            <td><a href="@{OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
+                            <td><a href="@{OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
+                    #{/list}
+                </tbody>
+            </table>
+         #{/if}
+         #{if zone1?.size() > 0}
+            <table class="bordered-table zebra-striped">
+                <thead>
+                    <tr>
+                        <th>&{'page.searchGeoZone.countryCode'}</th>
+                        <th>&{'page.searchGeoZone.name'}</th>
+                    </tr>  
+                </thead>
+                <tbody>  
+                    #{list items:zone1, as:'zone'}
+                        <tr>
+                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                    #{/list}
+                </tbody>
+            </table>
+         #{/if} 
+         #{if zone2?.size() > 0}
+            <table class="bordered-table zebra-striped">
+                <thead>
+                    <tr>
+                        <th>&{'page.searchGeoZone.countryCode'}</th>
+                        <th>&{'page.searchGeoZone.name'}</th>
+                    </tr>  
+                </thead>
+                <tbody>  
+                    #{list items:zone2, as:'zone'}
+                        <tr>
+                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                    #{/list}
+                </tbody>
+            </table>
+         #{/if} 
+         #{if cities?.size() > 0}
+            <table class="bordered-table zebra-striped">
+                <thead>
+                    <tr>
+                        <th>&{'page.searchGeoZone.countryCode'}</th>
+                        <th>&{'page.searchGeoZone.name'}</th>
+                    </tr>  
+                </thead>
+                <tbody>  
+                    #{list items:cities, as:'city'}
+                        <tr>
+                            <td><a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
+                            <td><a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
+                    #{/list}
+                </tbody>
+            </table>
+         #{/if}   
+    </div>
+    #{/if}
+    #{else}
+        <div class="span14">
+            <p>&{'page.searchGeoZone.noResult'}</p>
+        </div>
+    #{/else}
+</div>

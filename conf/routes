@@ -4,10 +4,27 @@
 
 # Home page
 GET     /                                       Application.index
+
+# About page
 GET     /about                                  Application.about
+
+# Contact form
 GET     /contact                                Application.contact
 POST    /contact                                Application.sendContact
+
+# Admin - step1
+GET 	/admin/step1							OpendataCard.getSearchGeoZone
+POST 	/admin/step1							OpendataCard.searchGeoZone
+GET		/admin/step2							OpendataCard.addCard
+
+
+
 GET		/map/bubble								Application.bubble
+
+
+
+# Import CRUD routes
+*     /admin           module:crud
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

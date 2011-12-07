@@ -2,3 +2,16 @@
 
 require:
     - play
+    - play -> crud
+    
+    
+
+repositories:
+    - OSGEO GeoTools repo:
+        type: iBiblio      
+        root: "http://download.osgeo.org/webdav/geotools"
+    - Hibernate Spatial repo:
+        type: iBiblio      
+        root: "http://www.hibernatespatial.org/repository"
+        contains:
+            - org.hibernatespatial -> *

@@ -4,17 +4,13 @@
 <div class="row">
     <div class="span14">
         <h2>&{'page.contact'}</h2>
-        
+        <br/><br/>
         &{'page.contact.txt'}
-        
-        <br/>
-        <br/>
-        
+        <br/><br/>
         #{form @Application.sendContact()}
  
             #{ifErrors}
         	    <div class="alert-message error">
-                    <a class="close" href="#">×</a>
                     <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
                 </div>
             #{/ifErrors}
@@ -25,53 +21,57 @@
                 </div>
             #{/if}
          
-            <div class="field">
-                <label for="author">&{'page.contact.author'}<span class="required">*</span>: </label>
-                <input type="text" name="author" id="author" value="${params.author}" />
-                #{ifErrors }
-                <span class="label important">#{error 'author' /}</span>
-                #{/ifErrors}
-                <br class="breaker"/>
+            <div class="clearfix">
+                <label for="author">&{'page.contact.author'}<span class="required">*</span></label>
+                <div class="input">
+                    <input type="text" name="author" id="author" value="${params.author}" />
+                    #{if errors.forKey('author')}
+                        <span class="label important">#{error 'author' /}</span>
+                    #{/if}
+                </div>
             </div>
             <br/>
             
-            <div class="field">
-                <label for="email">&{'page.contact.email'}<span class="required">*</span>: </label>
-                <input type="text" name="email" id="email" value="${params.email}" />
-                #{ifErrors}
-                <span class="label important">#{error 'email' /}</span>
-                #{/ifErrors}
-                <br class="breaker"/>
+            <div class="clearfix">
+                <label for="email">&{'page.contact.email'}<span class="required">*</span></label>
+                <div class="input">
+                    <input type="text" name="email" id="email" value="${params.email}" />
+                    #{if errors.forKey('email')}
+                        <span class="label important">#{error 'email' /}</span>
+                    #{/if}
+                </div>
             </div>
             <br/>
             
-            <div class="field">
-                <label for="message">&{'page.contact.message'}<span class="required">*</span>: </label>
-                <textarea name="message" id="message" rows="5" cols="30">${params.message}</textarea>
-                #{ifErrors}
-                <span class="label important">#{error 'message' /}</span>
-                #{/ifErrors}
-                <br class="breaker"/>
+            <div class="clearfix">
+                <label for="message">&{'page.contact.message'}<span class="required">*</span></label>
+                <div class="input">
+                    <textarea name="message" id="message" class="xxlarge" rows="3">${params.message}</textarea>
+                    #{if errors.forKey('message')}
+                    <span class="label important">#{error 'message' /}</span>
+                    #{/if}
+                </div>
             </div>
             <br/>
             
-            <div class="field">
-                <label for="code">&{'page.contact.security'}<span class="required">*</span>: </label>
-    	        <input type="text" name="code" id="code" size="18" value="" />
-                #{ifErrors}
-    	        <span class="label important">#{error 'code' /}</span>
-                #{/ifErrors}
-                <input type="hidden" name="randomID" value="${randomID}" />
-                <br class="breaker"/>
+            <div class="clearfix">
+                <label for="code">&{'page.contact.security'}<span class="required">*</span></label>
+                <div class="input">
+        	        <input type="text" name="code" id="code" size="18" value="" />
+                    #{if errors.forKey('code')}
+        	        <span class="label important">#{error 'code' /}</span>
+                    #{/if}
+                    <input type="hidden" name="randomID" value="${randomID}" />
+                </div>
             </div>
-            <div class="field captcha">
+            <div class="clearfix captcha">
                 <img src="@{Application.captcha(randomID)}" />
             </div>
             <br/>
             
-            <div class="button">
+            <div class="actions">
                 <input class="btn primary" type="submit" value="&{'page.contact.send'}" />
-                <br class="breaker"/>
+                <button class="btn" type="reset">&{'cancel'}</button>
             </div>
         #{/form}
     </div>

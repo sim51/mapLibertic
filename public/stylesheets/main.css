@@ -1,0 +1,10 @@
+.captcha img{
+	margin-left: 130px;
+}
+
+div#map{
+	margin:0;
+	padding:0;
+	z-index:0;
+	height: 500px;
+}

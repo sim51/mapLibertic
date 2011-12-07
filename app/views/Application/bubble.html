@@ -1,51 +1,37 @@
 <html>
     <head>
-        <title>Bubble rocks !!!</title>
+        <title>${title}</title>
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/reset/reset-min.css">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bubble.css'}">
     </head>
     <body>
         <div class="bubble">
-            <ul>
-                #{if node.date != null}
-                    <li>&{'node.date'} :  ${node.date.format('dd MMM yyyy')}</li>
-                #{/if}
-                
-                #{if node.url != null}
-                    <li>&{'node.url'} : ${node.url}</li>
-                #{/if}
-                
-                #{if node.TBL != null}
-                    <li>&{'node.TBL'} : ${node.TBL}</li>
-                #{/if}
-                
-                #{if node.typology != null}
-                    <li>&{'node.typology'} : ${node.typology}</li>
-                #{/if}
-                
-                #{if node.state != null}
-                    <li>&{'node.state'} : ${node.state}</li>
-                #{/if}
-                
-                #{if node.licence != null}
-                    <li>&{'node.licence'} : ${node.licence}</li>
-                #{/if}
-                
-                #{if node.numberOfData != null}
-                    <li>&{'node.numberOfData'} : ${node.numberOfData}</li>
-                #{/if}
-                
-                #{if node.categories.size() > 0}
-                    <li>
-                        &{'node.categories'} :
-                        <ul>
-                            #{list items:node.categories, as:'category'}
-                            <li>${category}</li>
-                            #{/list}
-                        </ul>
-                        
-                    </li>
-                #{/if}
-            </ul>
-        
+            <div class="title">
+                <div >
+                    <h2>${title}</h2>
+                    <img src="@{'/public/images/picto_ville.png'}" />
+                </div>
+                <p><span class="lastUpdate">&{'bubble.dateUpdate'}</span> ${dateMaj}</p>
+            </div>
+            
+            <div class="zone">
+                <ul>
+                    <li><span class="important">&{'bubble.site'}</span> <a href="${url}" title="${title}">${url}</a></li>
+                    <li><span class="important">&{'bubble.nbData'}</span> ${nbData}</li>
+                </ul>
+            </div>
+            
+            <div class="zone">
+                <h3>&{'bubble.thematique'}</h3>
+            </div>
+            
+            <div class="zone">
+                <h3>&{'bubble.licence'}</h3>
+                <p>
+                    ODbL (Open Database Licence)
+                </p>
+            </div>
+            
         </div>
     </body>
 </html>

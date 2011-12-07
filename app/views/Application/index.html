@@ -1,10 +1,67 @@
 #{extends 'main.html' /} 
 #{set title:'Libertic - Carte opendata de la France' /}
 
+#{set 'moreStyles' }
+    <link rel="stylesheet" href="http://openlayers.org/api/theme/default/style.css" type="text/css" />
+    
+#{/set}
+#{set 'moreScripts'}
+    <script src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAl9RMqSzhPUXAfeBCXOussRTQDbvAygy0cfGJr8dEMAYKf3RWNBQqP9mjKIsqTfmAlz5LOJ3Xpy5s4w'></script>
+    <script type="text/javascript">
+        var map;
+        
+     	// Avoid pink error tiles
+        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
+        OpenLayers.Util.onImageLoadErrorColor = "transparent";
+    
+        function init() {
+        	// Map is in mercator this time, so over-ride the default
+        	// options that assume lat/lon.
+        	var bounds = new OpenLayers.Bounds(
+                    -180, -76.164,
+                    180, 83.634
+            );
+        	var options = {
+        		projection: new OpenLayers.Projection("EPSG:900913"),
+        	    units: "m",
+        	    maxResolution: 1.40625,
+        	    maxExtent: bounds
+			};
+          	// Create the map object
+          	map = new OpenLayers.Map('map', options);
+          	// Create a OSM layer
+          	//var osm = new OpenLayers.Layer.OSM();
+          	var countries = new OpenLayers.Layer.WMS(
+                    "Libertic",
+                    "http://localhost:8080/geoserver/wms", 
+                    {'layers': 'libertic:country', 'format':'image/png', 'transparent':'true'},
+                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+               );
+          	// Add layer to map
+          	map.addLayers([countries]);
+          	map.addControl(new OpenLayers.Control.LayerSwitcher());
+        	// Zoom to Medford, Oregon
+            var point = new OpenLayers.LonLat(-122.8764, 42.3263); 
+         	// Need to convert zoom point to mercator too
+            point.transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()); 
+          	// Zoom to Vancouver, BC
+          	map.setCenter(new OpenLayers.LonLat(-123.12, 49.28), 13);
+          	map.setCenter(point, 17); 
+        }
+        
+        $(document).ready(function(){
+        	init();
+        });
+    </script>
+#{/set}
+
+
 <div class="row">
     <div class="span12">
         <h2>&{'page.home.carte'}</h2>
-        <iframe width="680" height="500" frameBorder="0" src="${url}"> </iframe>
+        <br/><br/>
+        <div id="map" class="smallmap"></div>
     </div>
     <div class="span2">
         <h3>&{'page.home.legende'}</h3>

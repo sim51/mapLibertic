@@ -4,23 +4,65 @@
 project.name=Libertic
 error=Erreur !
 error.checkform=Veuillez vérifier les informations que vous avez saisi.
+cancel=Annuler
+footer=Ce projet est sous la <a target="_blank" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">Github</a>. 
 
 page.home=Accueil
 page.home.carte=La Carte de France
 page.home.legende=Légende
 
 page.about=A propos
-page.about.txt=<p>Ce projet a été créé dans le cadre du hackathon internation de l'opendata.et hop hop</p><a href="http://wwww.google.fr">Google</a>
+page.about.txt=<p>Cette cartographie des démarches d'ouverture des données publiques en France est un projet d'amélioration de la <a hrerf="http://libertic.wordpress.com/2011/11/16/mise-a-jour-participative-de-la-carte-de-france-de-lopen-data/">carte collaborative tenue par l'association Libertic</a> développé dans le cadre de la <a href="http://opendatananteshack-eorg.eventbrite.com/">journée internationale de l'Open Data</a> à Nantes le 3 décembre 2011.</p><p>L'objectif de cette cartographie est de suivre les avancées du mouvement Open Data en France en répertoriant les initiatives remontées par les internautes.  Rendez-vous dans la partie "Contact" pour contribuer.</p><p>Vous êtes libre de reproduire, copier, diffuser, enrichir cette carte à condition de mentionner la source.</p>
 page.about.thanks=Remerciements
-page.about.thanks.txt=Merci aux personnes suivantes d'avoir représenter la France au hackathon international de l'opendata.
+page.about.thanks.txt=Merci aux personnes suivantes d'avoir représenté la France au hackathon international de l'opendata.
 
 page.contact=Contact
-page.contact.txt=N'hésitez pas à nous envoyer un petit mot ...
+page.contact.txt=<p>Votre collectivité vient de voter une déliberation en faveur de l'ouverture de données ? Passer un appel d'offres sur le sujet ? Lancer sa plateforme Open Data ? Vous venez de créer un mouvement citoyen dans votre ville ? Vous souhaitez mettre à jour les indications de la carte ? Ou simplement nous contacter ? Un formulaire est à votre disposition.</p>
 page.contact.author=Votre nom
 page.contact.email=Votre adresse mail
 page.contact.message=Votre message
 page.contact.security=Code de sécurité
 page.contact.send=Envoyer
+
+page.searchGeoZone.title=Recherche d'une zone géographique
+page.searchGeoZone.level=Voulez-vous chercher
+page.searchGeoZone.level0=un pays
+page.searchGeoZone.level1=une région
+page.searchGeoZone.level2=un département
+page.searchGeoZone.level3=une ville
+page.searchGeoZone.query=Rechercher
+page.searchGeoZone.search=Rechercher
+page.searchGeoZone.searchResult=Résultat de la recherche
+page.searchGeoZone.noResult=Aucun résultat trouvé
+page.searchGeoZone.countryCode=Code pays
+page.searchGeoZone.name=Nom
+page.opendataCard.status.ok=Déjà ouvert
+page.opendataCard.status.inprogress=En cours
+page.opendataCard.status.thinking=Y réfléchit
+page.opendataCard.citizenMvt=Mouvement citoyen ?
+page.opendataCard.status=Status de l'opendata
+
+page.opendataCard.title=Fiche OpenData sur :
+page.opendataCard.url=Url du site
+page.opendataCard.plateforme=Plateforme utilisée
+page.opendataCard.numOfData=Nombre de jeux de données
+page.opendataCard.opening=Date d'ouverture
+page.opendataCard.lastUpdate=Dernière mise à jour de la plateforme
+page.opendataCard.bernersLeeRate=Note  de Berners Lee
+page.opendataCard.license=Licence des données
+page.opendataCard.description=Description
+page.opendataCard.thematic=Thématique
+page.opendataCard.formats=Formats disponibles pour les données
+page.opendataCard.dataOwners=Gestionnaire des données
+page.opendataCard.contacts=Contacts
+page.opendataCard.save=Enregistrer
+
+bubble.dateUpdate=MISE A JOUR
+bubble.nbData=NOMBRE DE DONNEES
+bubble.thematique=THEMATIQUE
+bubble.acteurs=ACTEURS
+bubble.licence=LICENCE
+bubble.site=URL DE LA PLATEFORME
 
 node.date =Date de sortie
 node.url=Url de la plateforme
