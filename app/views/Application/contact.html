@@ -3,10 +3,8 @@
 
 <div class="row">
     <div class="span14">
-        <h2>&{'page.contact'}</h2>
-        <br/><br/>
         &{'page.contact.txt'}
-        <br/><br/>
+        <br/>
         #{form @Application.sendContact()}
  
             #{ifErrors}
@@ -30,7 +28,6 @@
                     #{/if}
                 </div>
             </div>
-            <br/>
             
             <div class="clearfix">
                 <label for="email">&{'page.contact.email'}<span class="required">*</span></label>
@@ -41,7 +38,6 @@
                     #{/if}
                 </div>
             </div>
-            <br/>
             
             <div class="clearfix">
                 <label for="message">&{'page.contact.message'}<span class="required">*</span></label>
@@ -52,7 +48,6 @@
                     #{/if}
                 </div>
             </div>
-            <br/>
             
             <div class="clearfix">
                 <label for="code">&{'page.contact.security'}<span class="required">*</span></label>
@@ -67,7 +62,6 @@
             <div class="clearfix captcha">
                 <img src="@{Application.captcha(randomID)}" />
             </div>
-            <br/>
             
             <div class="actions">
                 <input class="btn primary" type="submit" value="&{'page.contact.send'}" />

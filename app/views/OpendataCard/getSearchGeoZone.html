@@ -1,10 +1,8 @@
 #{extends 'main.html' /} 
-#{set title:"Libertic - Admin - recherche d'une zone géographique" /}
+#{set title:"Recherche d'une zone géographique" /}
 
 <div class="row">
     <div class="span14">
-        <h2>&{'page.searchGeoZone.title'}</h2>
-        <br/><br/>
         #{form @OpendataCard.searchGeoZone()}
         
             #{ifErrors}
@@ -67,7 +65,7 @@
     </div>
  </div>
  
- <div class="row">
+ <div class="row show-grid">
     
     #{if countries?.size() > 0 || zone1?.size() > 0 || zone2?.size() > 0 || cities?.size() > 0}
     <div class="span14">
@@ -144,7 +142,7 @@
     #{/if}
     #{else}
         <div class="span14">
-            <p>&{'page.searchGeoZone.noResult'}</p>
+            <p><strong>&{'page.searchGeoZone.noResult'}</strong></p>
         </div>
     #{/else}
 </div>

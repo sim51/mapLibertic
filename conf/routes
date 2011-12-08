@@ -3,34 +3,26 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                       							Application.index
 
 # About page
-GET     /about                                  Application.about
+GET     /about                                  							Application.about
 
 # Contact form
-GET     /contact                                Application.contact
-POST    /contact                                Application.sendContact
+GET     /contact                                							Application.contact
+POST    /contact                                							Application.sendContact
 
 # Admin - step1
-GET 	/admin/step1							OpendataCard.getSearchGeoZone
-POST 	/admin/step1							OpendataCard.searchGeoZone
-GET		/admin/step2							OpendataCard.addCard
-
-
-
-GET		/map/bubble								Application.bubble
-
-
-
-# Import CRUD routes
-*     /admin           module:crud
+GET 	/opendatacard/search												OpendataCard.getSearchGeoZone
+POST 	/opendatacard/search												OpendataCard.searchGeoZone
+GET		/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.card
+POST	/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.saveCard
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                            							404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+GET     /public/                                							staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}                  							{controller}.{action}

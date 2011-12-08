@@ -1,5 +1,5 @@
 #{extends 'main.html' /} 
-#{set title:'Libertic - Carte opendata de la France' /}
+#{set title:'Carte opendata' /}
 
 #{set 'moreStyles' }
     <link rel="stylesheet" href="http://openlayers.org/api/theme/default/style.css" type="text/css" />
@@ -134,7 +134,6 @@
             map.addControl(new OpenLayers.Control.Navigation());
           	map.addControl(new OpenLayers.Control.LayerSwitcher());
             map.addControl(new OpenLayers.Control.Scale($('scale')));
-            map.addControl(new OpenLayers.Control.MousePosition());
             map.zoomToExtent(bounds);
           	
           	
@@ -156,10 +155,8 @@
 
 <div class="row">
     <div class="span12">
-        <h2>&{'page.home.carte'}</h2>
-        <br/><br/>
         <div id="map" class="smallmap"></div>
-        <h3>&{'page.home.legende'}</h3>
+        <h2>&{'page.home.legende'}</h2>
            
     </div>
     <div class="span2">

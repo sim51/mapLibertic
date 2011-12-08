@@ -1,3 +1,21 @@
+body {
+	padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+.content {
+    background-color: #FFFFFF;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    margin: 0 -20px;
+    padding: 20px;
+}
+.page-header {
+    background-color: #F5F5F5;
+    margin: -20px -20px 20px;
+    padding: 20px 20px 10px;
+}
+.show-grid .span14{
+	text-align: center;
+}
 .captcha img{
 	margin-left: 130px;
 }
