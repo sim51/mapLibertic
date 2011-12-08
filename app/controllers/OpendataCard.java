@@ -22,7 +22,7 @@ public class OpendataCard extends Controller {
     private static void isValidUser() {
         SocialUser user = SecureSocial.getCurrentUser();
         Logger.debug("user is " + user.displayName);
-        if (!user.displayName.equals("logisima") && !!user.displayName.equals("libertic")) {
+        if (!user.displayName.equals("logisima") && !!user.displayName.equals("LiberTIC")) {
             forbidden();
         }
     }
