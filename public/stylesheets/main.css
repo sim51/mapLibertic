@@ -27,3 +27,7 @@ div#map{
 	height: 500px;
 	background-color:#B5D0D0;
 }
+
+footer p{
+	text-align: center;
+}
