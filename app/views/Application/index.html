@@ -41,19 +41,19 @@
                     "Countries",
                     "${url}", 
                     {'layers': 'libertic_country', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
             );
           	var libertic_zone1 = new OpenLayers.Layer.WMS(
                     "Administrative Zone level 1",
                     "${url}", 
                     {'layers': 'libertic_zone1', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
             );
           	var libertic_zone2 = new OpenLayers.Layer.WMS(
                     "Administrative Zone level 2",
                     "${url}", 
                     {'layers': 'libertic_zone2', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
             );
           	var libertic_city = new OpenLayers.Layer.WMS(
                     "Cities",
