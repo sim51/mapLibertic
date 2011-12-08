@@ -8,3 +8,5 @@
 /.settings/
 /tmp/
 /bin/
+conf/application.conf
+
