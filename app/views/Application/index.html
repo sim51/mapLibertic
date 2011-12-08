@@ -7,7 +7,6 @@
 #{/set}
 #{set 'moreScripts'}
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
-    <script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAl9RMqSzhPUXAfeBCXOussRTQDbvAygy0cfGJr8dEMAYKf3RWNBQqP9mjKIsqTfmAlz5LOJ3Xpy5s4w'></script>
     <script type="text/javascript">
         var map;
         
@@ -33,11 +32,35 @@
           	// Create a OSM layer
           	//var osm = new OpenLayers.Layer.OSM();
           	var countries = new OpenLayers.Layer.WMS(
-                    "Libertic",
-                    "http://localhost:8080/geoserver/wms", 
+                    "Countries",
+                    "${url}", 
                     {'layers': 'libertic:country', 'format':'image/png', 'transparent':'true'},
                     {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
-               );
+            );
+          	var libertic_country = new OpenLayers.Layer.WMS(
+                    "Countries",
+                    "${url}", 
+                    {'layers': 'libertic_country', 'format':'image/png', 'transparent':'true'},
+                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+            );
+          	var libertic_zone1 = new OpenLayers.Layer.WMS(
+                    "Administrative Zone level 1",
+                    "${url}", 
+                    {'layers': 'libertic_zone1', 'format':'image/png', 'transparent':'true'},
+                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+            );
+          	var libertic_zone2 = new OpenLayers.Layer.WMS(
+                    "Administrative Zone level 2",
+                    "${url}", 
+                    {'layers': 'libertic_zone2', 'format':'image/png', 'transparent':'true'},
+                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+            );
+          	var libertic_city = new OpenLayers.Layer.WMS(
+                    "Cities",
+                    "${url}", 
+                    {'layers': 'libertic_city', 'format':'image/png', 'transparent':'true'},
+                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
+            );
           	// Add layer to map
           	map.addLayers([countries]);
           	map.addControl(new OpenLayers.Control.LayerSwitcher());

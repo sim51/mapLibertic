@@ -1,7 +1,7 @@
 # This is the main configuration file for the application.
 # ~~~~~
 application.name=libertic
-map.url=http://a.tiles.mapbox.com/v3/upload.1adyp6rv.html#4/46.3176/1.9445499999999996
+map.wms.url=http://odhd.logisima.com/geoserver/wms
 mail.noreply=no-reply@libertic.com
 mail.reply=contact@bsimard.com
 

@@ -14,7 +14,7 @@ import play.mvc.Controller;
 public class Application extends Controller {
 
     public static void index() {
-        String url = Play.configuration.getProperty("map.url");
+        String url = Play.configuration.getProperty("map.wms.url");
         String menu = "index";
         render(menu, url);
     }
