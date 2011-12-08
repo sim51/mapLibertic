@@ -11,7 +11,6 @@ import models.ZoneAdmin2;
 import play.Logger;
 import play.data.validation.Required;
 import play.data.validation.Valid;
-import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 import securesocial.provider.SocialUser;
@@ -20,8 +19,7 @@ import controllers.securesocial.SecureSocial;
 @With(SecureSocial.class)
 public class OpendataCard extends Controller {
 
-    @Before
-    static void isValidUser() {
+    private static void isValidUser() {
         SocialUser user = SecureSocial.getCurrentUser();
         Logger.debug("user is " + user.displayName);
         if (!user.displayName.equals("logisima") && !!user.displayName.equals("libertic")) {
@@ -30,10 +28,12 @@ public class OpendataCard extends Controller {
     }
 
     public static void getSearchGeoZone() {
+        isValidUser();
         render();
     }
 
     public static void searchGeoZone(@Required Integer level, @Required String query) {
+        isValidUser();
         List<Country> countries = new ArrayList<Country>();
         List<ZoneAdmin1> zone1 = new ArrayList<ZoneAdmin1>();
         List<ZoneAdmin2> zone2 = new ArrayList<ZoneAdmin2>();
@@ -69,6 +69,7 @@ public class OpendataCard extends Controller {
     }
 
     public static void card(int level, Long id) {
+        isValidUser();
         String name = null;
         OpenDataCard card = null;
         switch (level) {
@@ -101,6 +102,7 @@ public class OpendataCard extends Controller {
     }
 
     public static void saveCard(int level, Long id, String name, @Valid OpenDataCard card) {
+        isValidUser();
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
