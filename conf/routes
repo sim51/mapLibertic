@@ -21,6 +21,8 @@ POST	/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.saveCa
 # Ignore favicon requests
 GET     /favicon.ico                            							404
 
+*		/																	module:securesocial
+
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                							staticDir:public
 

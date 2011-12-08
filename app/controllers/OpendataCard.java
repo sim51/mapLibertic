@@ -11,9 +11,23 @@ import models.ZoneAdmin2;
 import play.Logger;
 import play.data.validation.Required;
 import play.data.validation.Valid;
+import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.With;
+import securesocial.provider.SocialUser;
+import controllers.securesocial.SecureSocial;
 
+@With(SecureSocial.class)
 public class OpendataCard extends Controller {
+
+    @Before
+    static void isValidUser() {
+        SocialUser user = SecureSocial.getCurrentUser();
+        Logger.debug("user is " + user.displayName);
+        if (!user.displayName.equals("logisima") && !!user.displayName.equals("libertic")) {
+            forbidden();
+        }
+    }
 
     public static void getSearchGeoZone() {
         render();

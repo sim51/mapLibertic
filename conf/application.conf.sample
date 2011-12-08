@@ -5,6 +5,13 @@ map.wms.url=http://odhd.logisima.com/geoserver/wms
 mail.noreply=no-reply@libertic.com
 mail.reply=contact@bsimard.com
 
+securesocial.providers=twitter
+securesocial.twitter.requestTokenURL=https://twitter.com/oauth/request_token
+securesocial.twitter.accessTokenURL=https://twitter.com/oauth/access_token
+securesocial.twitter.authorizationURL=https://twitter.com/oauth/authenticate
+securesocial.twitter.consumerKey=
+securesocial.twitter.consumerSecret=
+
 
 # Application mode
 # ~~~~~
