@@ -62,7 +62,7 @@
                     {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
             );
           	// Add layer to map
-          	map.addLayers([countries]);
+          	map.addLayers([countries, libertic_country, libertic_zone1, libertic_zone2, libertic_city]);
           	map.addControl(new OpenLayers.Control.LayerSwitcher());
         	// Zoom to Medford, Oregon
             var point = new OpenLayers.LonLat(-122.8764, 42.3263); 
