@@ -9,10 +9,12 @@
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
     <script type="text/javascript">
         var map;
-        
-     	// Avoid pink error tiles
-        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
-        OpenLayers.Util.onImageLoadErrorColor = "transparent";
+        var pureCoverage = false;
+        var format = 'image/png';
+        // pink tile avoidance
+        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
+        // make OL compute scale according to WMS spec
+        OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
     
         function init() {
         	// Map is in mercator this time, so over-ride the default
@@ -22,11 +24,12 @@
                     180, 83.634
             );
         	var options = {
-        		projection: new OpenLayers.Projection("EPSG:900913"),
-        	    units: "m",
-        	    maxResolution: 1.40625,
-        	    maxExtent: bounds
-			};
+                controls: [],
+                maxExtent: bounds,
+                maxResolution: 1.40625,
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                units: 'm'
+            };
           	// Create the map object
           	map = new OpenLayers.Map('map', options);
           	// Create a OSM layer
@@ -34,42 +37,113 @@
           	var countries = new OpenLayers.Layer.WMS(
                     "Countries",
                     "${url}", 
-                    {'layers': 'libertic:country', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': true, 'visibility': true}
+                    {
+                    	'layers': 'libertic:country', 
+                    	'format':format, 
+                    	'transparent':'true',
+                    	'tiled': !pureCoverage,
+                        'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+                    },
+                    {
+                    	'singleTile': true,
+                    	'ratio': 1,
+                    	'opacity': 1.0, 
+                    	'isBaseLayer': true, 
+                    	'visibility': true
+                    }
             );
           	var libertic_country = new OpenLayers.Layer.WMS(
                     "Countries",
                     "${url}", 
-                    {'layers': 'libertic_country', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
+                    {
+                    	'layers': 'libertic_country', 
+                    	'format':format, 
+                    	'transparent':'true',
+                    	'tiled': !pureCoverage,
+                        'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+                    },
+                    {
+                    	'singleTile': true,
+                    	'ratio': 1,
+                    	'buffer': 0,
+                        'displayOutsideMaxExtent': true, 
+                    	'isBaseLayer': false, 
+                    	'visibility': true
+                    }
             );
           	var libertic_zone1 = new OpenLayers.Layer.WMS(
                     "Administrative Zone level 1",
                     "${url}", 
-                    {'layers': 'libertic_zone1', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
+                    {
+                    	'layers': 'libertic_zone1', 
+                    	'format':format,
+                    	'transparent':'true',
+                    	'tiled': !pureCoverage,
+                        'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+                    },
+                    {
+                    	'singleTile': true,
+                    	'ratio': 1,
+                    	'opacity': 1.0, 
+                    	'isBaseLayer': false, 
+                    	'visibility': true
+                    }
             );
           	var libertic_zone2 = new OpenLayers.Layer.WMS(
                     "Administrative Zone level 2",
                     "${url}", 
-                    {'layers': 'libertic_zone2', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
+                    {
+                    	'layers': 'libertic_zone2', 
+                    	'format':format, 
+                    	'transparent':'true',
+                    	'tiled': !pureCoverage,
+                        'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+                    },
+                    {
+                    	'singleTile': true,
+                    	'ratio': 1,
+                    	'opacity': 1.0, 
+                    	'isBaseLayer': false, 
+                    	'visibility': true
+                    }
             );
           	var libertic_city = new OpenLayers.Layer.WMS(
                     "Cities",
                     "${url}", 
-                    {'layers': 'libertic_city', 'format':'image/png', 'transparent':'true'},
-                    {'opacity': 1.0, 'isBaseLayer': false, 'visibility': true}
+                    {
+                    	'layers': 'libertic_city', 
+                    	'format':format,
+                    	'transparent':'true',
+                    	'tiled': !pureCoverage,
+                        'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+                    },
+                    {
+                    	'singleTile': true,
+                    	'ratio': 1,
+                    	'opacity': 1.0, 
+                    	'isBaseLayer': false, 
+                    	'visibility': true
+                    }
             );
           	// Add layer to map
           	map.addLayers([countries, libertic_country, libertic_zone1, libertic_zone2, libertic_city]);
+         // build up all controls
+            map.addControl(new OpenLayers.Control.PanZoomBar({
+                position: new OpenLayers.Pixel(2, 15)
+            }));
+            map.addControl(new OpenLayers.Control.Navigation());
           	map.addControl(new OpenLayers.Control.LayerSwitcher());
+            map.addControl(new OpenLayers.Control.Scale($('scale')));
+            map.addControl(new OpenLayers.Control.MousePosition());
+            map.zoomToExtent(bounds);
+          	
+          	
         	// Zoom to Medford, Oregon
             var point = new OpenLayers.LonLat(-122.8764, 42.3263); 
          	// Need to convert zoom point to mercator too
             point.transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()); 
           	// Zoom to Vancouver, BC
-          	map.setCenter(new OpenLayers.LonLat(-123.12, 49.28), 13);
+          	map.setCenter(new OpenLayers.LonLat(2.46,  47.18), 6);
           	map.setCenter(point, 17); 
         }
         
@@ -85,6 +159,8 @@
         <h2>&{'page.home.carte'}</h2>
         <br/><br/>
         <div id="map" class="smallmap"></div>
+        <h3>&{'page.home.legende'}</h3>
+           
     </div>
     <div class="span2">
         <h3>&{'page.home.legende'}</h3>
