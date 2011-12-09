@@ -144,7 +144,6 @@
                 position: new OpenLayers.Pixel(2, 15)
             }));
             map.addControl(new OpenLayers.Control.Navigation());
-          	map.addControl(new OpenLayers.Control.LayerSwitcher());
             map.addControl(new OpenLayers.Control.Scale('#scale'));
             map.zoomToExtent(bounds);
           	
@@ -172,7 +171,6 @@
 <div class="row">
     <div class="span12">
         <div id="map" class="smallmap"></div>
-        <div id="scale"></div>
         <p>
             <strong>&{'page.home.legende'}: </strong>
             <span class="legende" style="background-color:#BEE669">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.ok'}
