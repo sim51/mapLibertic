@@ -10,6 +10,10 @@ footer=Ce projet est sous la <a target="_blank" href="http://www.gnu.org/license
 page.home=Accueil
 page.home.carte=La Carte de France
 page.home.legende=Légende
+page.home.legende.ok=Déjà ouvert
+page.home.legende.inprogress=En cours
+page.home.legende.thinking=Y réfléchit
+page.home.legende.citizenMvt=Mouvement citoyen
 
 page.about=A propos
 page.about.demarche=Notre démarche

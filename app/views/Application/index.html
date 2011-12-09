@@ -25,7 +25,7 @@
             );
         	var options = {
                 controls: [],
-                minScale: 10,
+                minScale: 20,
                 maxScale: 800,
                 maxExtent: bounds,
                 maxResolution: 1.40625,
@@ -38,7 +38,7 @@
           	//var osm = new OpenLayers.Layer.OSM();
           	var countries = new OpenLayers.Layer.WMS(
                     "Countries",
-                    "${url}", 
+                    "${wmsurl}", 
                     {
                     	'layers': 'libertic:country', 
                     	'format':format, 
@@ -56,7 +56,7 @@
             );
           	var libertic_country = new OpenLayers.Layer.WMS(
                     "Countries",
-                    "${url}", 
+                    "${wmsurl}", 
                     {
                     	'layers': 'libertic_country', 
                     	'format':format, 
@@ -70,12 +70,16 @@
                     	'buffer': 0,
                         'displayOutsideMaxExtent': true, 
                     	'isBaseLayer': false, 
-                    	'visibility': true
+                    	'visibility': true,
+                    	'units': 'm',
+                    	'maxResolution': "auto",
+                    	'minScale': 801,
+                        'maxScale': 300
                     }
             );
           	var libertic_zone1 = new OpenLayers.Layer.WMS(
                     "Administrative Zone level 1",
-                    "${url}", 
+                    "${wmsurl}", 
                     {
                     	'layers': 'libertic_zone1', 
                     	'format':format,
@@ -88,12 +92,14 @@
                     	'ratio': 1,
                     	'opacity': 1.0, 
                     	'isBaseLayer': false, 
-                    	'visibility': true
+                    	'visibility': true,
+                    	'minScale': 300,
+                        'maxScale': 19
                     }
             );
           	var libertic_zone2 = new OpenLayers.Layer.WMS(
                     "Administrative Zone level 2",
-                    "${url}", 
+                    "${wmsurl}", 
                     {
                     	'layers': 'libertic_zone2', 
                     	'format':format, 
@@ -106,12 +112,14 @@
                     	'ratio': 1,
                     	'opacity': 1.0, 
                     	'isBaseLayer': false, 
-                    	'visibility': true
+                    	'visibility': true,
+                    	'minScale': 150,
+                        'maxScale': 19
                     }
             );
           	var libertic_city = new OpenLayers.Layer.WMS(
                     "Cities",
-                    "${url}", 
+                    "${wmsurl}", 
                     {
                     	'layers': 'libertic_city', 
                     	'format':format,
@@ -124,28 +132,34 @@
                     	'ratio': 1,
                     	'opacity': 1.0, 
                     	'isBaseLayer': false, 
-                    	'visibility': true
+                    	'visibility': true,
+                    	'minScale': 100,
+                        'maxScale': 19
                     }
             );
           	// Add layer to map
           	map.addLayers([countries, libertic_country, libertic_zone1, libertic_zone2, libertic_city]);
-         // build up all controls
+         	// build up all controls
             map.addControl(new OpenLayers.Control.PanZoomBar({
                 position: new OpenLayers.Pixel(2, 15)
             }));
             map.addControl(new OpenLayers.Control.Navigation());
           	map.addControl(new OpenLayers.Control.LayerSwitcher());
-            map.addControl(new OpenLayers.Control.Scale($('scale')));
+            map.addControl(new OpenLayers.Control.Scale('#scale'));
             map.zoomToExtent(bounds);
           	
           	
-        	// Zoom to Medford, Oregon
-            var point = new OpenLayers.LonLat(-122.8764, 42.3263); 
-         	// Need to convert zoom point to mercator too
-            point.transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()); 
-          	// Zoom to Vancouver, BC
-          	map.setCenter(new OpenLayers.LonLat(2.46,  47.18), 6);
-          	map.setCenter(point, 17); 
+            if (navigator.geolocation)
+            {
+              navigator.geolocation.getCurrentPosition(function(position)
+              {
+            	  map.setCenter(new OpenLayers.LonLat(position.coords.longitude,  position.coords.latitude), 6);
+              });
+            }
+            else
+            {
+          		map.setCenter(new OpenLayers.LonLat(2.46,  47.18), 6);
+            }
         }
         
         $(document).ready(function(){
@@ -158,10 +172,15 @@
 <div class="row">
     <div class="span12">
         <div id="map" class="smallmap"></div>
-        <h2>&{'page.home.legende'}</h2>
+        <div id="scale"></div>
+        <p>
+            <strong>&{'page.home.legende'}: </strong>
+            <span class="legende" style="background-color:#BEE669">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.ok'}
+            <span class="legende" style="background-color:#89C0DE">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.inprogress'}
+            <span class="legende" style="background-color:#B5B3B4">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.thinking'}
+            <span class="legende" style="background-color:red">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.citizenMvt'}
            
     </div>
     <div class="span2">
-        <h3>&{'page.home.legende'}</h3>
     </div>
 </div>
