@@ -19,12 +19,14 @@ import play.mvc.Controller;
 
 public class Application extends Controller {
 
+    @CacheFor
     public static void index() {
         String wmsurl = Play.configuration.getProperty("map.wms.url");
         String menu = "index";
         render(menu, wmsurl);
     }
 
+    @CacheFor
     public static void card(float scale, float latitude, float longitude) {
         OpenDataCard card = null;
         int level = 0;
