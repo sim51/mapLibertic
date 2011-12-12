@@ -57,7 +57,6 @@ public class Application extends Controller {
         render(menu);
     }
 
-    @CacheFor
     public static void contact() {
         String menu = "contact";
         String randomID = Codec.UUID();
