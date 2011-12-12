@@ -12,6 +12,12 @@
             ${card?.plateform}
         </li>
     #{/if}
+    #{if card?.license}
+        <li>
+            <strong>&{'page.opendataCard.license'} :</strong>
+            ${card?.license}
+        </li>
+    #{/if}
     #{if card?.numOfData}
         <li>
             <strong>&{'page.opendataCard.numOfData'} :</strong>
