@@ -8,7 +8,6 @@ import models.OpenDataCard;
 import models.ZoneAdmin1;
 import models.ZoneAdmin2;
 import notifier.Mails;
-import play.Logger;
 import play.Play;
 import play.cache.Cache;
 import play.cache.CacheFor;
@@ -49,9 +48,7 @@ public class Application extends Controller {
             level = 0;
             render(card, level);
         }
-        Logger.debug("scale is " + scale);
-        card = OpenDataCard.all().first();
-        render(card, level);
+        renderText("");
     }
 
     @CacheFor
