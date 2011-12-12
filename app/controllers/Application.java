@@ -2,9 +2,16 @@ package controllers;
 
 import java.util.concurrent.ExecutionException;
 
+import models.City;
+import models.Country;
+import models.OpenDataCard;
+import models.ZoneAdmin1;
+import models.ZoneAdmin2;
 import notifier.Mails;
+import play.Logger;
 import play.Play;
 import play.cache.Cache;
+import play.cache.CacheFor;
 import play.data.validation.Email;
 import play.data.validation.Required;
 import play.libs.Codec;
@@ -19,11 +26,41 @@ public class Application extends Controller {
         render(menu, wmsurl);
     }
 
+    public static void card(float scale, float latitude, float longitude) {
+        OpenDataCard card = null;
+        int level = 0;
+        card = City.getCardFromLongLat(scale, longitude, latitude);
+        if (card != null) {
+            level = 3;
+            render(card, level);
+        }
+        card = ZoneAdmin2.getCardFromLongLat(scale, longitude, latitude);
+        if (card != null) {
+            level = 2;
+            render(card, level);
+        }
+        card = ZoneAdmin1.getCardFromLongLat(scale, longitude, latitude);
+        if (card != null) {
+            level = 1;
+            render(card, level);
+        }
+        card = Country.getCardFromLongLat(scale, longitude, latitude);
+        if (card != null) {
+            level = 0;
+            render(card, level);
+        }
+        Logger.debug("scale is " + scale);
+        card = OpenDataCard.all().first();
+        render(card, level);
+    }
+
+    @CacheFor
     public static void about() {
         String menu = "about";
         render(menu);
     }
 
+    @CacheFor
     public static void contact() {
         String menu = "contact";
         String randomID = Codec.UUID();

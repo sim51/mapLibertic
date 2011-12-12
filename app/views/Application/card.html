@@ -1,0 +1,69 @@
+<h2>${card?.name}</h2>
+<ul class="unstyled">
+    #{if card?.url}
+        <li>
+            <strong>&{'page.opendataCard.url'}</strong>
+            ${card?.url}
+        </li>
+    #{/if}
+    #{if card?.plateform}
+        <li>
+            <strong>&{'page.opendataCard.plateforme'}</strong>
+            ${card?.plateform}
+        </li>
+    #{/if}
+    #{if card?.numOfData}
+        <li>
+            <strong>&{'page.opendataCard.numOfData'}</strong>
+            ${card?.numOfData}
+        </li>
+    #{/if}
+    #{if card?.opening}
+        <li>
+            <strong>&{'page.opendataCard.opening'}</strong>
+             ${card?.opening?.format('dd/MM/yyyy')}
+        </li>
+    #{/if}
+    #{if card?.lastUpdate}
+        <li>
+            <strong>&{'page.opendataCard.lastUpdate'}</strong>
+             ${card?.lastUpdate?.format('dd/MM/yyyy')}
+        </li>
+    #{/if}
+    #{if card?.bernersLeeRate}
+        <li>
+            <strong>&{'page.opendataCard.bernersLeeRate'}</strong>
+             ${card?.bernersLeeRate}
+        </li>
+    #{/if}
+    #{if card?.description}
+         <li>
+            <strong>&{'page.opendataCard.description'}</strong>
+              ${card?.description}
+        </li>
+    #{/if}
+    #{if card?.thematic}
+        <li>
+            <strong>&{'page.opendataCard.thematic'}</strong>
+              ${card?.thematic}
+        </li>
+    #{/if}
+    #{if card?.dataOwners}
+        <li>
+            <strong>&{'page.opendataCard.dataOwners'}</strong>
+              ${card?.dataOwners}
+        </li>
+    #{/if}
+    #{if card?.formats}
+        <li>
+            <strong>&{'page.opendataCard.formats'}</strong>
+              ${card?.formats}
+        </li>
+    #{/if}
+    #{if card?.contacts}
+        <li>
+            <strong>&{'page.opendataCard.contacts'}</strong>
+              ${card?.contacts}
+        </li>
+     #{/if}
+</ul>

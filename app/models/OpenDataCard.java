@@ -17,6 +17,9 @@ import play.db.jpa.Model;
 public class OpenDataCard extends Model {
 
     @Required
+    public String  name;
+
+    @Required
     public int     status;
 
     public Boolean isThereCitizenMvt;

@@ -3,6 +3,11 @@
 require:
     - play
     - play -> securesocial 0.2.2
+    - play -> less 0.3
+    - org.hibernatespatial -> hibernate-spatial-postgis 1.1:
+        exclude:
+            - postgresql -> *
+            - javassist-> *
     
     
 

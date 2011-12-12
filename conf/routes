@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                                       							Application.index
+GET		/opendatacard														Application.card
 
 # About page
 GET     /about                                  							Application.about

@@ -3,6 +3,12 @@
 
 <div class="row">
     <div class="span14">
+    
+        <ul class="breadcrumb">
+            <li><a href="@{OpendataCard.getSearchGeoZone}">&{'page.searchGeoZone.title'}</a> <span class="divider">/</span></li>
+            <li class="active">${name}</li>
+        </ul>
+            
         <h2>${name}</h2>
         <br/><br/>
         #{form @OpendataCard.saveCard()}
@@ -22,6 +28,7 @@
             <input type="hidden" name="id" value="${id}"/>
             <input type="hidden" name="level" value="${level}"/>
             <input type="hidden" name="name" value="${name}"/>
+            <input type="hidden" name="card.name" value="${name}"/>
             
             <div class="clearfix">
                 <label for="status">&{'page.opendataCard.status'}</label>

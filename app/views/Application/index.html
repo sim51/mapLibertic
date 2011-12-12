@@ -2,11 +2,11 @@
 #{set title:'Carte opendata' /}
 
 #{set 'moreStyles' }
-    <link rel="stylesheet" href="http://openlayers.org/api/theme/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="@{'/public/openlayers/theme/default/style.css'}" type="text/css" />
     
 #{/set}
 #{set 'moreScripts'}
-    <script src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script src="@{'/public/openlayers/OpenLayers.js'}"></script>
     <script type="text/javascript">
         var map;
         var pureCoverage = false;
@@ -25,17 +25,15 @@
             );
         	var options = {
                 controls: [],
-                minScale: 20,
-                maxScale: 800,
                 maxExtent: bounds,
                 maxResolution: 1.40625,
+                minScale: 20,
+                maxScale: 800,
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 units: 'm'
             };
           	// Create the map object
           	map = new OpenLayers.Map('map', options);
-          	// Create a OSM layer
-          	//var osm = new OpenLayers.Layer.OSM();
           	var countries = new OpenLayers.Layer.WMS(
                     "Countries",
                     "${wmsurl}", 
@@ -144,7 +142,7 @@
                 position: new OpenLayers.Pixel(2, 15)
             }));
             map.addControl(new OpenLayers.Control.Navigation());
-            map.addControl(new OpenLayers.Control.Scale('#scale'));
+            map.addControl(new OpenLayers.Control.Scale());
             map.zoomToExtent(bounds);
           	
           	
@@ -159,9 +157,61 @@
             {
           		map.setCenter(new OpenLayers.LonLat(2.46,  47.18), 6);
             }
+            
+            var click = new OpenLayers.Control.Click();
+            map.addControl(click);
+            click.activate();
+            
+            
         }
         
         $(document).ready(function(){
+        	//declare Openlayer Click Control
+        	OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {               
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': false,
+                    'pixelTolerance': 0,
+                    'stopSingle': false,
+                    'stopDouble': false
+                },
+
+                initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    ); 
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'click': this.trigger
+                        }, this.handlerOptions
+                    );
+                }, 
+
+                trigger: function(e) {
+                	var scale = map.getScale();
+                    var lonlat = map.getLonLatFromViewPortPx(e.xy);
+                    $.ajax({
+    					type: 'GET',
+    					url: '/opendatacard?latitude=' +  lonlat.lat + '&longitude=' + lonlat.lon + '&scale=' + scale,
+    					async: 'false',
+    					context : $(this),
+    					dataType: 'html',
+    					success: function(data){
+    	  					$("#card").html(data);
+    	  				},
+    	  				error: function(XMLHttpRequest, textStatus, errorThrown){
+    	  					$("#card").html(errorThrown);
+    	  				}
+      					
+    				}) 
+                }
+
+            });
+        	
+        	//init map with layers
         	init();
         });
     </script>
@@ -169,7 +219,7 @@
 
 
 <div class="row">
-    <div class="span12">
+    <div class="span10">
         <div id="map" class="smallmap"></div>
         <p>
             <strong>&{'page.home.legende'}: </strong>
@@ -179,6 +229,7 @@
             <span class="legende" style="background-color:red">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.citizenMvt'}
            
     </div>
-    <div class="span2">
+    <div class="span4">
+        <div id="card"></div>
     </div>
 </div>

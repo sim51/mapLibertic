@@ -12,19 +12,15 @@ import play.Logger;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.mvc.Controller;
-import play.mvc.With;
-import securesocial.provider.SocialUser;
-import controllers.securesocial.SecureSocial;
 
-@With(SecureSocial.class)
 public class OpendataCard extends Controller {
 
     private static void isValidUser() {
-        SocialUser user = SecureSocial.getCurrentUser();
-        Logger.debug("user is " + user.displayName);
-        if (!user.displayName.equals("logisima") && !!user.displayName.equals("LiberTIC")) {
-            forbidden();
-        }
+        // SocialUser user = SecureSocial.getCurrentUser();
+        // Logger.debug("user is " + user.displayName);
+        // if (!user.displayName.equals("logisima") && !!user.displayName.equals("LiberTIC")) {
+        // forbidden();
+        // }
     }
 
     public static void getSearchGeoZone() {
@@ -68,42 +64,9 @@ public class OpendataCard extends Controller {
         render("@getSearchGeoZone", countries, zone1, zone2, cities);
     }
 
-    public static void card(int level, Long id) {
-        isValidUser();
-        String name = null;
-        OpenDataCard card = null;
-        switch (level) {
-            case 0:
-                // search country
-                Country country = Country.findById(id);
-                name = country.name;
-                card = country.card;
-                break;
-            case 1:
-                // search zone1
-                ZoneAdmin1 zone1 = ZoneAdmin1.findById(id);
-                name = zone1.name;
-                card = zone1.card;
-                break;
-            case 2:
-                // search zone2
-                ZoneAdmin2 zone2 = ZoneAdmin2.findById(id);
-                name = zone2.name;
-                card = zone2.card;
-                break;
-            case 3:
-                // search city
-                City city = City.findById(id);
-                name = city.name;
-                card = city.card;
-                break;
-        }
-        render(level, id, name, card);
-    }
-
     public static void saveCard(int level, Long id, String name, @Valid OpenDataCard card) {
         isValidUser();
-        if (validation.hasErrors()) {
+        if (!validation.valid(card).ok) {
             validation.keep();
             params.flash();
             render("@card", level, id, name, card);
@@ -143,5 +106,40 @@ public class OpendataCard extends Controller {
         }
         flash.success("Enregistrement réussi");
         render("@card", level, id, name, card);
+    }
+
+    public static void card(@Required int level, @Required Long id) {
+        String name = "";
+        OpenDataCard card = null;
+        switch (level) {
+            case 0:
+                // search country
+                Country country = Country.findById(id);
+                name = country.name;
+                card = country.card;
+                render(level, id, name, card);
+                break;
+            case 1:
+                // search zone1
+                ZoneAdmin1 zone1 = ZoneAdmin1.findById(id);
+                name = zone1.name;
+                card = zone1.card;
+                render(level, id, name, card);
+                break;
+            case 2:
+                // search zone2
+                ZoneAdmin2 zone2 = ZoneAdmin2.findById(id);
+                name = zone2.name;
+                card = zone2.card;
+                render(level, id, name, card);
+                break;
+            case 3:
+                // search city
+                City city = City.findById(id);
+                name = city.name;
+                card = city.card;
+                render(level, id, name, card);
+                break;
+        }
     }
 }
