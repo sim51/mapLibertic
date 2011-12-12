@@ -12,15 +12,19 @@ import play.Logger;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.mvc.Controller;
+import play.mvc.With;
+import securesocial.provider.SocialUser;
+import controllers.securesocial.SecureSocial;
 
+@With(SecureSocial.class)
 public class OpendataCard extends Controller {
 
     private static void isValidUser() {
-        // SocialUser user = SecureSocial.getCurrentUser();
-        // Logger.debug("user is " + user.displayName);
-        // if (!user.displayName.equals("logisima") && !!user.displayName.equals("LiberTIC")) {
-        // forbidden();
-        // }
+        SocialUser user = SecureSocial.getCurrentUser();
+        Logger.debug("user is " + user.displayName);
+        if (!user.displayName.equals("logisima") && !!user.displayName.equals("LiberTIC")) {
+            forbidden();
+        }
     }
 
     public static void getSearchGeoZone() {
