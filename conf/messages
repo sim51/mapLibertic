@@ -19,7 +19,7 @@ page.about=A propos
 page.about.demarche=Notre démarche
 page.about.demarche.txt=<p>Cette cartographie des démarches d'ouverture des données publiques en France est un projet d'amélioration de la <a href="http://libertic.wordpress.com/2011/11/16/mise-a-jour-participative-de-la-carte-de-france-de-lopen-data/">carte collaborative tenue par l'association Libertic</a> développé dans le cadre de la <a href="http://opendatananteshack-eorg.eventbrite.com/">journée internationale de l'Open Data</a> à Nantes le 3 décembre 2011.</p><p>L'objectif de cette cartographie est de suivre les avancées du mouvement Open Data en France en répertoriant les initiatives remontées par les internautes.  Rendez-vous dans la partie "Contact" pour contribuer.</p><p>Vous êtes libre de reproduire, copier, diffuser, enrichir cette carte à condition de mentionner la source.</p>
 page.about.tech=Technique
-page.about.tech.txt=<p>La plateforme technique de ce projet est basée intégralement sur des briques open-sources :</p><ul><li>Bootstrap de twitter</li><li>Play! framework!</li><li>PostgreSQL / PostGIS</li><li>Jquery</li><li>OpenLayers</li><li>Apache</li><li>Apache Tomcat</li><li>GeoServer</li><li>Debian</li></ul>
+page.about.tech.txt=<p>La plateforme technique de ce projet est basée intégralement sur des briques open-sources :</p><ul><li>Bootstrap de twitter</li><li>Play! framework! (with SecureSocial & less module)</li><li>PostgreSQL / PostGIS</li><li>Hibernate Spatial postgis</li><li>Jquery</li><li>OpenLayers</li><li>Apache</li><li>Apache Tomcat</li><li>GeoServer</li><li>Debian</li></ul>
 page.about.thanks=Remerciements
 page.about.thanks.txt=Merci aux personnes suivantes d'avoir représenté la France au hackathon international de l'opendata.
 
