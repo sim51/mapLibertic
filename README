@@ -1,0 +1,35 @@
+Notre démarche
+
+Cette cartographie des démarches d'ouverture des données publiques en France est un projet d'amélioration de la carte collaborative tenue par l'association Libertic développé dans le cadre de la journée internationale de l'Open Data à Nantes le 3 décembre 2011.
+
+L'objectif de cette cartographie est de suivre les avancées du mouvement Open Data en France en répertoriant les initiatives remontées par les internautes. Rendez-vous dans la partie "Contact" pour contribuer.
+
+Vous êtes libre de reproduire, copier, diffuser, enrichir cette carte à condition de mentionner la source.
+Technique
+
+La plateforme technique de ce projet est basée intégralement sur des briques open-sources :
+
+    Bootstrap de twitter
+    Play! framework! (with SecureSocial & less module)
+    PostgreSQL / PostGIS
+    Hibernate Spatial postgis
+    Jquery
+    OpenLayers
+    Apache
+    Apache Tomcat
+    GeoServer
+    Debian
+
+Remerciements
+
+Merci aux personnes suivantes d'avoir représenté la France au hackathon international de l'opendata.
+
+    @logisima (Benoît Simard)
+    @Libertic (Claire)
+    @amnesic
+    O'Shea Sean
+    Vautier Emmanuel
+    @flxlepoutr
+    @auregann
+
+

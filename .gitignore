@@ -9,4 +9,6 @@
 /tmp/
 /bin/
 conf/application.conf
+/lib
+/precompiled
 

@@ -32,7 +32,7 @@ public class Country extends Model {
             List<Object[]> cards = JPA
                     .em()
                     .createNativeQuery(
-                            "SELECT opendatacard.name, opendatacard.status, opendatacard.isThereCitizenMvt, opendatacard.url, opendatacard.plateform, opendatacard.numOfData, opendatacard.opening, opendatacard.lastUpdate, opendatacard.bernersLeerate, opendatacard.license, opendatacard.description, opendatacard.thematic, opendatacard.dataOwners, opendatacard.formats, opendatacard.contacts FROM country INNER JOIN opendatacard ON country.card_id=opendatacard.id WHERE contains(the_geom, PointFromText('POINT("
+                            "SELECT opendatacard.name, opendatacard.status, opendatacard.isThereCitizenMvt, opendatacard.url, opendatacard.plateform, opendatacard.numOfData, opendatacard.opening, opendatacard.lastUpdate, opendatacard.bernersLeerate, opendatacard.license, opendatacard.description, opendatacard.thematic, opendatacard.dataOwners, opendatacard.formats, opendatacard.contacts FROM country INNER JOIN opendatacard ON country.card_id=opendatacard.id WHERE opendatacard.status>0 AND contains(the_geom, PointFromText('POINT("
                                     + longitude + " " + latitude + ")', 900913))").getResultList();
             if (cards.size() > 0) {
                 Object[] result = cards.get(0);

@@ -37,7 +37,7 @@ public class City extends Model {
             List<Object[]> cards = JPA
                     .em()
                     .createNativeQuery(
-                            "SELECT opendatacard.name, opendatacard.status, opendatacard.isThereCitizenMvt, opendatacard.url, opendatacard.plateform, opendatacard.numOfData, opendatacard.opening, opendatacard.lastUpdate, opendatacard.bernersLeerate, opendatacard.license, opendatacard.description, opendatacard.thematic, opendatacard.dataOwners, opendatacard.formats, opendatacard.contacts FROM city INNER JOIN opendatacard ON city.card_id=opendatacard.id WHERE distance(PointFromText('POINT("
+                            "SELECT opendatacard.name, opendatacard.status, opendatacard.isThereCitizenMvt, opendatacard.url, opendatacard.plateform, opendatacard.numOfData, opendatacard.opening, opendatacard.lastUpdate, opendatacard.bernersLeerate, opendatacard.license, opendatacard.description, opendatacard.thematic, opendatacard.dataOwners, opendatacard.formats, opendatacard.contacts FROM city INNER JOIN opendatacard ON city.card_id=opendatacard.id WHERE opendatacard.status>0 AND distance(PointFromText('POINT("
                                     + longitude
                                     + " "
                                     + latitude

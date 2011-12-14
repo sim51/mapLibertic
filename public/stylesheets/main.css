@@ -26,6 +26,7 @@ div#map{
 	z-index:0;
 	height: 500px;
 	background-color:#B5D0D0;
+	cursor: pointer;
 }
 
 footer p{
