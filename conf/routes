@@ -19,6 +19,10 @@ POST 	/opendatacard/search												OpendataCard.searchGeoZone
 GET		/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.card
 POST	/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.saveCard
 
+# Admin - adding city
+GET 	/city																City.city
+POST	/city																City.saveCity
+
 # Ignore favicon requests
 GET     /favicon.ico                            							404
 

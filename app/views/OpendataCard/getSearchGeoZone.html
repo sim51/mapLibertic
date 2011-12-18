@@ -88,6 +88,7 @@
                         <tr>
                             <td><a href="@{OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
                             <td><a href="@{OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
+                        </tr>
                     #{/list}
                 </tbody>
             </table>
@@ -105,6 +106,7 @@
                         <tr>
                             <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
                             <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                        </tr>
                     #{/list}
                 </tbody>
             </table>
@@ -122,6 +124,7 @@
                         <tr>
                             <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
                             <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                         </tr>
                     #{/list}
                 </tbody>
             </table>
@@ -132,6 +135,7 @@
                     <tr>
                         <th>&{'page.searchGeoZone.countryCode'}</th>
                         <th>&{'page.searchGeoZone.name'}</th>
+                        <th></th>
                     </tr>  
                 </thead>
                 <tbody>  
@@ -139,6 +143,11 @@
                         <tr>
                             <td><a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
                             <td><a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
+                            <td>
+                                <a href="@{City.city(city.id)}" title="${city.name}"><img src="@{'/public/images/pencil.png'}"/></a>
+                                <a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}"><img src="@{'/public/images/magnifier.png'}"/></a>
+                            </td>
+                        </tr>
                     #{/list}
                 </tbody>
             </table>
@@ -148,6 +157,7 @@
     #{else}
         <div class="span14">
             <p><strong>&{'page.searchGeoZone.noResult'}</strong></p>
+            <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
         </div>
     #{/else}
 </div>

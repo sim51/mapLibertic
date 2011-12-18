@@ -48,6 +48,8 @@ page.opendataCard.status.inprogress=En cours
 page.opendataCard.status.thinking=Y réfléchit
 page.opendataCard.citizenMvt=Mouvement citoyen ?
 page.opendataCard.status=Status de l'opendata
+page.searchGeoZone.addcitytxt=Vous pouvez aussi ajouter une ville dans notre base de données. Pour ce faire, cliquez ici :
+page.searchGeoZone.addcity=Ajouter une ville
 
 page.opendataCard.title=Fiche OpenData sur :
 page.opendataCard.url=Url du site
@@ -63,6 +65,11 @@ page.opendataCard.formats=Formats disponibles pour les données
 page.opendataCard.dataOwners=Gestionnaire des données
 page.opendataCard.contacts=Contacts
 page.opendataCard.save=Enregistrer
+
+page.addcity.title=Ville
+page.addcity.name=Nom de la ville
+page.addcity.longitude=Longitude
+page.addcity.latitude=Latitude
 
 bubble.dateUpdate=MISE A JOUR
 bubble.nbData=NOMBRE DE DONNEES

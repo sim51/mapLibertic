@@ -5,28 +5,50 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
+import play.data.validation.Required;
+import play.db.jpa.GenericModel;
 import play.db.jpa.JPA;
-import play.db.jpa.Model;
+
+import com.vividsolutions.jts.geom.Point;
 
 @Entity
 @Table(name = "city")
-public class City extends Model {
+@SequenceGenerator(name = "SequenceIdGenerator", sequenceName = "city_id_seq")
+public class City extends GenericModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long         id;
+
+    @Required
     @Column(name = "name")
     public String       name;
 
+    @Required
     @Column(name = "adm0_a3")
     public String       countryCode;
 
+    @Required
     @Column(name = "longitude")
     public float        longitude;
 
+    @Required
     @Column(name = "latitude")
     public float        latitude;
+
+    @Column(name = "the_geom")
+    @Type(type = "org.hibernatespatial.GeometryUserType")
+    public Point        location;
 
     @OneToOne
     @JoinColumn(name = "card_id")

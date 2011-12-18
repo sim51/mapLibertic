@@ -3,6 +3,7 @@
 require:
     - play
     - play -> securesocial 0.2.2
+    - org.geotools -> gt-shapefile 8.0-M4
     - org.hibernatespatial -> hibernate-spatial-postgis 1.1:
         exclude:
             - postgresql -> *
@@ -14,6 +15,8 @@ repositories:
     - OSGEO GeoTools repo:
         type: iBiblio      
         root: "http://download.osgeo.org/webdav/geotools"
+        contains:
+            - org.geotools -> *
     - Hibernate Spatial repo:
         type: iBiblio      
         root: "http://www.hibernatespatial.org/repository"
