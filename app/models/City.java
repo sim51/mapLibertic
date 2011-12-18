@@ -32,6 +32,27 @@ public class City extends Model {
     @JoinColumn(name = "card_id")
     public OpenDataCard card;
 
+    public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
+        Long id = null;
+        if (scale < 151) {
+            List<Object[]> cards = JPA
+                    .em()
+                    .createNativeQuery(
+                            "SELECT opendatacard.id, opendatacard.name FROM city INNER JOIN opendatacard ON city.card_id=opendatacard.id WHERE opendatacard.status>0 AND distance(PointFromText('POINT("
+                                    + longitude
+                                    + " "
+                                    + latitude
+                                    + ")', 900913), the_geom) < 0.1 ORDER BY distance(PointFromText('POINT("
+                                    + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1")
+                    .getResultList();
+            if (cards.size() > 0) {
+                Object[] result = cards.get(0);
+                id = Long.valueOf(result[0].toString());
+            }
+        }
+        return id;
+    }
+
     public static OpenDataCard getCardFromLongLat(float scale, float longitude, float latitude) {
         if (scale < 151) {
             List<Object[]> cards = JPA
@@ -42,7 +63,8 @@ public class City extends Model {
                                     + " "
                                     + latitude
                                     + ")', 900913), the_geom) < 0.1 ORDER BY distance(PointFromText('POINT("
-                                    + longitude + " " + latitude + ")', 900913), the_geom) ASC").getResultList();
+                                    + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1")
+                    .getResultList();
             if (cards.size() > 0) {
                 Object[] result = cards.get(0);
                 OpenDataCard card = new OpenDataCard();

@@ -28,29 +28,35 @@ public class Application extends Controller {
 
     @CacheFor
     public static void card(float scale, float latitude, float longitude) {
-        OpenDataCard card = null;
+        Long cardId = null;
         int level = 0;
-        card = City.getCardFromLongLat(scale, longitude, latitude);
-        if (card != null) {
+        cardId = City.getCardIdFromLongLat(scale, longitude, latitude);
+        if (cardId != null) {
             level = 3;
-            render(card, level);
+            viewCard(cardId, level);
         }
-        card = ZoneAdmin2.getCardFromLongLat(scale, longitude, latitude);
-        if (card != null) {
+        cardId = ZoneAdmin2.getCardIdFromLongLat(scale, longitude, latitude);
+        if (cardId != null) {
             level = 2;
-            render(card, level);
+            viewCard(cardId, level);
         }
-        card = ZoneAdmin1.getCardFromLongLat(scale, longitude, latitude);
-        if (card != null) {
+        cardId = ZoneAdmin1.getCardIdFromLongLat(scale, longitude, latitude);
+        if (cardId != null) {
             level = 1;
-            render(card, level);
+            viewCard(cardId, level);
         }
-        card = Country.getCardFromLongLat(scale, longitude, latitude);
-        if (card != null) {
+        cardId = Country.getCardIdFromLongLat(scale, longitude, latitude);
+        if (cardId != null) {
             level = 0;
-            render(card, level);
+            viewCard(cardId, level);
         }
         renderText("");
+    }
+
+    @CacheFor
+    public static void viewCard(Long id, int level) {
+        OpenDataCard card = OpenDataCard.findById(id);
+        render(card, level);
     }
 
     @CacheFor

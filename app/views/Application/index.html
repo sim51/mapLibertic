@@ -30,6 +30,7 @@
                 minScale: 20,
                 maxScale: 800,
                 projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection : new OpenLayers.Projection("EPSG:900913"),
                 units: 'm'
             };
           	// Create the map object
@@ -143,25 +144,21 @@
             }));
             map.addControl(new OpenLayers.Control.Navigation());
             map.zoomToExtent(bounds);
+            
+            // on click feature
+            var click = new OpenLayers.Control.Click();
+            map.addControl(click);
+            click.activate();
           	
-          	
+          	// map position
+          	map.setCenter(new OpenLayers.LonLat(1.2, 46.8), 9);
             if (navigator.geolocation)
             {
               navigator.geolocation.getCurrentPosition(function(position)
               {
-            	  map.setCenter(new OpenLayers.LonLat(position.coords.longitude,  position.coords.latitude), 8);
+            	  map.setCenter(new OpenLayers.LonLat(position.coords.longitude,  position.coords.latitude), 7);
               });
             }
-            else
-            {
-          		map.setCenter(new OpenLayers.LonLat(2.46,  47.18), 8);
-            }
-            
-            var click = new OpenLayers.Control.Click();
-            map.addControl(click);
-            click.activate();
-            
-            
         }
         
         $(document).ready(function(){

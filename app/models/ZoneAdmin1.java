@@ -27,13 +27,29 @@ public class ZoneAdmin1 extends Model {
     @JoinColumn(name = "card_id")
     public OpenDataCard card;
 
+    public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
+        Long id = null;
+        if (scale > 19 && scale < 301) {
+            List<Object[]> cards = JPA
+                    .em()
+                    .createNativeQuery(
+                            "SELECT opendatacard.id, opendatacard.name FROM zoneadmin1 INNER JOIN opendatacard ON zoneadmin1.card_id=opendatacard.id WHERE opendatacard.status>0 AND contains(the_geom, PointFromText('POINT("
+                                    + longitude + " " + latitude + ")', 900913)) LIMIT 1").getResultList();
+            if (cards.size() > 0) {
+                Object[] result = cards.get(0);
+                id = Long.valueOf(result[0].toString());
+            }
+        }
+        return id;
+    }
+
     public static OpenDataCard getCardFromLongLat(float scale, float longitude, float latitude) {
         if (scale > 19 && scale < 301) {
             List<Object[]> cards = JPA
                     .em()
                     .createNativeQuery(
                             "SELECT opendatacard.name, opendatacard.status, opendatacard.isThereCitizenMvt, opendatacard.url, opendatacard.plateform, opendatacard.numOfData, opendatacard.opening, opendatacard.lastUpdate, opendatacard.bernersLeerate, opendatacard.license, opendatacard.description, opendatacard.thematic, opendatacard.dataOwners, opendatacard.formats, opendatacard.contacts FROM zoneadmin1 INNER JOIN opendatacard ON zoneadmin1.card_id=opendatacard.id WHERE opendatacard.status>0 AND contains(the_geom, PointFromText('POINT("
-                                    + longitude + " " + latitude + ")', 900913))").getResultList();
+                                    + longitude + " " + latitude + ")', 900913)) LIMIT 1").getResultList();
             if (cards.size() > 0) {
                 Object[] result = cards.get(0);
                 OpenDataCard card = new OpenDataCard();
