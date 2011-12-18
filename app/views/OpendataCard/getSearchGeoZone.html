@@ -61,6 +61,10 @@
                 </div>
             </div>
             
+             <div class="clearfix">
+                <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
+            </div>
+            
             <div class="actions">
                 <input class="btn primary" type="submit" value="&{'page.searchGeoZone.search'}" />
                 <button class="btn" type="reset">&{'cancel'}</button>
@@ -157,7 +161,6 @@
     #{else}
         <div class="span14">
             <p><strong>&{'page.searchGeoZone.noResult'}</strong></p>
-            <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
         </div>
     #{/else}
 </div>
