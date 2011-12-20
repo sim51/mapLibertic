@@ -20,17 +20,16 @@
         	// Map is in mercator this time, so over-ride the default
         	// options that assume lat/lon.
         	var bounds = new OpenLayers.Bounds(
-                    -180, -76.164,
-                    180, 83.634
-            );
+                    -20037484.241, -85541385.529,
+                    20037508.343, 18428629.146
+		);
         	var options = {
                 controls: [],
                 maxExtent: bounds,
-                maxResolution: 1.40625,
-                minScale: 20,
-                maxScale: 800,
+                maxResolution: 406132.86982421874,
+		minScale: 5000000,
+                maxScale: 200000000,
                 projection: new OpenLayers.Projection("EPSG:900913"),
-                displayProjection : new OpenLayers.Projection("EPSG:900913"),
                 units: 'm'
             };
           	// Create the map object
@@ -72,8 +71,8 @@
                     	'visibility': true,
                     	'units': 'm',
                     	'maxResolution': "auto",
-                    	'minScale': 801,
-                        'maxScale': 150
+                    	'minScale': 200000000,
+                        'maxScale': 20000000
                     }
             );
           	var libertic_zone1 = new OpenLayers.Layer.WMS(
@@ -92,8 +91,8 @@
                     	'opacity': 1.0, 
                     	'isBaseLayer': false, 
                     	'visibility': true,
-                    	'minScale': 300,
-                        'maxScale': 19
+                    	'minScale': 20000000,
+                        'maxScale': 5000000
                     }
             );
           	var libertic_zone2 = new OpenLayers.Layer.WMS(
@@ -112,8 +111,8 @@
                     	'opacity': 1.0, 
                     	'isBaseLayer': false, 
                     	'visibility': true,
-                    	'minScale': 150,
-                        'maxScale': 19
+                    	'minScale': 15000000,
+                        'maxScale': 5000000
                     }
             );
           	var libertic_city = new OpenLayers.Layer.WMS(
@@ -132,8 +131,8 @@
                     	'opacity': 1.0, 
                     	'isBaseLayer': false, 
                     	'visibility': true,
-                    	'minScale': 150,
-                        'maxScale': 19
+                    	'minScale': 15000000,
+                        'maxScale': 5000000
                     }
             );
           	// Add layer to map
@@ -143,6 +142,7 @@
                 position: new OpenLayers.Pixel(2, 15)
             }));
             map.addControl(new OpenLayers.Control.Navigation());
+	    map.addControl(new OpenLayers.Control.Scale("#scale"));
             map.zoomToExtent(bounds);
             
             // on click feature
@@ -150,13 +150,13 @@
             map.addControl(click);
             click.activate();
           	
-          	// map position
-          	map.setCenter(new OpenLayers.LonLat(1.2, 46.8), 9);
+            // map position
+            map.setCenter(new OpenLayers.LonLat(1.2, 46.8).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), 12);
             if (navigator.geolocation)
             {
               navigator.geolocation.getCurrentPosition(function(position)
               {
-            	  map.setCenter(new OpenLayers.LonLat(position.coords.longitude,  position.coords.latitude), 7);
+            	  map.setCenter(new OpenLayers.LonLat(position.coords.longitude,  position.coords.latitude).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), 12);
               });
             }
         }
@@ -189,7 +189,7 @@
                 trigger: function(e) {
                 	$("#card").html("Loading data ...");
                 	var scale = map.getScale();
-                    var lonlat = map.getLonLatFromViewPortPx(e.xy);
+                    var lonlat = map.getLonLatFromViewPortPx(e.xy).transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
                     $.ajax({
     					type: 'GET',
     					url: '/opendatacard?latitude=' +  lonlat.lat + '&longitude=' + lonlat.lon + '&scale=' + scale,
@@ -218,6 +218,7 @@
 <div class="row">
     <div class="span10">
         <div id="map" class="smallmap"></div>
+	<div id="scale"></div>
             <strong>&{'page.home.legende'}: </strong>
             <span class="legende" style="background-color:#BEE669">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.ok'}
             <span class="legende" style="background-color:#89C0DE">&nbsp;&nbsp;&nbsp;&nbsp;</span> &{'page.home.legende.inprogress'}

@@ -56,7 +56,7 @@ public class City extends GenericModel {
 
     public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
         Long id = null;
-        if (scale < 151) {
+        if (scale < 200000000) {
             List<Object[]> cards = JPA
                     .em()
                     .createNativeQuery(
@@ -76,7 +76,7 @@ public class City extends GenericModel {
     }
 
     public static OpenDataCard getCardFromLongLat(float scale, float longitude, float latitude) {
-        if (scale < 151) {
+        if (scale < 20000000) {
             List<Object[]> cards = JPA
                     .em()
                     .createNativeQuery(

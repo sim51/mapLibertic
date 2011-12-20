@@ -29,7 +29,7 @@ public class Country extends Model {
 
     public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
         Long id = null;
-        if (scale > 150) {
+        if (scale > 20000000) {
             List<Object[]> cards = JPA
                     .em()
                     .createNativeQuery(
