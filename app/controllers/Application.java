@@ -1,8 +1,12 @@
 package controllers;
 
+import java.net.URL;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import notifier.Mails;
+import play.Logger;
+import play.Play;
 import play.cache.Cache;
 import play.cache.CacheFor;
 import play.data.validation.Email;
@@ -11,14 +15,29 @@ import play.libs.Codec;
 import play.libs.Images;
 import play.mvc.Controller;
 import securesocial.provider.SocialUser;
+
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.io.SyndFeedInput;
+import com.sun.syndication.io.XmlReader;
+
 import controllers.securesocial.SecureSocial;
 
 public class Application extends Controller {
 
+    @CacheFor
     public static void index() {
         String menu = "index";
         SocialUser user = SecureSocial.getCurrentUser();
-        render(menu, user);
+        List<SyndFeed> myFeeds = null;
+        try {
+            URL urlRSS = new URL(Play.configuration.getProperty("libertic.rss"));
+            SyndFeedInput input = new SyndFeedInput();
+            SyndFeed feed = input.build(new XmlReader(urlRSS));
+            myFeeds = feed.getEntries().subList(0, 5);
+        } catch (Exception e) {
+            Logger.error("Lecture flus RSS", e);
+        }
+        render(menu, user, myFeeds);
     }
 
     @CacheFor

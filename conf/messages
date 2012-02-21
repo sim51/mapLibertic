@@ -8,14 +8,19 @@ cancel=Annuler
 footer=Ce projet est sous la <a target="_blank" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">Github</a>. 
 
 page.home=Accueil
+page.home.edito=Bienvenue
+page.home.edito.txt=<p>Ce site est communautaire, vous êtes convié à venir enrichir, modifier, exploiter</p>
+page.home.libertic.rss=Libertic
+page.home.libertic.rss.txt=Les derniers tickets de Libertic
 page.login=Se connecter
 
 page.map=La Carte
-page.map.carte=La Carte de France
+page.map.help=<div class="span6"><h2>Aide</h2><p>Cette carte est intéractive, vous pouvez vous déplacer, zoomer et cliquer.</p><p>En cliquant sur la carte, des informations supplémentaires apparaitrons dans ce cadre</div>
+page.map.dataloading=<h2>Aide</h2><p class="center">Recherche/chargement des données<br/>...<br/>Veuillez patienter</p>
+page.map.nodata=<div class="span6"><h2>Aide</h2><p class="center">Aucune données n'a été trouvée</p></div>
 page.map.legende=Légende
 page.map.legende.ok=Déjà ouvert
 page.map.legende.inprogress=En cours
-page.map.legende.thinking=Y réfléchit
 page.map.legende.citizenMvt=Mouvement citoyen
 
 page.about=A propos
@@ -89,3 +94,53 @@ node.state=Etat
 node.licence=Licence
 node.numberOfData=Nombre de données libérées
 node.categories=Catégories
+
+
+#
+# Login
+#
+securesocial.loginTitle=S'authentifier
+securesocial.login=S'authentifier
+securesocial.clickOnYourAccount=Utilisez votre compte sur l'un des réseaux suivants pour vous authentifier.
+securesocial.useEmailAndPassword=Où utilisez votre identifiant / password
+securesocial.email=Adresse mail
+securesocial.emailHelp=Exemple: john.doe@gmail.com
+securesocial.password=Password
+securesocial.signUp=S'enregistrer
+securesocial.wrongUserPass=Mauvaise tentative. Vérifier l'identifiant et/ou le password.
+securesocial.required=Obligatorie
+securesocial.invalidEmail=L'adresse mail n'est pas valide
+securesocial.signUp=Si vous ne possédez pas de compte, vous pouvez en créer un 
+securesocial.here=ici
+securesocial.badUserPasswordCombination=Mauvaise tentative. Vérifier l'identifiant et/ou le password.
+# [type] gets replaced by the provider id in the login page.
+# can't use %s because the string is being processed in javascript.
+securesocial.openIdUser=Username on [type]
+securesocial.openIdUserNotSpecified=Login non précisé !
+securesocial.authError=Une erreur est survenue lors de votre authentification. Veuillez ré-essayer.
+
+#
+# SignUp
+#
+securesocial.signUpTitle=Enregistrement
+securesocial.signUpLabel=Veuillez compléter le formulaire :
+securesocial.userName=identifiant
+securesocial.name=Votre nom
+securesocial.password2=Password (Confirmation)
+securesocial.cancel=Annuler
+securesocial.createAccount=S'enregistrer
+securesocial.passwordsMustMatch=Les passwords ne correspondent pas
+securesocial.userNameTaken=Ce login est déjà enregistré
+securesocial.activationTitle=Bienvenue %s
+securesocial.activationSuccess=Merci ! votre compte est à présent activé. Cliquez <a href="%s">ici</a> pour vous connectez.
+securesocial.activateTitle=Activation du compte
+securesocial.errorCreatingAccount=Une erreur est survenue lors de la création de votre compte. Veuillez ré-essayer.
+securesocial.accountNotActive=Votre compte n'est pas activé. S'il s'agit d'une erreur veuillez nous contacter via le formulaire de contact.
+securesocial.accountCreated=Vous êtes à présent enregistré. Un email vient de vous être envoyé pour valider la créationde votre compte.
+securesocial.invalidLink=Le lien d'activation de compte que vous venez de suivre est incorrect.
+
+#
+# Welcome email
+#
+securesocial.greeting=Bonjour %s,
+securesocial.emailText=Veuillez cliquer sur <a href="%s">ce lien</a> pour activer votre compte.

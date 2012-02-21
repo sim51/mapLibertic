@@ -7,6 +7,7 @@ import models.ZoneAdmin1;
 import models.ZoneAdmin2;
 import play.Play;
 import play.cache.CacheFor;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import securesocial.provider.SocialUser;
 import controllers.securesocial.SecureSocial;
@@ -22,8 +23,9 @@ public class Map extends Controller {
 
     @CacheFor
     public static void card(Float scale, Float latitude, Float longitude) {
+
         if (latitude == null | longitude == null | scale == null) {
-            renderText("");
+            renderText(Messages.get("page.map.nodata"));
         }
 
         Long cardId = null;
@@ -48,7 +50,7 @@ public class Map extends Controller {
             level = 0;
             viewCard(cardId, level);
         }
-        renderText("");
+        renderText(Messages.get("page.map.nodata"));
     }
 
     @CacheFor

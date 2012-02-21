@@ -1,22 +1,18 @@
 #{extends 'main.html' /} #{set title:'Accueil' /}
 <div class="row">
     <div class="span10">
-        <h2>&{'page.about.demarche'}</h2>
-        &{'page.about.demarche.txt'}
-        <h2>&{'page.about.tech'}</h2>
-        &{'page.about.tech.txt'}
+        <h2>&{'page.home.edito'}</h2>
+        &{'page.home.edito.txt'}
     </div>
     <div class="span4">
-        <h2>&{'page.about.thanks'}</h2>
-        <p>&{'page.about.thanks.txt'}</p>
+        <h2>&{'page.home.libertic.rss'}</h2>
+        <p>&{'page.home.libertic.rss.txt'}</p>
         <ul>
-            <li>@logisima (Benoît Simard)</li>
-            <li>@Libertic (Claire)</li>
-            <li>@amnesic</li>
-            <li>O'Shea Sean</li>
-            <li>Vautier Emmanuel</li>
-            <li>@flxlepoutr</li>
-            <li>@auregann</li>
+            #{list items:myFeeds, as:'feed'}
+	        	<li>
+	        		<a href="${feed.link}" title="${feed.title}">${feed.title}</a>
+	        	</li>
+	        #{/list}
         </ul>
     </div>
 </div>

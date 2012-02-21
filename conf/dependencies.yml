@@ -3,6 +3,7 @@
 require:
     - play
     - play -> securesocial 0.2.4
+    - rome -> rome 1.0
     - org.geotools -> gt-shapefile 8.0-M4:
         exclude:
             - javax.media -> *
