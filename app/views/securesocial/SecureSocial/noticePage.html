@@ -1,12 +1,14 @@
 #{extends 'main.html'/}
 
-<div class="span12 columns">
-    <div class="alert-message block-message #{if flash.error} error #{/if} #{else} info #{/else}">
-        <div class="alert-actions">
-            <p>
-                #{if flash.error}${flash.error}#{/if}
-                #{else}${flash.success.raw()}#{/else} 
-            </p>
+<div class="row">
+    <div class="span12">
+        <div class="alert-message block-message #{if flash.error} error #{/if} #{else} info #{/else}">
+            <div class="alert-actions">
+                <p>
+                    #{if flash.error}${flash.error}#{/if}
+                    #{else}${flash.success.raw()}#{/else} 
+                </p>
+            </div>
         </div>
     </div>
 </div>

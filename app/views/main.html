@@ -9,40 +9,43 @@
 <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
 </head>
 <body>
-    <div class="topbar">
-        <div class="fill">
-            <div class="container">
-                <a class="brand" href="@{Application.index()}">
-                    <span style="color:#84B6DE">Liber</span>TIC
-                    <img src="@{'/public/images/logo_libertic.png'}" width="17px" title = "Libertic"/>
-                </a>
-                <ul class="nav">
-                    #{if menu.equals('index')}<li class="active">#{/if}#{else}<li>#{/else} 
-                        <a href="@{Application.index()}">&{'page.home'}</a>
-                    </li>
-                    #{if menu.equals('map')}<li class="active">#{/if}#{else}<li>#{/else} 
-                        <a href="@{Map.index()}">&{'page.map'}</a>
-                    </li> 
-                    #{if menu.equals('about')}<li class="active">#{/if}#{else}<li>#{/else} 
-                        <a href="@{Application.about()}">&{'page.about'}</a>
-                    </li> 
-                    #{if menu.equals('contact')}<li class="active">#{/if}#{else}<li>#{/else} 
-                        <a href="@{Application.contact()}">&{'page.contact'}</a>
-                    </li>
-                </ul>
-                <ul class="nav" style="float:right;">
-                    <li>
-                        #{if user != null}
-                            <a href="#">${user.displayName}</a>
-                        #{/if}
-                        #{else}
-                            <a href="@{securesocial.SecureSocial.login()}">&{'page.login'}</a>
-                        #{/else}
-                    </li>
-                </ul>
-            </div>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="@{Application.index()}">
+                <span style="color:#84B6DE">Liber</span>TIC
+                <img src="@{'/public/images/logo_libertic.png'}" width="17px" title = "Libertic"/>
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                #{if menu.equals('index')}<li class="active">#{/if}#{else}<li>#{/else} 
+                    <a href="@{Application.index()}">&{'page.home'}</a>
+                </li>
+                #{if menu.equals('map')}<li class="active">#{/if}#{else}<li>#{/else} 
+                    <a href="@{Map.index()}">&{'page.map'}</a>
+                </li> 
+                #{if menu.equals('about')}<li class="active">#{/if}#{else}<li>#{/else} 
+                    <a href="@{Application.about()}">&{'page.about'}</a>
+                </li> 
+                #{if menu.equals('contact')}<li class="active">#{/if}#{else}<li>#{/else} 
+                    <a href="@{Application.contact()}">&{'page.contact'}</a>
+                </li>
+            </ul>
+            <ul class="nav" style="float:right;">
+                <li>
+                    #{if user != null}
+                        <a href="#">${user.displayName}</a>
+                    #{/if}
+                    #{else}
+                        <a href="@{securesocial.SecureSocial.login()}">&{'page.login'}</a>
+                    #{/else}
+                </li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
     </div>
+
     <div class="container">
         <div class="content">
             <div class="page-header">
