@@ -5,13 +5,13 @@
     <div class="span14">
     
         <ul class="breadcrumb">
-            <li><a href="@{OpendataCard.getSearchGeoZone}">&{'page.searchGeoZone.title'}</a> <span class="divider">/</span></li>
+            <li><a href="@{crud.OpendataCard.getSearchGeoZone}">&{'page.searchGeoZone.title'}</a> <span class="divider">/</span></li>
             <li class="active">&{'page.addcity.title'} ${city?.name}</li>
         </ul>
             
         <h2>${name}</h2>
         <br/><br/>
-        #{form @City.saveCity()}
+        #{form @crud.City.saveCity()}
         
             #{ifErrors}
                 <div class="alert-message error">
@@ -24,7 +24,9 @@
                 </div>
             #{/if}
             
-            <input type="hidden" name="city.id" value="${city?.id}"/>
+	    #{if city && city.id != ""}
+	      <input type="hidden" name="city.id" value="${city?.id}"/>
+	    #{/if}
             
             <div class="clearfix">
                 <label for="name">&{'page.addcity.name'}</label>

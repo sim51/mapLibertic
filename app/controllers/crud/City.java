@@ -1,4 +1,4 @@
-package controllers;
+package controllers.crud;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 
@@ -25,6 +25,7 @@ public class City extends Controller {
     }
 
     public static void city(Long id) {
+        isValidUser();
         models.City city = null;
         if (id != null) {
             city = models.City.findById(id);

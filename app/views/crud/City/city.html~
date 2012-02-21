@@ -1,0 +1,79 @@
+#{extends 'main.html' /} 
+#{set title:"Ajout d'une ville" /}
+
+<div class="row">
+    <div class="span14">
+    
+        <ul class="breadcrumb">
+            <li><a href="@{crud.OpendataCard.getSearchGeoZone}">&{'page.searchGeoZone.title'}</a> <span class="divider">/</span></li>
+            <li class="active">&{'page.addcity.title'} ${city?.name}</li>
+        </ul>
+            
+        <h2>${name}</h2>
+        <br/><br/>
+        #{form @crud.City.saveCity()}
+        
+            #{ifErrors}
+                <div class="alert-message error">
+                    <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
+                </div>
+            #{/ifErrors}
+             #{if flash.success}
+                <div class="alert-message success">
+                    <p>${flash.success}</p>
+                </div>
+            #{/if}
+            
+	    #{if city.id != ""}
+	      <input type="hidden" name="city.id" value="${city?.id}"/>
+	    #{/if}
+            
+            <div class="clearfix">
+                <label for="name">&{'page.addcity.name'}</label>
+                <div class="input">
+                    <input class="span6" type="text" id="name" name="city.name" placeholder="Name" value="${city?.name}"/>
+                    #{if errors.forKey('city.name')}
+                        <span class="label important">#{error 'city.name' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="country">&{'page.addcity.country'}</label>
+                <div class="input">
+                    <input class="span6" type="text" id="country" name="city.countryCode" placeholder="FRA" value="${city?.countryCode}"/>
+                    #{if errors.forKey('city.name')}
+                        <span class="label important">#{error 'city.name' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="longitude">&{'page.addcity.longitude'}</label>
+                <div class="input">
+                    <input class="span6" type="text" id="longitude" name="city.longitude" placeholder="" value="${city?.longitude}"/>
+                    #{if errors.forKey('city.longitude')}
+                        <span class="label important">#{error 'city.longitude' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <label for="latitude">&{'page.addcity.latitude'}</label>
+                <div class="input">
+                    <input class="span6" type="text" id="latitude" name="city.latitude" placeholder="" value="${city?.latitude}"/>
+                    #{if errors.forKey('city.latitude')}
+                        <span class="label important">#{error 'city.latitude' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="actions">
+                <input class="btn primary" type="submit" value="&{'page.opendataCard.save'}" />
+            </div>
+            
+        #{/form}    
+    
+    </div>
+
+</div>

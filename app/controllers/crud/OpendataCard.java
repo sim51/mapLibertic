@@ -1,4 +1,4 @@
-package controllers;
+package controllers.crud;
 
 import java.util.ArrayList;
 import java.util.List;

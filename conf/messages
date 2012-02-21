@@ -8,12 +8,15 @@ cancel=Annuler
 footer=Ce projet est sous la <a target="_blank" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">Github</a>. 
 
 page.home=Accueil
-page.home.carte=La Carte de France
-page.home.legende=Légende
-page.home.legende.ok=Déjà ouvert
-page.home.legende.inprogress=En cours
-page.home.legende.thinking=Y réfléchit
-page.home.legende.citizenMvt=Mouvement citoyen
+page.login=Se connecter
+
+page.map=La Carte
+page.map.carte=La Carte de France
+page.map.legende=Légende
+page.map.legende.ok=Déjà ouvert
+page.map.legende.inprogress=En cours
+page.map.legende.thinking=Y réfléchit
+page.map.legende.citizenMvt=Mouvement citoyen
 
 page.about=A propos
 page.about.demarche=Notre démarche

@@ -2,23 +2,25 @@
 
 require:
     - play
-    - play -> securesocial 0.2.2
-    - org.geotools -> gt-shapefile 8.0-M4
+    - play -> securesocial 0.2.4
+    - org.geotools -> gt-shapefile 8.0-M4:
+        exclude:
+            - javax.media -> *
+            - com.vividsolutions -> jts
     - org.hibernatespatial -> hibernate-spatial-postgis 1.1:
         exclude:
             - postgresql -> *
             - javassist-> *
-    
-    
 
 repositories:
-    - OSGEO GeoTools repo:
-        type: iBiblio      
-        root: "http://download.osgeo.org/webdav/geotools"
-        contains:
-            - org.geotools -> *
     - Hibernate Spatial repo:
-        type: iBiblio      
+        type: iBiblio
         root: "http://www.hibernatespatial.org/repository"
         contains:
             - org.hibernatespatial -> *
+    - OSGEO GeoTools repo:
+        type: iBiblio
+        root: "http://download.osgeo.org/webdav/geotools"
+        contains:
+            - org.geotools -> *
+            - java3d -> *

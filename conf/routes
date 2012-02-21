@@ -4,7 +4,10 @@
 
 # Home page
 GET     /                                       							Application.index
-GET		/opendatacard														Application.card
+
+# Map page
+GET		/map																Map.index
+GET		/map/opendatacard													Map.card
 
 # About page
 GET     /about                                  							Application.about
@@ -14,14 +17,14 @@ GET     /contact                                							Application.contact
 POST    /contact                                							Application.sendContact
 
 # Admin - step1
-GET 	/opendatacard/search												OpendataCard.getSearchGeoZone
-POST 	/opendatacard/search												OpendataCard.searchGeoZone
-GET		/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.card
-POST	/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					OpendataCard.saveCard
+GET 	/crud/opendatacard/search												crud.OpendataCard.getSearchGeoZone
+POST 	/crud/opendatacard/search												crud.OpendataCard.searchGeoZone
+GET		/crud/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					crud.OpendataCard.card
+POST	/crud/opendatacard/level/{<[0-9]+>level}/id/{<[0-9]+>id}					crud.OpendataCard.saveCard
 
 # Admin - adding city
-GET 	/city																City.city
-POST	/city																City.saveCity
+GET 	/crud/city																crud.City.city
+POST	/crud/city																crud.City.saveCity
 
 # Ignore favicon requests
 GET     /favicon.ico                            							404

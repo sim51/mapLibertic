@@ -8,7 +8,7 @@
             <li class="active">&{'page.searchGeoZone.title'}</li>
         </ul>
     
-        #{form @OpendataCard.searchGeoZone()}
+        #{form @crud.OpendataCard.searchGeoZone()}
         
             #{ifErrors}
                 <div class="alert-message error">
@@ -62,7 +62,7 @@
             </div>
             
              <div class="clearfix">
-                <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
+                <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{crud.City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
             </div>
             
             <div class="actions">
@@ -90,8 +90,8 @@
                 <tbody>  
                     #{list items:countries, as:'country'}
                         <tr>
-                            <td><a href="@{OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
-                            <td><a href="@{OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
                         </tr>
                     #{/list}
                 </tbody>
@@ -108,8 +108,8 @@
                 <tbody>  
                     #{list items:zone1, as:'zone'}
                         <tr>
-                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
-                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
                         </tr>
                     #{/list}
                 </tbody>
@@ -126,8 +126,8 @@
                 <tbody>  
                     #{list items:zone2, as:'zone'}
                         <tr>
-                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
-                            <td><a href="@{OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
                          </tr>
                     #{/list}
                 </tbody>
@@ -145,11 +145,11 @@
                 <tbody>  
                     #{list items:cities, as:'city'}
                         <tr>
-                            <td><a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
-                            <td><a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
+                            <td><a href="@{crud.OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
                             <td>
-                                <a href="@{City.city(city.id)}" title="${city.name}"><img src="@{'/public/images/pencil.png'}"/></a>
-                                <a href="@{OpendataCard.card(params.level, city.id)}" title="${city.name}"><img src="@{'/public/images/magnifier.png'}"/></a>
+                                <a href="@{crud.City.city(city.id)}" title="${city.name}"><img src="@{'/public/images/pencil.png'}"/></a>
+                                <a href="@{crud.OpendataCard.card(params.level, city.id)}" title="${city.name}"><img src="@{'/public/images/magnifier.png'}"/></a>
                             </td>
                         </tr>
                     #{/list}
