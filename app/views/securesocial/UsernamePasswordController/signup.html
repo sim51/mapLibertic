@@ -5,20 +5,18 @@
     <div class="span12">
     
         #{if flash.error}
-        <div class="alert-message block-message error">
-            <div class="alert-actions">
+            <div class="alert-message error">
                 ${flash.error}
             </div>
-        </div>
         #{/if}
     
         <div class="control-group" >
             <p>&{'securesocial.signUpLabel'}</p>
-            #{form @securesocial.UsernamePasswordController.createAccount(), autocomplete:'off'}
+            #{form @securesocial.UsernamePasswordController.createAccount(), autocomplete:'off', class:"form-horizontal"}
                 <fieldset>
-                    <div class="clearfix #{ifError 'userName'} error #{/ifError}">
+                    <div class="control-group #{ifError 'userName'}error#{/ifError}">
                         <label for="userName">&{'securesocial.userName'}</label>
-                        <div class="input">
+                        <div class="controls">
                             <input id="userName" class="large" name="userName" value="${flash.userName}"/>
                             #{ifError 'userName'}
                             <span class="help-inline">#{error 'userName'/}</span>
@@ -28,7 +26,7 @@
     
                     <div class="control-group #{ifError 'displayName'} error #{/ifError}">
                         <label for="displayName">&{'securesocial.name'}</label>
-                        <div class="input">
+                        <div class="controls">
                             <input id="displayName" class="large" name="displayName" value="${flash.displayName}"/>
                             #{ifError 'displayName'}
                             <span class="help-inline">&{'securesocial.required'}</span>
@@ -38,7 +36,7 @@
     
                     <div class="control-group #{ifError 'email'} error #{/ifError}">
                         <label for="email">&{'securesocial.email'}</label>
-                        <div class="input">
+                        <div class="controls">
                             <input id="email" class="large" name="email" value="${flash.email}"/>
                             <span class="help-inline">
                                 #{ifError 'email'}
@@ -53,7 +51,7 @@
     
                     <div class="control-group #{ifError 'password'} error #{/ifError}">
                         <label for="password">&{'securesocial.password'}</label>
-                        <div class="input">
+                        <div class="controls">
                             <input id="password" class="large" name="password" type="password"/>
                             #{ifError 'password'}
                             <span class="help-inline">&{'securesocial.required'}</span>
@@ -63,7 +61,7 @@
     
                      <div class="control-group #{ifError 'password2'} error #{/ifError}">
                         <label for="password2">&{'securesocial.password2'}</label>
-                        <div class="input">
+                        <div class="controls">
                             <input id="password2" class="large" name="password2" type="password"/>
                             #{ifError 'password2'}
                             <span class="help-inline">#{error 'password2'/}</span>
@@ -72,8 +70,8 @@
                     </div>
     
                     <div class="actions">
-                        <input type="submit" value="&{'securesocial.createAccount'}" class="btn primary">
-                        <a href="@{securesocial.SecureSocial.login()}" class="btn">&{'securesocial.cancel'}</input></a>
+                        <button type="submit" class="btn primary">&{'securesocial.createAccount'}</button>
+                        <a href="@{securesocial.SecureSocial.login()}" class="btn">&{'securesocial.cancel'}</a>
                     </div>
                 </fieldset>
             #{/form}

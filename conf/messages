@@ -14,10 +14,10 @@ page.home.libertic.rss=Libertic
 page.home.libertic.rss.txt=Les derniers tickets de Libertic
 page.login=Se connecter
 
-page.map=La Carte
+page.map=La carte
 page.map.help=<div class="span4"><h2>Aide</h2><p>Cette carte est intéractive, vous pouvez vous déplacer, zoomer et cliquer.</p><p>En cliquant sur la carte, des informations supplémentaires apparaitrons dans ce cadre</div>
-page.map.dataloading=<h2>Aide</h2><p class="center">Recherche/chargement des données<br/>...<br/>Veuillez patienter</p>
-page.map.nodata=<div class="span4"><h2>Aide</h2><p class="center">Aucune données n'a été trouvée</p></div>
+page.map.dataloading=<h2>Recherche des données</h2><div class="progress progress-info progress-striped active"><div id="barfull" class="bar bar-full"></div></div>
+page.map.nodata=<div class="span4"><h2>Info</h2><p class="center">Aucune données n'a été trouvée</p></div>
 page.map.legende=Légende
 page.map.legende.ok=Déjà ouvert
 page.map.legende.inprogress=En cours

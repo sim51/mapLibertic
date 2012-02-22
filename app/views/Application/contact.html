@@ -5,7 +5,7 @@
     <div class="span12">
         &{'page.contact.txt'}
         <br/>
-        #{form @Application.sendContact()}
+        #{form @Application.sendContact(), class:"form-horizontal"}
  
             #{ifErrors}
         	    <div class="alert-message error">
@@ -19,52 +19,52 @@
                 </div>
             #{/if}
          
-            <div class="clearfix">
-                <label for="author">&{'page.contact.author'}<span class="required">*</span></label>
-                <div class="input">
+            <div class="control-group #{ifError 'author'}error#{/ifError}">
+                <label class="control-label" for="author">&{'page.contact.author'}<span class="required">*</span></label>
+                <div class="controls">
                     <input type="text" name="author" id="author" value="${params.author}" />
                     #{if errors.forKey('author')}
-                        <span class="label important">#{error 'author' /}</span>
+                        <span class="help-inline">#{error 'author' /}</span>
                     #{/if}
                 </div>
             </div>
             
-            <div class="clearfix">
-                <label for="email">&{'page.contact.email'}<span class="required">*</span></label>
-                <div class="input">
+            <div class="control-group #{ifError 'email'}error#{/ifError}">
+                <label class="control-label" for="email">&{'page.contact.email'}<span class="required">*</span></label>
+                <div class="controls">
                     <input type="text" name="email" id="email" value="${params.email}" />
                     #{if errors.forKey('email')}
-                        <span class="label important">#{error 'email' /}</span>
+                        <span class="help-inline">#{error 'email' /}</span>
                     #{/if}
                 </div>
             </div>
             
-            <div class="clearfix">
-                <label for="message">&{'page.contact.message'}<span class="required">*</span></label>
-                <div class="input">
+            <div class="control-group #{ifError 'message'}error#{/ifError}">
+                <label class="control-label" for="message">&{'page.contact.message'}<span class="required">*</span></label>
+                <div class="controls">
                     <textarea name="message" id="message" class="xxlarge" rows="3">${params.message}</textarea>
                     #{if errors.forKey('message')}
-                    <span class="label important">#{error 'message' /}</span>
+                    <span class="help-inline">#{error 'message' /}</span>
                     #{/if}
                 </div>
             </div>
             
-            <div class="clearfix">
-                <label for="code">&{'page.contact.security'}<span class="required">*</span></label>
-                <div class="input">
+            <div class="control-group #{ifError 'code'}error#{/ifError}">
+                <label class="control-label" for="code">&{'page.contact.security'}<span class="required">*</span></label>
+                <div class="controls">
         	        <input type="text" name="code" id="code" size="18" value="" />
                     #{if errors.forKey('code')}
-        	        <span class="label important">#{error 'code' /}</span>
+        	        <span class="help-inline">#{error 'code' /}</span>
                     #{/if}
                     <input type="hidden" name="randomID" value="${randomID}" />
                 </div>
             </div>
-            <div class="clearfix captcha">
+            <div class="control-group captcha">
                 <img src="@{Application.captcha(randomID)}" />
             </div>
             
-            <div class="actions">
-                <input class="btn primary" type="submit" value="&{'page.contact.send'}" />
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">&{'page.contact.send'}</button>
                 <button class="btn" type="reset">&{'cancel'}</button>
             </div>
         #{/form}
