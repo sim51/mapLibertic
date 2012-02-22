@@ -34,16 +34,26 @@
                 </li>
             </ul>
             <ul class="nav" style="float:right;">
-                <li>
                     #{if user != null}
-                        <a href="#">${user.displayName}</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user icon-white"></i>
+                                ${user.displayName}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@{securesocial.SecureSocial.logout()}">&{'securesocial.logout'}</a></li>
+                            </ul>
+                        </li>
                     #{/if}
                     #{else}
-                        <a href="@{securesocial.SecureSocial.login()}">&{'page.login'}</a>
+                        <li>
+                            <a href="@{securesocial.SecureSocial.login()}">&{'page.login'}</a>
+                        </li>
                     #{/else}
                 </li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +69,8 @@
             <p>&{'footer'}</p>
         </footer>
     </div>
-    <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+    <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+    <script src="@{'/public/bootstrap/js/bootstrap.min.js'}"></script>
     #{get 'moreScripts' /}
     <script type="text/javascript">
 		var _gaq = _gaq || [];

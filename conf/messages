@@ -17,7 +17,7 @@ page.login=Se connecter
 page.map=La carte
 page.map.help=<div class="span4"><h2>Aide</h2><p>Cette carte est intéractive, vous pouvez vous déplacer, zoomer et cliquer.</p><p>En cliquant sur la carte, des informations supplémentaires apparaitrons dans ce cadre</div>
 page.map.dataloading=<h2>Recherche des données</h2><div class="progress progress-info progress-striped active"><div id="barfull" class="bar bar-full"></div></div>
-page.map.nodata=<div class="span4"><h2>Info</h2><p class="center">Aucune données n'a été trouvée</p></div>
+page.map.nodata=<div class="span4"><h2>Information</h2><p class="center">Aucune données n'a été trouvée</p></div>
 page.map.legende=Légende
 page.map.legende.ok=Déjà ouvert
 page.map.legende.inprogress=En cours
@@ -101,6 +101,7 @@ node.categories=Catégories
 #
 securesocial.loginTitle=S'authentifier
 securesocial.login=S'authentifier
+securesocial.logout=Déconnexion
 securesocial.clickOnYourAccount=Utilisez votre compte sur l'un des réseaux suivants pour vous authentifier.
 securesocial.useEmailAndPassword=Où utilisez votre identifiant / password
 securesocial.email=Adresse mail

@@ -3,6 +3,10 @@
 
 <div class="row">
     <div class="span12">
+    
+        <div class="alert alert-info">
+            <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{crud.City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
+        </div>
         
         #{form @crud.OpendataCard.searchGeoZone(), class:"form-horizontal"}
         
@@ -45,10 +49,6 @@
                         <span class="help-inline">#{error 'query' /}</span>
                     #{/if}
                 </div>
-            </div>
-            
-             <div class="control-group">
-                <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{crud.City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
             </div>
             
             <div class="form-actions">
