@@ -11,6 +11,7 @@ import models.ZoneAdmin2;
 import play.Logger;
 import play.data.validation.Required;
 import play.data.validation.Valid;
+import play.i18n.Lang;
 import play.mvc.Controller;
 import play.mvc.With;
 import securesocial.provider.SocialUser;
@@ -85,25 +86,25 @@ public class OpendataCard extends Controller {
                 case 0:
                     // search country
                     Country country = Country.findById(id);
-                    country.card = card;
+                    country.card.add(card);
                     country.save();
                     break;
                 case 1:
                     // search zone1
                     ZoneAdmin1 zone1 = ZoneAdmin1.findById(id);
-                    zone1.card = card;
+                    zone1.card.add(card);
                     zone1.save();
                     break;
                 case 2:
                     // search zone2
                     ZoneAdmin2 zone2 = ZoneAdmin2.findById(id);
-                    zone2.card = card;
+                    zone2.card.add(card);
                     zone2.save();
                     break;
                 case 3:
                     // search city
                     City city = City.findById(id);
-                    city.card = card;
+                    city.card.add(card);
                     city.save();
                     break;
             }
@@ -120,28 +121,28 @@ public class OpendataCard extends Controller {
                 // search country
                 Country country = Country.findById(id);
                 name = country.name;
-                card = country.card;
+                card = country.getOpenDataCard(Lang.get());
                 render(level, id, name, card);
                 break;
             case 1:
                 // search zone1
                 ZoneAdmin1 zone1 = ZoneAdmin1.findById(id);
                 name = zone1.name;
-                card = zone1.card;
+                card = zone1.getOpenDataCard(Lang.get());
                 render(level, id, name, card);
                 break;
             case 2:
                 // search zone2
                 ZoneAdmin2 zone2 = ZoneAdmin2.findById(id);
                 name = zone2.name;
-                card = zone2.card;
+                card = zone2.getOpenDataCard(Lang.get());
                 render(level, id, name, card);
                 break;
             case 3:
                 // search city
                 City city = City.findById(id);
                 name = city.name;
-                card = city.card;
+                card = city.getOpenDataCard(Lang.get());
                 render(level, id, name, card);
                 break;
         }

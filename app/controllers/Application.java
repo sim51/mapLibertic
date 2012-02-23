@@ -8,7 +8,6 @@ import notifier.Mails;
 import play.Logger;
 import play.Play;
 import play.cache.Cache;
-import play.cache.CacheFor;
 import play.data.validation.Email;
 import play.data.validation.Required;
 import play.libs.Codec;
@@ -24,7 +23,6 @@ import controllers.securesocial.SecureSocial;
 
 public class Application extends Controller {
 
-    @CacheFor
     public static void index() {
         String menu = "index";
         SocialUser user = SecureSocial.getCurrentUser();
@@ -40,7 +38,6 @@ public class Application extends Controller {
         render(menu, user, myFeeds);
     }
 
-    @CacheFor
     public static void about() {
         String menu = "about";
         SocialUser user = SecureSocial.getCurrentUser();

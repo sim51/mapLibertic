@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -18,6 +19,11 @@ public class OpenDataCard extends Model {
 
     @Required
     public String  name;
+
+    public Date    created = Calendar.getInstance().getTime();
+
+    @Required
+    public String  lang;
 
     @Required
     public int     status;

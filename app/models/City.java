@@ -8,8 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,45 +27,54 @@ public class City extends GenericModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long         id;
+    public Long               id;
 
     @Required
     @Column(name = "name")
-    public String       name;
+    public String             name;
 
     @Required
     @Column(name = "adm0_a3")
-    public String       countryCode;
+    public String             countryCode;
 
     @Required
     @Column(name = "longitude")
-    public float        longitude;
+    public float              longitude;
 
     @Required
     @Column(name = "latitude")
-    public float        latitude;
+    public float              latitude;
 
     @Column(name = "the_geom")
     @Type(type = "org.hibernatespatial.GeometryUserType")
-    public Point        location;
+    public Point              location;
 
-    @OneToOne
-    @JoinColumn(name = "card_id")
-    public OpenDataCard card;
+    @OneToMany
+    public List<OpenDataCard> card;
+
+    public OpenDataCard getOpenDataCard(String lang) {
+        return OpenDataCard.find(
+                "SELECT card FROM OpenDataCard card JOIN City city WHERE city.id = :id ORDER BY card.date DESC",
+                this.id).first();
+    }
 
     public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
         Long id = null;
         if (scale < 200000000) {
-            List<Object[]> cards = JPA
-                    .em()
-                    .createNativeQuery(
-                            "SELECT opendatacard.id, opendatacard.name FROM city INNER JOIN opendatacard ON city.card_id=opendatacard.id WHERE opendatacard.status>0 AND distance(PointFromText('POINT("
-                                    + longitude
-                                    + " "
-                                    + latitude
-                                    + ")', 900913), the_geom) < 0.1 ORDER BY distance(PointFromText('POINT("
-                                    + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1")
-                    .getResultList();
+            //@formatter:off
+            List<Object[]> cards = JPA.em().createNativeQuery(
+                            "SELECT " +
+                                    "opendatacard.id, " +
+                                    "opendatacard.name " +
+                            "FROM " +
+                                "city INNER JOIN opendatacard ON city.card_id=opendatacard.id " +
+                            "WHERE " +
+                                "opendatacard.status>0 AND " +
+                                "distance(PointFromText('POINT("+ longitude + " " + latitude + ")', 900913), the_geom) < 0.1 " +
+                            "ORDER BY " +
+                                "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1"
+                    ).getResultList();
+            //@formatter:on
             if (cards.size() > 0) {
                 Object[] result = cards.get(0);
                 id = Long.valueOf(result[0].toString());
