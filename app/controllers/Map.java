@@ -2,7 +2,6 @@ package controllers;
 
 import models.City;
 import models.Country;
-import models.OpenDataCard;
 import models.ZoneAdmin1;
 import models.ZoneAdmin2;
 import play.Play;
@@ -22,7 +21,7 @@ public class Map extends Controller {
     }
 
     @CacheFor
-    public static void card(Float scale, Float latitude, Float longitude) {
+    public static void onClick(Float scale, Float latitude, Float longitude) {
 
         if (latitude == null | longitude == null | scale == null) {
             renderText(Messages.get("page.map.nodata"));
@@ -33,35 +32,24 @@ public class Map extends Controller {
         cardId = City.getCardIdFromLongLat(scale, longitude, latitude);
         if (cardId != null) {
             level = 3;
-            viewCard(cardId, level);
+            Card.view(cardId, level);
         }
         cardId = ZoneAdmin2.getCardIdFromLongLat(scale, longitude, latitude);
         if (cardId != null) {
             level = 2;
-            viewCard(cardId, level);
+            Card.view(cardId, level);
         }
         cardId = ZoneAdmin1.getCardIdFromLongLat(scale, longitude, latitude);
         if (cardId != null) {
             level = 1;
-            viewCard(cardId, level);
+            Card.view(cardId, level);
         }
         cardId = Country.getCardIdFromLongLat(scale, longitude, latitude);
         if (cardId != null) {
             level = 0;
-            viewCard(cardId, level);
+            Card.view(cardId, level);
         }
         renderText(Messages.get("page.map.nodata"));
-    }
-
-    @CacheFor
-    public static void viewCard(Long id, int level) {
-        OpenDataCard card = OpenDataCard.findById(id);
-        if (card != null) {
-            render(card, level);
-        }
-        else {
-            notFound();
-        }
     }
 
 }

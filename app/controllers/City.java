@@ -1,4 +1,4 @@
-package controllers.crud;
+package controllers;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 
@@ -12,8 +12,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
 import controllers.securesocial.SecureSocial;
+import controllers.securesocial.SecureSocialPublic;
 
-@With(SecureSocial.class)
+@With(SecureSocialPublic.class)
 public class City extends Controller {
 
     private static void isValidUser() {
@@ -24,7 +25,7 @@ public class City extends Controller {
         }
     }
 
-    public static void city(Long id) {
+    public static void edit(Long id) {
         isValidUser();
         models.City city = null;
         if (id != null) {
@@ -39,7 +40,7 @@ public class City extends Controller {
         render(city);
     }
 
-    public static void saveCity(@Valid models.City city) {
+    public static void save(@Valid models.City city) {
         isValidUser();
         if (!validation.valid(city).ok) {
             validation.keep();

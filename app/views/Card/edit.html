@@ -5,21 +5,21 @@
     <div class="span12">
     
         <ul class="breadcrumb">
-            <li><a href="@{crud.OpendataCard.getSearchGeoZone}">&{'page.searchGeoZone.title'}</a> <span class="divider">/</span></li>
+            <li><a href="@{Search.geoZoneForm}">&{'page.searchGeoZone.title'}</a> <span class="divider">/</span></li>
             <li class="active">${name}</li>
         </ul>
             
         <h2>${name}</h2>
         <br/><br/>
-        #{form @crud.OpendataCard.saveCard(), class:"form-horizontal"}
+        #{form @Card.save(), class:"form-horizontal"}
         
             #{ifErrors}
-                <div class="alert-message error">
+                <div class="alert alert-error">
                     <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
                 </div>
             #{/ifErrors}
              #{if flash.success}
-                <div class="alert-message success">
+                <div class="alert alert-success">
                     <p>${flash.success}</p>
                 </div>
             #{/if}

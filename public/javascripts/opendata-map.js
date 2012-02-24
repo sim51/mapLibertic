@@ -166,7 +166,7 @@ function init(wmsurl, loading) {
             var lonlat = map.getLonLatFromViewPortPx(e.xy).transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
             $.ajax({
 				type: 'GET',
-				url: '/map/opendatacard?latitude=' +  lonlat.lat + '&longitude=' + lonlat.lon + '&scale=' + scale,
+				url: '/map/info?latitude=' +  lonlat.lat + '&longitude=' + lonlat.lon + '&scale=' + scale,
 				async: 'false',
 				context : $(this),
 				dataType: 'html',

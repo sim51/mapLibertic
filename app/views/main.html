@@ -33,11 +33,16 @@
                     <a href="@{Application.contact()}">&{'page.contact'}</a>
                 </li>
             </ul>
-            <ul class="nav" style="float:right;">
+            <ul class="nav" id="user-menu">
                     #{if user != null}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            #{if user.avatarUrl != null}
+                                <img src="${user.avatarUrl}" id="avatar"/>
+                            #{/if}
+                            #{else}
                                 <i class="icon-user icon-white"></i>
+                            #{/else}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 ${user.displayName}
                                 <b class="caret"></b>
                             </a>

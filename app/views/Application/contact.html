@@ -8,12 +8,12 @@
         #{form @Application.sendContact(), class:"form-horizontal"}
  
             #{ifErrors}
-        	    <div class="alert-message error">
+        	    <div class="alert alert-error">
                     <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
                 </div>
             #{/ifErrors}
             #{if flash.success}
-                <div class="alert-message success">
+                <div class="alert alert-success">
                     <a class="close" href="#">×</a>
                     <p>${flash.success}</p>
                 </div>

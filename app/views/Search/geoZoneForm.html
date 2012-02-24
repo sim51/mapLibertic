@@ -5,13 +5,13 @@
     <div class="span12">
     
         <div class="alert alert-info">
-            <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{crud.City.city(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
+            <p>&{'page.searchGeoZone.addcitytxt'} <a href="@{City.view(null)}?name=${params.query}" title="&{'page.searchGeoZone.addcity'}">&{'page.searchGeoZone.addcity'}</a></p>
         </div>
         
-        #{form @crud.OpendataCard.searchGeoZone(), class:"form-horizontal"}
+        #{form @Search.geoZoneResult(), class:"form-horizontal"}
         
             #{ifErrors}
-                <div class="alert-message error">
+                <div class="alert alert-error">
                     <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
                 </div>
             #{/ifErrors}
@@ -65,8 +65,8 @@
     #{if countries?.size() > 0 || zone1?.size() > 0 || zone2?.size() > 0 || cities?.size() > 0}
     <div class="span12">
         <h3>&{'page.searchGeoZone.searchResult'}</h3>
-        #{if countries?.size() > 0}
-            <table class="bordered-table zebra-striped">
+        #{if countries?.size() > 0} 
+            <table class="table table-striped .table-condensed">
                 <thead>
                     <tr>
                         <th>&{'page.searchGeoZone.countryCode'}</th>
@@ -76,15 +76,15 @@
                 <tbody>  
                     #{list items:countries, as:'country'}
                         <tr>
-                            <td><a href="@{crud.OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
-                            <td><a href="@{crud.OpendataCard.card(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
+                            <td><a href="@{Card.edit(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
+                            <td><a href="@{Card.edit(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
                         </tr>
                     #{/list}
                 </tbody>
             </table>
          #{/if}
          #{if zone1?.size() > 0}
-            <table class="bordered-table zebra-striped">
+            <table class="table table-striped .table-condensed">
                 <thead>
                     <tr>
                         <th>&{'page.searchGeoZone.countryCode'}</th>
@@ -94,15 +94,15 @@
                 <tbody>  
                     #{list items:zone1, as:'zone'}
                         <tr>
-                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
-                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
                         </tr>
                     #{/list}
                 </tbody>
             </table>
          #{/if} 
          #{if zone2?.size() > 0}
-            <table class="bordered-table zebra-striped">
+            <table class="table table-striped .table-condensed">
                 <thead>
                     <tr>
                         <th>&{'page.searchGeoZone.countryCode'}</th>
@@ -112,15 +112,15 @@
                 <tbody>  
                     #{list items:zone2, as:'zone'}
                         <tr>
-                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
-                            <td><a href="@{crud.OpendataCard.card(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
                          </tr>
                     #{/list}
                 </tbody>
             </table>
          #{/if} 
          #{if cities?.size() > 0}
-            <table class="bordered-table zebra-striped">
+            <table class="table table-striped .table-condensed">
                 <thead>
                     <tr>
                         <th>&{'page.searchGeoZone.countryCode'}</th>
@@ -131,11 +131,11 @@
                 <tbody>  
                     #{list items:cities, as:'city'}
                         <tr>
-                            <td><a href="@{crud.OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
-                            <td><a href="@{crud.OpendataCard.card(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
+                            <td><a href="@{Card.edit(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
+                            <td><a href="@{cCard.edit(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
                             <td>
-                                <a href="@{crud.City.city(city.id)}" title="${city.name}"><img src="@{'/public/images/pencil.png'}"/></a>
-                                <a href="@{crud.OpendataCard.card(params.level, city.id)}" title="${city.name}"><img src="@{'/public/images/magnifier.png'}"/></a>
+                                <a href="@{Card.edit}" title="${city.name}"><img src="@{'/public/images/pencil.png'}"/></a>
+                                <a href="@{Card.edit()params.level, city.id)}" title="${city.name}"><img src="@{'/public/images/magnifier.png'}"/></a>
                             </td>
                         </tr>
                     #{/list}

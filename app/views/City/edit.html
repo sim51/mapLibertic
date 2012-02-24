@@ -6,15 +6,15 @@
             
         <h2>${name}</h2>
         <br/><br/>
-        #{form @crud.City.saveCity(), class:"form-horizontal"}
+        #{form @City.save(), class:"form-horizontal"}
         
             #{ifErrors}
-                <div class="alert-message error">
+                <div class="alert alert-error">
                     <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
                 </div>
             #{/ifErrors}
              #{if flash.success}
-                <div class="alert-message success">
+                <div class="alert alert-success">
                     <p>${flash.success}</p>
                 </div>
             #{/if}
