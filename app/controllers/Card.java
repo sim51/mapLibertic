@@ -44,7 +44,6 @@ public class Card extends AbstractController {
         card.created = Calendar.getInstance().getTime();
         card.level = level;
         card.zoneId = zoneId;
-        card.save();
         switch (level) {
             case 0:
                 // search country
@@ -52,8 +51,9 @@ public class Card extends AbstractController {
                 if (country.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
-                    commit.save();
                 }
+                commit.save();
+                card.save();
                 country.cards.add(card);
                 country.save();
                 break;
@@ -63,8 +63,9 @@ public class Card extends AbstractController {
                 if (zone1.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
-                    commit.save();
                 }
+                commit.save();
+                card.save();
                 zone1.cards.add(card);
                 zone1.save();
                 break;
@@ -74,8 +75,9 @@ public class Card extends AbstractController {
                 if (zone2.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
-                    commit.save();
                 }
+                commit.save();
+                card.save();
                 zone2.cards.add(card);
                 zone2.save();
                 break;
@@ -85,8 +87,9 @@ public class Card extends AbstractController {
                 if (city.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
-                    commit.save();
                 }
+                commit.save();
+                card.save();
                 city.cards.add(card);
                 city.save();
                 break;
@@ -105,14 +108,14 @@ public class Card extends AbstractController {
                 Country country = Country.findById(zoneId);
                 name = country.name;
                 card = country.getOpenDataCard(Lang.get());
-                render(level, zoneId, name);
+                render(level, zoneId, name, card);
                 break;
             case 1:
                 // search zone1
                 ZoneAdmin1 zone1 = ZoneAdmin1.findById(zoneId);
                 name = zone1.name;
                 card = zone1.getOpenDataCard(Lang.get());
-                render(level, zoneId, name);
+                render(level, zoneId, name, card);
                 break;
             case 2:
                 // search zone2

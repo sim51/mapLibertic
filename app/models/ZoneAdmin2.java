@@ -24,12 +24,12 @@ public class ZoneAdmin2 extends Model {
     public List<OpenDataCard> cards;
 
     public OpenDataCard getOpenDataCard(String lang) {
-        return OpenDataCard.find("SELECT c FROM ZoneAdmin2 z JOIN z.cards c WHERE c.id = ? ORDER BY c.created DESC",
+        return OpenDataCard.find("SELECT c FROM ZoneAdmin2 z JOIN z.cards c WHERE z.id = ? ORDER BY c.created DESC",
                 this.id).first();
     }
 
     public List<OpenDataCard> getOpenDataCardHistory(String lang) {
-        return OpenDataCard.find("SELECT c FROM ZoneAdmin2 z JOIN z.cards c WHERE c.id = ? ORDER BY c.created DESC",
+        return OpenDataCard.find("SELECT c FROM ZoneAdmin2 z JOIN z.cards c WHERE z.id = ? ORDER BY c.created DESC",
                 this.id).fetch();
     }
 
