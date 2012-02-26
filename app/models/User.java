@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import play.data.validation.Required;
+import play.data.validation.URL;
 import play.db.jpa.Model;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
@@ -19,6 +21,7 @@ public class User extends Model {
     /**
      * The user full name.
      */
+    @Required
     public String            displayName;
 
     /**
@@ -27,9 +30,20 @@ public class User extends Model {
     public String            email;
 
     /**
+     * The user's site
+     */
+    @URL
+    public String            site;
+
+    /**
      * A URL pointing to an avatar
      */
     public String            avatarUrl;
+
+    /**
+     * Is an admin ?
+     */
+    public Boolean           isAdmin;
 
     /**
      * The OAuth1 token (available when authMethod is OAUTH1 or OPENID_OAUTH_HYBRID)
@@ -85,6 +99,7 @@ public class User extends Model {
         user.avatarUrl = socialUser.avatarUrl;
         user.displayName = socialUser.displayName;
         user.email = socialUser.email;
+        user.isAdmin = Boolean.FALSE;
         user.isEmailVerified = socialUser.isEmailVerified;
         user.password = socialUser.password;
         user.secret = socialUser.secret;

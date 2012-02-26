@@ -6,12 +6,13 @@ import models.User;
 import models.UserAccount;
 import play.cache.Cache;
 import play.libs.Codec;
+import play.mvc.Scope.Session;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
 public class UserService implements securesocial.provider.UserService.Service {
 
-    public User findUser(UserId id) {
+    public static User findUser(UserId id) {
         List<User> users = User.find("SELECT u FROM User u JOIN u.accounts a WHERE a.userId = ? AND a.provider = ?",
                 id.id, id.provider.toString()).fetch(1);
         if (users.size() > 0) {
@@ -37,9 +38,20 @@ public class UserService implements securesocial.provider.UserService.Service {
     public void save(SocialUser user) {
         User userDb = findUser(user.id);
         if (userDb == null) {
-            userDb = User.fromUserSocial(user);
-            for (UserAccount account : userDb.accounts) {
+            if (Session.current().get("member") != null) {
+                Long id = Long.valueOf(Session.current().get("member"));
+                userDb = User.findById(id);
+                UserAccount account = new UserAccount();
+                account.userId = user.id.id;
+                account.provider = user.id.provider.toString();
                 account.save();
+                userDb.accounts.add(account);
+            }
+            else {
+                userDb = User.fromUserSocial(user);
+                for (UserAccount account : userDb.accounts) {
+                    account.save();
+                }
             }
             userDb.save();
         }

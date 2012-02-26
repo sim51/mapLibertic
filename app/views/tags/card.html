@@ -1,0 +1,102 @@
+<h2>
+    ${_card?.name} 
+    #{if !rss}
+        <a href="@{Card.edit(_zoneId, _level)}" title="&{'page.opendataCard.edit'}">
+            <i class="icon-edit"></i>
+        </a>
+        <a href="@{Card.history(_zoneId, _level)}" title="&{'page.opendataCard.history'}">
+            <i class="icon-info-sign"></i>
+        </a>
+     #{/if}
+</h2>
+<ul class="unstyled">
+    #{if _card?.url}
+        <li>
+            <strong>&{'page.opendataCard.url'} :</strong>
+            <a href="${_card?.url}" title="${_card?.name}">${_card?.url}</a>
+        </li>
+    #{/if}
+    #{if _card?.plateform}
+        <li>
+            <strong>&{'page.opendataCard.plateforme'} :</strong>
+            ${_card?.plateform}
+        </li>
+    #{/if}
+    #{if _card?.license}
+        <li>
+            <strong>&{'page.opendataCard.license'} :</strong>
+            ${_card?.license}
+        </li>
+    #{/if}
+    #{if _card?.numOfData}
+        <li>
+            <strong>&{'page.opendataCard.numOfData'} :</strong>
+            ${_card?.numOfData}
+        </li>
+    #{/if}
+    #{if _card?.opening}
+        <li>
+            <strong>&{'page.opendataCard.opening'} :</strong>
+             ${_card?.opening?.format('dd/MM/yyyy')}
+        </li>
+    #{/if}
+    #{if _card?.lastUpdate}
+        <li>
+            <strong>&{'page.opendataCard.lastUpdate'} :</strong>
+             ${_card?.lastUpdate?.format('dd/MM/yyyy')}
+        </li>
+    #{/if}
+    #{if _card?.bernersLeeRate}
+        <li>
+            #{if rss}
+                <strong>&{'page.opendataCard.bernersLeeRate'} :</strong>
+                ${_card.bernersLeeRate}/5
+            #{/if}
+            #{else}
+                <ul class="star-rating">
+                    <li class="current-rating" style="width:${_card.bernersLeeRate.rate()}%">${_card.bernersLeeRate}/5</li>
+                    <li><a title="&{'page.opendataCard.bernersLeeRate'}" class="stars-1" href="#">1</a></li>
+                    <li><a title="&{'page.opendataCard.bernersLeeRate'}" class="stars-2" href="#">2</a></li>
+                    <li><a title="&{'page.opendataCard.bernersLeeRate'}" class="stars-3" href="#">3</a></li>
+                    <li><a title="&{'page.opendataCard.bernersLeeRate'}" class="stars-4" href="#">4</a></li>
+                    <li><a title="&{'page.opendataCard.bernersLeeRate'}" class="stars-5" href="#">5</a></li>
+                </ul>
+            #{/else}
+        </li>
+    #{/if}
+    <li>&nbsp;</li>
+    #{if card?.contacts}
+        <li>
+            <strong>&{'page.opendataCard.contacts'}</strong><br/>
+            ${_card?.contacts}
+            <br/><br/>
+        </li>
+    #{/if}
+    #{if _card?.dataOwners}
+        <li>
+            <strong>&{'page.opendataCard.dataOwners'}</strong><br/>
+            ${_card?.dataOwners}
+            <br/><br/>
+        </li>
+    #{/if}
+    #{if _card?.formats}
+        <li>
+            <strong>&{'page.opendataCard.formats'}</strong><br/>
+            ${_card?.formats}
+            <br/><br/>
+        </li>
+    #{/if}
+    #{if _card?.thematic}
+        <li>
+            <strong>&{'page.opendataCard.thematic'}</strong><br/>
+            ${_card?.thematic}
+            <br/><br/>
+        </li>
+    #{/if}
+    #{if _card?.description}
+         <li>
+            <strong>&{'page.opendataCard.description'}</strong><br/>
+            ${_card?.description}
+        </li>
+    #{/if}
+</ul>

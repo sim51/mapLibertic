@@ -1,9 +1,38 @@
-#{extends 'main.html' /} #{set title:'Accueil' /}
+#{extends 'main.html' /} 
+#{set title:'Accueil' /}
+
 <div class="row">
     <div class="span8">
         <h2>&{'page.home.edito'}</h2>
         &{'page.home.edito.txt'}
+        <br/><br/>
+        <h2>&{'page.home.lastupdate'}</h2>
+        <ul class="unstyled">
+            #{list items:cards, as:'card'}
+                <li>
+                    #{if card.commit.user}
+                        <span class="label">
+                            <a class="label-link" href="@{User.view(card.commit.user.id)}" title="${card.commit.user.displayName}">
+                                ${card.commit.user.displayName}
+                            </a>
+                        </span>
+                        &nbsp;
+                    #{/if}
+                    #{if card.commit.isFirst}
+                        <span class="label label-important">&{'page.home.new'}</span> 
+                    #{/if}
+                    #{else}
+                        <span class="label label-info">&{'page.home.update'}</span>
+                    #{/else}
+                    <strong>${card.name}</strong>
+                    #{if card.commit.description}
+                        : ${card.commit.description}    
+                    #{/if}
+                </li>
+            #{/list}
+        </ul>
     </div>
+    #{cache 'liberticRSS', for:'2h'}
     <div class="span4">
         <h2>&{'page.home.libertic.rss'}</h2>
         <p>&{'page.home.libertic.rss.txt'}</p>
@@ -15,4 +44,5 @@
 	        #{/list}
         </ul>
     </div>
+    #{/cache}
 </div>

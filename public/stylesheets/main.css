@@ -64,3 +64,6 @@ p.center{ text-align: center; }
 #user-menu{float:right;}
 .navbar #user-menu > li > a {float:left;}
 #avatar{height: 32px;float:left;padding-top: 3px;}
+img.icone{width:20px;}
+.alert a{text-decoration: underline;}
+.label-link{color:#FFFFFF;}

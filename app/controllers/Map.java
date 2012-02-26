@@ -8,10 +8,13 @@ import play.Play;
 import play.cache.CacheFor;
 import play.i18n.Messages;
 import play.mvc.Controller;
+import play.mvc.With;
 import securesocial.provider.SocialUser;
 import controllers.securesocial.SecureSocial;
+import controllers.securesocial.SecureSocialPublic;
 
-public class Map extends Controller {
+@With(SecureSocialPublic.class)
+public class Map extends AbstractController {
 
     public static void index() {
         String wmsurl = Play.configuration.getProperty("map.wms.url");

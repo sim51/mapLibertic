@@ -1,0 +1,8 @@
+#{extends 'main.html' /} 
+#{set title: messages.get('page.version.title') + "${card?.created}" /}
+
+<div class="row">
+    <div class="span12">
+        #{card zoneId:zoneId, level:level, card:card /}
+    </div>
+</div>

@@ -2,30 +2,19 @@ package controllers;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 
-import play.Logger;
 import play.data.validation.Valid;
-import play.mvc.Controller;
 import play.mvc.With;
-import securesocial.provider.SocialUser;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
-import controllers.securesocial.SecureSocial;
 import controllers.securesocial.SecureSocialPublic;
 
 @With(SecureSocialPublic.class)
-public class City extends Controller {
-
-    private static void isValidUser() {
-        SocialUser user = SecureSocial.getCurrentUser();
-        Logger.debug("user is " + user.displayName);
-        if (!user.displayName.equals("logisima") && !!user.displayName.equalsIgnoreCase("libertic")) {
-            forbidden();
-        }
-    }
+public class City extends AbstractController {
 
     public static void edit(Long id) {
+        String menu = "participate";
         isValidUser();
         models.City city = null;
         if (id != null) {
@@ -37,22 +26,24 @@ public class City extends Controller {
                 city.name = params.get("name");
             }
         }
-        render(city);
+        render(city, menu);
     }
 
     public static void save(@Valid models.City city) {
+        String menu = "participate";
         isValidUser();
         if (!validation.valid(city).ok) {
             validation.keep();
             params.flash();
-            render("@city", city);
+            render("@edit", city, menu);
         }
         validation.clear();
         GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
         city.location = geometryFactory.createPoint(new Coordinate(city.longitude, city.latitude));
         city.location.setSRID(900913);
         city.save();
-        render("@city", city);
+        flash.success("Enregistrement réussi");
+        edit(city.id);
     }
 
 }

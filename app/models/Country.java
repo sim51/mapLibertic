@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,22 +21,37 @@ public class Country extends Model {
     public String             countryCode;
 
     @OneToMany
-    public List<OpenDataCard> card;
+    public List<OpenDataCard> cards;
 
     public OpenDataCard getOpenDataCard(String lang) {
         return OpenDataCard.find(
-                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = :id ORDER BY card.date DESC", this.id)
-                .first();
+                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = :id ORDER BY card.created DESC",
+                this.id).first();
+    }
+
+    public List<OpenDataCard> getOpenDataCardHistory(String lang) {
+        return OpenDataCard.find(
+                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = :id ORDER BY card.created DESC",
+                this.id).fetch();
     }
 
     public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
         Long id = null;
         if (scale > 20000000) {
-            List<Object[]> cards = JPA
-                    .em()
-                    .createNativeQuery(
-                            "SELECT opendatacard.id, opendatacard.name FROM country INNER JOIN opendatacard ON country.card_id=opendatacard.id WHERE opendatacard.status>0 AND contains(the_geom, PointFromText('POINT("
-                                    + longitude + " " + latitude + ")', 900913)) LIMIT 1").getResultList();
+            //@formatter:off
+            List<Object[]> cards = JPA.em().createNativeQuery(
+                        "SELECT " +
+                                "opendatacard.id, " +
+                                "opendatacard.name " +
+                        "FROM " +
+                            "country_opendatacard INNER JOIN country ON country_opendatacard.country_id=country.id INNER JOIN opendatacard ON opendatacard.id=country_opendatacard.cards_id " +
+                        "WHERE " +
+                            "opendatacard.status>0 AND " +
+                            "distance(PointFromText('POINT("+ longitude + " " + latitude + ")', 900913), the_geom) < 0.1 " +
+                        "ORDER BY " +
+                            "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1"
+                ).getResultList();
+            //@formatter:on
             if (cards.size() > 0) {
                 Object[] result = cards.get(0);
                 id = Long.valueOf(result[0].toString());
@@ -46,40 +60,12 @@ public class Country extends Model {
         return id;
     }
 
-    public static OpenDataCard getCardFromLongLat(float scale, float longitude, float latitude) {
-        if (scale > 150) {
-            List<Object[]> cards = JPA
-                    .em()
-                    .createNativeQuery(
-                            "SELECT opendatacard.name, opendatacard.status, opendatacard.isThereCitizenMvt, opendatacard.url, opendatacard.plateform, opendatacard.numOfData, opendatacard.opening, opendatacard.lastUpdate, opendatacard.bernersLeerate, opendatacard.license, opendatacard.description, opendatacard.thematic, opendatacard.dataOwners, opendatacard.formats, opendatacard.contacts FROM country INNER JOIN opendatacard ON country.card_id=opendatacard.id WHERE opendatacard.status>0 AND contains(the_geom, PointFromText('POINT("
-                                    + longitude + " " + latitude + ")', 900913)) LIMIT 1").getResultList();
-            if (cards.size() > 0) {
-                Object[] result = cards.get(0);
-                OpenDataCard card = new OpenDataCard();
-                card.name = (String) result[0];
-                card.status = (Integer) result[1];
-                card.isThereCitizenMvt = (Boolean) result[2];
-                card.url = (String) result[3];
-                card.plateform = (String) result[4];
-                card.numOfData = (Integer) result[5];
-                card.opening = (Date) result[6];
-                card.lastUpdate = (Date) result[7];
-                card.bernersLeeRate = (Float) result[8];
-                card.license = (String) result[9];
-                card.description = (String) result[10];
-                card.thematic = (String) result[11];
-                card.dataOwners = (String) result[12];
-                card.formats = (String) result[13];
-                card.contacts = (String) result[14];
-                return card;
-            }
-            else {
-                return null;
-            }
-        }
-        else {
-            return null;
-        }
+    public static Country findByCardId(Long cardId) {
+        return Country.find("SELECT z FROM Country z JOIN z.cards c WHERE c.id=?", cardId).first();
+    }
+
+    public static List<Country> findAllOpen() {
+        return Country.find("SELECT z FROM Country z JOIN z.cards c WHERE c.status>0").fetch();
     }
 
 }

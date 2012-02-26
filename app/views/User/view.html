@@ -1,0 +1,60 @@
+#{extends 'main.html' /} 
+
+#{if mine}
+    #{set title:messages.get('page.user')/}
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-info">
+                &{'page.user.edit.txt'}
+                <a href="@{User.edit()}" title="&{'page.user.edit.title'}">&{'page.user.edit.ici'}</a>
+            </div>
+        </div>
+    </div>
+#{/if}
+#{else}
+    #{set title:messages.get('page.user')/}
+#{/else}
+
+<div class="row">
+    <div class="span1">
+        #{if member.avatarUrl != null}
+            <img src="${member.avatarUrl}" alt="avatar"/>
+        #{/if}
+     </div>
+    <div class="span11">
+        <h2>${member.displayName}</h2>
+        #{if member.site}
+            <a href="${member.site}" title="${member.site}">
+                ${member.site}
+            </a>
+            <br/><br/>
+        #{/if}
+        #{list items:member.accounts, as:'account' }
+            #{if account.provider == "twitter"}
+                <a href="${play.Play.configuration.get('securesocial.twitter.profileURL')}${account.userId}" title="Twitter">
+                    <img class="icone" src="@{'/public/images/providers/twitter.png'}" alt="twitter logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "facebook"}
+                <a href="${play.Play.configuration.get('securesocial.facebook.profileURL')}${account.userId}" title="Twitter">
+                    <img class="icone" src="@{'/public/images/providers/facebook.png'}" alt="facebook logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "google"}
+                <a href="${play.Play.configuration.get('securesocial.google.profileURL')}${account.userId}" title="Google">
+                    <img class="icone" src="@{'/public/images/providers/google.png'}" alt="google logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "linkedin"}
+                <a href="${play.Play.configuration.get('securesocial.linkedin.profileURL')}${account.userId}" title="Linked In">
+                    <img class="icone" src="@{'/public/images/providers/linkedin.png'}" alt="linkedin logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "github"}
+                <a href="${play.Play.configuration.get('securesocial.github.profileURL')}${account.userId}" title="Github">
+                    <img class="icone" src="@{'/public/images/providers/github.png'}" alt="github logo" />
+                </a>
+            #{/if}
+         #{/list}
+    </div>
+</div>

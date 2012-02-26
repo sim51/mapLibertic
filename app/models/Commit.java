@@ -23,4 +23,6 @@ public class Commit extends Model {
     @Required
     public Boolean isMajor;
 
+    public Boolean isFirst = Boolean.FALSE;
+
 }

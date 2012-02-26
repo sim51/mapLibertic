@@ -4,10 +4,8 @@
     <div class="span12">
         <div class="alert block-message #{if flash.error}alert-error#{/if}#{else}alert-success#{/else}">
             <div class="alert-actions">
-                <p>
-                    #{if flash.error}${flash.error}#{/if}
-                    #{else}${flash.success.raw()}#{/else} 
-                </p>
+                #{if flash.error}${flash.error}#{/if}
+                #{else}${flash.success.raw()}#{/else} 
             </div>
         </div>
     </div>

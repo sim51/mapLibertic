@@ -3,15 +3,20 @@
 #
 project.name=Libertic
 error=Erreur !
+by=par
 error.checkform=Veuillez vérifier les informations que vous avez saisi.
 cancel=Annuler
-footer=Ce projet est sous la <a target="_blank" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">Github</a>. 
+footer1=Ce projet est sous la <a target="_blank" title="Licence GPL"href="http://www.gnu.org/licenses/gpl.html">GNU General Public Licence (GPL)</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">github</a>. 
+footer2=Les données du site sont sous la licence <a target="_blank" title="Licence ODbL" href="http://opendatacommons.org/licenses/odbl/">Open Database Licence (ODbL)</a>. Vous pouvez les télécharger en cliquant <a href="/public/opendata-map.csv">ici</a>.
 
 page.home=Accueil
 page.home.edito=Bienvenue
 page.home.edito.txt=<p>Ce site est communautaire, vous êtes convié à venir enrichir, modifier, exploiter</p>
 page.home.libertic.rss=Libertic
 page.home.libertic.rss.txt=Les derniers tickets de Libertic
+page.home.lastupdate=Les derniers changements
+page.home.new=Nouveau !
+page.home.update=Mis à jour
 page.login=Se connecter
 
 page.map=La carte
@@ -39,6 +44,15 @@ page.contact.message=Votre message
 page.contact.security=Code de sécurité
 page.contact.send=Envoyer
 
+page.participate=Participer
+page.participate.title=Participer
+page.participate.howto.title=Comment faire ?
+page.participate.howto.txt=<p>Ce site est participatif, ainsi il est pensé pour que vous puissez participer simplement. Pour ce faire il existe deux moyens.</p>
+page.participate.howto.map.title=Par la carte
+page.participate.howto.map.txt=<p>En cliquant sur une zone de la carte, vous pouvez faire apparaitre sur la colonne de droite la fiche opendata de la zone géographique. Vous trouverez à coté du nom de la fiche deux icônes : <ul><li>En cliquant sur l'icône <i class="icon-edit"></i> vous serez alors redirigé vers la page d'édition.</li><li>En cliquant sur l'icône <i class="icon-info-sign"></i> vous pouvez consulter l'historique des modifications.</li></ul></p>
+page.participate.howto.search.title=Par la recherche
+page.participate.howto.search.txt=<p>En bas de cette page vous trouverez un formulaire permettant de rechercher parmis les zones géographiques qui sont enregistrées dans notre base de données. Celle-ci contient tous les pays, zone administrative de niveau 1 (les régions) et de niveau 2 (les départements) ainsi que les plus grandes villes du monde.</p><p>Une fois votre recherche effectuée, cliquez sur le nom de la zone  géographique désirée pour être redirigé vers la page d'édition de la fiche open-data correspondante. 
+
 page.searchGeoZone.title=Recherche d'une zone géographique
 page.searchGeoZone.level=Voulez-vous chercher
 page.searchGeoZone.level0=un pays
@@ -51,14 +65,16 @@ page.searchGeoZone.searchResult=Résultat de la recherche
 page.searchGeoZone.noResult=Aucun résultat trouvé
 page.searchGeoZone.countryCode=Code pays
 page.searchGeoZone.name=Nom
+page.searchGeoZone.addcitytxt=Si la ville que vous recherchez n'apparait pas dans les résultats de la recherche, vous pouvez la créer en cliquant 
+page.searchGeoZone.addcity=Ajouter une ville
+page.searchGeoZone.fiche=Fiche
+page.searchGeoZone.commit=Nature de la modification
+
 page.opendataCard.status.ok=Déjà ouvert
 page.opendataCard.status.inprogress=En cours
 page.opendataCard.status.thinking=Y réfléchit
 page.opendataCard.citizenMvt=Mouvement citoyen ?
 page.opendataCard.status=Status de l'opendata
-page.searchGeoZone.addcitytxt=Vous pouvez aussi ajouter une ville dans notre base de données. Pour ce faire, cliquez ici :
-page.searchGeoZone.addcity=Ajouter une ville
-
 page.opendataCard.title=Fiche OpenData sur :
 page.opendataCard.url=Url du site
 page.opendataCard.plateforme=Plateforme utilisée
@@ -73,11 +89,46 @@ page.opendataCard.formats=Formats disponibles pour les données
 page.opendataCard.dataOwners=Gestionnaire des données
 page.opendataCard.contacts=Contacts
 page.opendataCard.save=Enregistrer
+page.opendataCard.commit.isMajor=Changement majeur ?
+page.opendataCard.commit.description=Commentaire
+page.opendataCard.history=Voir l'historique
+page.opendataCard.edit=Modifier
 
-page.addcity.title=Ville
+page.addcity=Ville
 page.addcity.name=Nom de la ville
 page.addcity.longitude=Longitude
 page.addcity.latitude=Latitude
+page.addcity.country=Pays
+page.addcity.population=Population
+
+page.history.title=Historique des versions de 
+page.history.date=Date
+page.history.user=Auteur
+page.history.comment=Commentaire
+
+page.user=Profile
+page.user.displayname=Nom
+page.user.mail=Email
+page.user.addAccount=Réseaux Sociaux
+page.user.addAccount.help=Vous pouvez lier votre compte à un réseau social. Pour se faire, cliquez simplement sur l'icone correspondante !
+page.user.edit=Mes informations
+page.user.edit.ici=ici
+page.user.edit.txt=Vous pouvez modifier les informations de votre profile en cliquant 
+page.user.edit.title=Modifier mon profile
+page.user.save=Enregistrer
+page.user.site=URL de votre site
+
+page.myprofile=Mon Profil
+
+page.history.compare=Comparez les versions
+page.compare.title=Comparaison de version
+
+page.version.title=Version du  
+
+page.rss.title=Carte opendata
+page.rss.description=Liste des derniers changements de la carte opendata-map.org
+page.rss.new=Nouveau :
+page.rss.update=Mise à jour :
 
 bubble.dateUpdate=MISE A JOUR
 bubble.nbData=NOMBRE DE DONNEES

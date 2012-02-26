@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import models.OpenDataCard;
 import notifier.Mails;
 import play.Logger;
 import play.Play;
@@ -12,7 +13,7 @@ import play.data.validation.Email;
 import play.data.validation.Required;
 import play.libs.Codec;
 import play.libs.Images;
-import play.mvc.Controller;
+import play.mvc.With;
 import securesocial.provider.SocialUser;
 
 import com.sun.syndication.feed.synd.SyndFeed;
@@ -20,8 +21,10 @@ import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
 import controllers.securesocial.SecureSocial;
+import controllers.securesocial.SecureSocialPublic;
 
-public class Application extends Controller {
+@With(SecureSocialPublic.class)
+public class Application extends AbstractController {
 
     public static void index() {
         String menu = "index";
@@ -35,7 +38,8 @@ public class Application extends Controller {
         } catch (Exception e) {
             Logger.error("Lecture flus RSS", e);
         }
-        render(menu, user, myFeeds);
+        List<OpenDataCard> cards = OpenDataCard.getLastCards(Boolean.FALSE, 10);
+        render(menu, user, myFeeds, cards);
     }
 
     public static void about() {
@@ -74,4 +78,5 @@ public class Application extends Controller {
         Cache.set(id, code, "30mn");
         renderBinary(captcha);
     }
+
 }

@@ -1,0 +1,14 @@
+#{extends 'main.html' /} 
+#{set title: messages.get('page.compare.title') /}
+
+<div class="row">
+    <div class="span6">
+        <h1>&{'page.version.title'} ${cardFrom?.created?.format('dd MMM yyyy')}</h1>
+        #{card zoneId:zoneId, level:level, card:cardFrom /}
+    </div>
+    
+    <div class="span6">
+        <h1>&{'page.version.title'} ${cardTo?.created?.format('dd MMM yyyy')}</h1>
+        #{card zoneId:zoneId, level:level, card:cardTo /}
+    </div>
+</div>

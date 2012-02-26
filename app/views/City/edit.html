@@ -1,34 +1,44 @@
-#{extends 'main.html' /} 
-#{set title:"Ajout d'une ville" /}
+#{extends 'main.html' /}
+#{set title: messages.get('page.addcity') /}
 
 <div class="row">
     <div class="span12">
             
-        <h2>${name}</h2>
+        <h2>${city?.name}</h2>
         <br/><br/>
         #{form @City.save(), class:"form-horizontal"}
         
             #{ifErrors}
                 <div class="alert alert-error">
-                    <p><strong>&{'error'}</strong>&{'error.checkform'}</p>
+                    <strong>&{'error'}</strong>&{'error.checkform'}
                 </div>
             #{/ifErrors}
              #{if flash.success}
                 <div class="alert alert-success">
-                    <p>${flash.success}</p>
+                    ${flash.success}
                 </div>
             #{/if}
             
-	    #{if city && city.id != ""}
-	      <input type="hidden" name="city.id" value="${city?.id}"/>
-	    #{/if}
+    	    #{if city && city.id != ""}
+    	      <input type="hidden" name="city.id" value="${city?.id}"/>
+    	    #{/if}
             
             <div class="control-group #{ifError 'city.name'}error#{/ifError}">
                 <label class="control-label" for="name">&{'page.addcity.name'}</label>
                 <div class="controls">
-                    <input class="span6" type="text" id="name" name="city.name" placeholder="Name" value="${city?.name}"/>
+                    <input class="span6" type="text" id="name" name="city.name" placeholder="Nantes" value="${city?.name}"/>
                     #{if errors.forKey('city.name')}
                         <span class="help-inline">#{error 'city.name' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="control-group #{ifError 'city.population'}error#{/ifError}">
+                <label class="control-label" for="name">&{'page.addcity.population'}</label>
+                <div class="controls">
+                    <input class="span6" type="text" id="name" name="city.population" placeholder="283288" value="${city?.population}"/>
+                    #{if errors.forKey('city.population')}
+                        <span class="help-inline">#{error 'city.population' /}</span>
                     #{/if}
                 </div>
             </div>
@@ -46,7 +56,7 @@
             <div class="control-group #{ifError 'city.longitude'}error#{/ifError}">
                 <label class="control-label" for="longitude">&{'page.addcity.longitude'}</label>
                 <div class="controls">
-                    <input class="span6" type="text" id="longitude" name="city.longitude" placeholder="" value="${city?.longitude}"/>
+                    <input class="span6" type="text" id="longitude" name="city.longitude" placeholder="-1.5852524984181" value="${city?.longitude}"/>
                     #{if errors.forKey('city.longitude')}
                         <span class="help-inline">#{error 'city.longitude' /}</span>
                     #{/if}
@@ -56,14 +66,14 @@
             <div class="control-group #{ifError 'city.latitude'}error#{/ifError}">
                 <label class="control-label" for="latitude">&{'page.addcity.latitude'}</label>
                 <div class="controls">
-                    <input class="span6" type="text" id="latitude" name="city.latitude" placeholder="" value="${city?.latitude}"/>
+                    <input class="span6" type="text" id="latitude" name="city.latitude" placeholder="47.216448454835" value="${city?.latitude}"/>
                     #{if errors.forKey('city.latitude')}
                         <span class="help-inline">#{error 'city.latitude' /}</span>
                     #{/if}
                 </div>
             </div>
             
-            <div class="control-actions">
+            <div class="form-actions">
                 <button class="btn btn-primary" type="submit">&{'page.opendataCard.save'}</button>
             </div>
             

@@ -1,0 +1,127 @@
+#{extends 'main.html' /} 
+#{set title:messages.get('page.user') /}
+
+<div class="row">
+    <div class="span1">
+        #{if member.avatarUrl != null}
+            <img src="${member.avatarUrl}" alt="avatar"/>
+        #{/if}
+     </div>
+    <div class="span11">
+        <h2>${member.displayName}</h2>
+        #{if member.site}
+            <a href="${member.site}" title="${member.site}">
+                ${member.site}
+            </a>
+            <br/><br/>
+        #{/if}
+        #{list items:member.accounts, as:'account' }
+            #{if account.provider == "twitter"}
+                <a href="${play.Play.configuration.get('securesocial.twitter.profileURL')}${account.userId}" title="Twitter">
+                    <img class="icone" src="@{'/public/images/providers/twitter.png'}" alt="twitter logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "facebook"}
+                <a href="${play.Play.configuration.get('securesocial.facebook.profileURL')}${account.userId}" title="Twitter">
+                    <img class="icone" src="@{'/public/images/providers/facebook.png'}" alt="facebook logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "google"}
+                <a href="${play.Play.configuration.get('securesocial.google.profileURL')}${account.userId}" title="Google">
+                    <img class="icone" src="@{'/public/images/providers/google.png'}" alt="google logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "linkedin"}
+                <a href="${play.Play.configuration.get('securesocial.linkedin.profileURL')}${account.userId}" title="Linked In">
+                    <img class="icone" src="@{'/public/images/providers/linkedin.png'}" alt="linkedin logo" />
+                </a>
+            #{/if}
+            #{if account.provider == "github"}
+                <a href="${play.Play.configuration.get('securesocial.github.profileURL')}${account.userId}" title="Github">
+                    <img class="icone" src="@{'/public/images/providers/github.png'}" alt="github logo" />
+                </a>
+            #{/if}
+         #{/list}
+    </div>
+</div>
+<br/><br/>
+<div class="row">
+
+    <div class="span6">
+        <h2>&{'page.user.edit'}</h2>
+        #{form @User.save(), class:"form-horizontal"}
+        
+            #{ifErrors}
+                <div class="alert alert-error">
+                    <strong>&{'error'}</strong>&{'error.checkform'}
+                </div>
+            #{/ifErrors}
+             #{if flash.success}
+                <div class="alert alert-success">
+                    ${flash.success}
+                </div>
+            #{/if}
+            
+            #{if member && member.id != ""}
+              <input type="hidden" name="member.id" value="${member.id}"/>
+            #{/if}
+            
+            <div class="control-group #{ifError 'member.displayName'}error#{/ifError}">
+                <label class="control-label" for="name">&{'page.user.displayname'}</label>
+                <div class="controls">
+                    <input type="text" id="name" name="member.displayName" value="${member.displayName}"/>
+                    #{if errors.forKey('member.displayName')}
+                        <span class="help-inline">#{error 'member.displayName' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="control-group #{ifError 'member.email'}error#{/ifError}">
+                <label class="control-label" for="email">&{'page.user.mail'}</label>
+                <div class="controls">
+                    <input type="text" id="email" name="member.email" value="${member.email}"/>
+                    #{if errors.forKey('member.email')}
+                        <span class="help-inline">#{error 'member.email' /}</span>
+                    #{/if}
+                </div>
+            </div>
+            
+            <div class="control-group #{ifError 'member.site'}error#{/ifError}">
+                <label class="control-label" for="site">&{'page.user.site'}</label>
+                <div class="controls">
+                    <input type="text" id="site" name="member.site" value="${member.site}"/>
+                    #{if errors.forKey('member.site')}
+                        <span class="help-inline">#{error 'member.site' /}</span>
+                    #{/if}
+                </div>
+            </div>
+        
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">&{'page.user.save'}</button>
+            </div>
+            
+        #{/form}
+    </div>
+
+    <div class="span6">
+        <h2>&{'page.user.addAccount'}</h2>
+        
+        <p>&{'page.user.addAccount.help'}</p>
+        
+        #{list items: providers, as: 'provider'}
+            #{if provider.type != securesocial.provider.ProviderType.userpass}
+                #{if (provider.authMethod == securesocial.provider.AuthenticationMethod.OPENID ||
+                     provider.authMethod == securesocial.provider.AuthenticationMethod.OPENID_OAUTH_HYBRID) &&
+                   provider.needsUsername() }
+                    <a href="javascript:openid('${provider.type}')">                        
+                #{/if}
+                #{else}
+                    <a href="@{securesocial.SecureSocial.authenticate(provider.type.toString().toLowerCase())}">
+                #{/else}
+                <img src="@{'/public/images/providers/'}/${provider.type.toString().toLowerCase()}.png" title="${provider.type}"/></a>
+            #{/if}
+        #{/list}
+        
+    </div>
+
+</div>

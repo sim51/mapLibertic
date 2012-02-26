@@ -9,34 +9,29 @@ import models.ZoneAdmin1;
 import models.ZoneAdmin2;
 import play.Logger;
 import play.data.validation.Required;
-import play.mvc.Controller;
-import securesocial.provider.SocialUser;
-import controllers.securesocial.SecureSocial;
+import play.mvc.With;
+import controllers.securesocial.SecureSocialPublic;
 
-public class Search extends Controller {
-
-    private static void isValidUser() {
-        SocialUser user = SecureSocial.getCurrentUser();
-        Logger.debug("user is " + user.displayName);
-        if (!user.displayName.equals("logisima") && !!user.displayName.equalsIgnoreCase("libertic")) {
-            forbidden();
-        }
-    }
+@With(SecureSocialPublic.class)
+public class Search extends AbstractController {
 
     public static void geoZoneForm() {
-        isValidUser();
-        render();
+        String menu = "participate";
+        params.put("level", "3");
+        Boolean isAdmin = hasAdminRight();
+        render(menu, isAdmin);
     }
 
     public static void geoZoneResult(@Required Integer level, @Required String query) {
-        isValidUser();
+        String menu = "participate";
+        Boolean isAdmin = hasAdminRight();
         List<Country> countries = new ArrayList<Country>();
         List<ZoneAdmin1> zone1 = new ArrayList<ZoneAdmin1>();
         List<ZoneAdmin2> zone2 = new ArrayList<ZoneAdmin2>();
         List<City> cities = new ArrayList<City>();
         if (validation.hasErrors()) {
             params.flash();
-            render("@geoZoneForm");
+            render("@geoZoneForm", menu);
         }
         validation.clear();
         switch (level) {
@@ -61,6 +56,6 @@ public class Search extends Controller {
                 Logger.debug("City size is " + cities.size());
                 break;
         }
-        render("@geoZoneForm", countries, zone1, zone2, cities);
+        render("@geoZoneForm", countries, zone1, zone2, cities, menu, isAdmin);
     }
 }

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>#{get 'title' /}</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link type="text/css" rel="stylesheet" href="@{'/public/bootstrap/css/bootstrap.min.css'}" />
-<link type="text/css" rel="stylesheet" href="@{'/public/bootstrap/css/bootstrap-responsive.min.css'}" />
-<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-#{get 'moreStyles' /}
-<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+    <title>#{get 'title' /}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="alternate" type="application/rss+xml" title="&{'page.rss.title'}" href="@{Card.rss()}" />
+    <link type="text/css" rel="stylesheet" href="@{'/public/bootstrap/css/bootstrap.min.css'}" />
+    <link type="text/css" rel="stylesheet" href="@{'/public/bootstrap/css/bootstrap-responsive.min.css'}" />
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+    #{get 'moreStyles' /}
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -25,6 +26,9 @@
                 </li>
                 #{if menu.equals('map')}<li class="active">#{/if}#{else}<li>#{/else} 
                     <a href="@{Map.index()}">&{'page.map'}</a>
+                </li> 
+                #{if menu.equals('participate')}<li class="active">#{/if}#{else}<li>#{/else} 
+                    <a href="@{Search.geoZoneForm()}">&{'page.participate'}</a>
                 </li> 
                 #{if menu.equals('about')}<li class="active">#{/if}#{else}<li>#{/else} 
                     <a href="@{Application.about()}">&{'page.about'}</a>
@@ -47,6 +51,8 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a href="@{User.myProfile()}">&{'page.myprofile'}</a></li>
+                                <li class="divider"></li>
                                 <li><a href="@{securesocial.SecureSocial.logout()}">&{'securesocial.logout'}</a></li>
                             </ul>
                         </li>
@@ -71,7 +77,11 @@
             #{doLayout /}
         </div>
         <footer>
-            <p>&{'footer'}</p>
+            <p>
+                &{'footer1'}
+                <br/>
+                &{'footer2'}
+            </p>
         </footer>
     </div>
     <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
