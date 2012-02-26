@@ -10,6 +10,7 @@
         <ul class="unstyled">
             #{list items:cards, as:'card'}
                 <li>
+                    <!-- 
                     #{if card.commit.user}
                         <span class="label">
                             <a class="label-link" href="@{User.view(card.commit.user.id)}" title="${card.commit.user.displayName}">
@@ -18,16 +19,17 @@
                         </span>
                         &nbsp;
                     #{/if}
+                     -->
+                    <strong>${card.name}</strong>
+                    #{if card.commit.description}
+                        : ${card.commit.description}    
+                    #{/if}
                     #{if card.commit.isFirst}
                         <span class="label label-important">&{'page.home.new'}</span> 
                     #{/if}
                     #{else}
                         <span class="label label-info">&{'page.home.update'}</span>
                     #{/else}
-                    <strong>${card.name}</strong>
-                    #{if card.commit.description}
-                        : ${card.commit.description}    
-                    #{/if}
                 </li>
             #{/list}
         </ul>
