@@ -21,6 +21,9 @@ public class OpenDataCard extends Model {
     @Required
     public String  name;
 
+    public Long    zoneId;
+    public Integer level;
+
     public Date    created;
 
     public String  lang;

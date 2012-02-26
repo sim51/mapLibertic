@@ -21,8 +21,8 @@ import controllers.securesocial.SecureSocialPublic;
 @With(SecureSocialPublic.class)
 public class Card extends AbstractController {
 
-    public static void save(int level, Long id, String name, @Valid OpenDataCard card, String comment,
-            @Required Boolean isMajor) {
+    public static void save(@Required int level, @Required Long zoneId, String name, @Valid OpenDataCard card,
+            String comment, @Required Boolean isMajor) {
         isValidUser();
 
         if (card.lang == null) {
@@ -31,7 +31,7 @@ public class Card extends AbstractController {
         if (!validation.valid(card).ok) {
             validation.keep();
             params.flash();
-            render("@edit", level, id, name, card);
+            render("@edit", level, zoneId, name, card);
         }
         validation.clear();
 
@@ -42,11 +42,13 @@ public class Card extends AbstractController {
         commit.save();
         card.commit = commit;
         card.created = Calendar.getInstance().getTime();
+        card.level = level;
+        card.zoneId = zoneId;
         card.save();
         switch (level) {
             case 0:
                 // search country
-                Country country = Country.findById(id);
+                Country country = Country.findById(zoneId);
                 if (country.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
@@ -57,7 +59,7 @@ public class Card extends AbstractController {
                 break;
             case 1:
                 // search zone1
-                ZoneAdmin1 zone1 = ZoneAdmin1.findById(id);
+                ZoneAdmin1 zone1 = ZoneAdmin1.findById(zoneId);
                 if (zone1.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
@@ -68,7 +70,7 @@ public class Card extends AbstractController {
                 break;
             case 2:
                 // search zone2
-                ZoneAdmin2 zone2 = ZoneAdmin2.findById(id);
+                ZoneAdmin2 zone2 = ZoneAdmin2.findById(zoneId);
                 if (zone2.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
@@ -79,7 +81,7 @@ public class Card extends AbstractController {
                 break;
             case 3:
                 // search city
-                City city = City.findById(id);
+                City city = City.findById(zoneId);
                 if (city.cards.size() == 0) {
                     commit.isFirst = Boolean.TRUE;
                     commit.isMajor = Boolean.TRUE;
@@ -90,7 +92,7 @@ public class Card extends AbstractController {
                 break;
         }
         flash.success("Enregistrement réussi");
-        render("@edit", level, id, name, card);
+        render("@edit", level, zoneId, name, card);
     }
 
     public static void edit(@Required Long zoneId, @Required int level) {
