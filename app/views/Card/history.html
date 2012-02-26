@@ -1,0 +1,43 @@
+#{extends 'main.html' /} 
+#{set title: messages.get('page.history.title') + " ${name}" /}
+
+<div class="row">
+    <div class="span12">
+        #{form @Card.compare(), class:"form-horizontal", method:"GET"}
+        
+            <input type="hidden" name="level" value="${level}"/>
+            <input type="hidden" name="zoneId" value="${zoneId}"/>
+            
+            #{if cards?.size() > 0} 
+                <table class="table table-striped .table-condensed">
+                    <thead>
+                        <tr>
+                            <th/>
+                            <th>&{'page.history.date'}</th>
+                            <th>&{'page.history.user'}</th>
+                            <th>&{'page.history.comment'}</th>
+                        </tr>  
+                    </thead>
+                    <tbody>  
+                        #{list items:cards, as:'card'}
+                            <tr>
+                                <td>
+                                    <input type="radio" name="fromId" value="${card.id}" />
+                                    <input type="radio" name="toId" value="${card.id}" />
+                                </td>
+                                <td><a href="@{Card.version(card.id, zoneId, level)}" title="${card.name}">${card?.created?.format('dd MMM yyyy')}</a></td>
+                                <td><a href="@{User.view(card.commit.user.id)}" title="${card?.commit?.user?.displayName}">${card?.commit?.user?.displayName}</td>
+                                <td>${card?.commit?.description}</td>
+                            </tr>
+                        #{/list}
+                    </tbody>
+                </table>
+             #{/if}
+             
+             <div class="form-actions">
+                <button class="btn btn-primary" type="submit">&{'page.history.compare'}</button>
+            </div>
+              
+          #{/form}   
+    </div>
+</div>

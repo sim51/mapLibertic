@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>&{'page.rss.title'}</title>
+    <link>@@{Application.rss()}</link>
+    <description>&{'page.rss.description'}</description>
+    <lastBuildDate>${today.format('E, dd MMM yyyy HH:mm:ss Z')}</lastBuildDate>
+    <language></language>
+    #{list items:cards, as:'card'}
+        <item>
+            #{if card.commit.isFirst}
+                <title>&{'page.rss.new'}${card.name.raw()}</title>
+            #{/if}
+            #{else}
+                &{'page.rss.update'}${card.name.raw()}
+            #{/else}
+            <link>@{Application.index()}</link>
+            <guid>@{Application.index()}</guid>
+            <pubDate>${card.created.format('E, dd MMM yyyy HH:mm:ss Z')}</pubDate>
+            <description><![CDATA[ #{card card:card, rss:true/} ]]></description>
+        </item>
+    #{/list}
+  </channel>
+</rss>
