@@ -25,13 +25,13 @@ public class ZoneAdmin1 extends Model {
 
     public OpenDataCard getOpenDataCard(String lang) {
         return OpenDataCard.find(
-                "SELECT card FROM OpenDataCard card JOIN ZoneAdmin1 c WHERE c.id = :id ORDER BY card.created DESC",
+                "SELECT card FROM OpenDataCard card JOIN ZoneAdmin1 c WHERE c.id = ? ORDER BY card.created DESC",
                 this.id).first();
     }
 
     public List<OpenDataCard> getOpenDataCardHistory(String lang) {
         return OpenDataCard.find(
-                "SELECT card FROM OpenDataCard card JOIN ZoneAdmin1 c WHERE c.id = :id ORDER BY card.created DESC",
+                "SELECT card FROM OpenDataCard card JOIN ZoneAdmin1 c WHERE c.id = ? ORDER BY card.created DESC",
                 this.id).fetch();
     }
 

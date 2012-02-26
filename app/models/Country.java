@@ -25,14 +25,14 @@ public class Country extends Model {
 
     public OpenDataCard getOpenDataCard(String lang) {
         return OpenDataCard.find(
-                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = :id ORDER BY card.created DESC",
-                this.id).first();
+                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = ? ORDER BY card.created DESC", this.id)
+                .first();
     }
 
     public List<OpenDataCard> getOpenDataCardHistory(String lang) {
         return OpenDataCard.find(
-                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = :id ORDER BY card.created DESC",
-                this.id).fetch();
+                "SELECT card FROM OpenDataCard card JOIN Country c WHERE c.id = ? ORDER BY card.created DESC", this.id)
+                .fetch();
     }
 
     public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
