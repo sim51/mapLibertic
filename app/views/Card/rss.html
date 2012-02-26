@@ -9,15 +9,15 @@
     #{list items:cards, as:'card'}
         <item>
             #{if card.commit.isFirst}
-                <title>&{'page.rss.new'}${card.name.raw()}</title>
+                <title>&{'page.rss.new'} ${card.name.raw()}</title>
             #{/if}
             #{else}
-                &{'page.rss.update'}${card.name.raw()}
+                &{'page.rss.update'} ${card.name.raw()}
             #{/else}
             <link>@{Application.index()}</link>
             <guid>@{Application.index()}</guid>
             <pubDate>${card.created.format('E, dd MMM yyyy HH:mm:ss Z')}</pubDate>
-            <description><![CDATA[ #{card card:card, rss:true/} ]]></description>
+            <description><![CDATA[ #{card card:card, rss:"true"/} ]]></description>
         </item>
     #{/list}
   </channel>
