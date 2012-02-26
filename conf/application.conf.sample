@@ -1,17 +1,60 @@
 # This is the main configuration file for the application.
 # ~~~~~
-application.name=libertic
-map.wms.url=http://odhd.logisima.com/geoserver/wms
-mail.noreply=no-reply@libertic.com
-mail.reply=contact@bsimard.com
+application.name=opendata-map
+map.wms.url=http://www.opendata-map.org/geoserver/wms
+libertic.rss=http://libertic.wordpress.com/feed/
+mail.noreply=no-reply@opendata-map.org
+mail.reply=contact@logisima.com
 
-securesocial.providers=twitter
-securesocial.twitter.requestTokenURL=https://twitter.com/oauth/request_token
-securesocial.twitter.accessTokenURL=https://twitter.com/oauth/access_token
-securesocial.twitter.authorizationURL=https://twitter.com/oauth/authenticate
+
+#
+# Secure Social
+#
+securesocial.providers=twitter,facebook,google,linkedin,github,userpass
+securesocial.mailer.subject=[OPENDATA-MAP]: Validation de votre compte
+securesocial.mailer.from=nor-reply@opendata-map.org
+securesocial.logout.redirect=Application.index
+
+# twitter
+securesocial.twitter.requestTokenURL=https://api.twitter.com/oauth/request_token
+securesocial.twitter.authorizationURL=https://api.twitter.com/oauth/authorize
+securesocial.twitter.accessTokenURL=https://api.twitter.com/oauth/access_token
 securesocial.twitter.consumerKey=
 securesocial.twitter.consumerSecret=
+securesocial.twitter.profileURL=https://twitter.com/intent/user?user_id=
 
+# facebook
+securesocial.facebook.authorizationURL=https://graph.facebook.com/oauth/authorize
+securesocial.facebook.accessTokenURL=https://graph.facebook.com/oauth/access_token
+securesocial.facebook.clientid=
+securesocial.facebook.secret=
+securesocial.facebook.scope=email
+securesocial.facebook.profileURL=http://www.facebook.com/profile.php?id=
+
+# Google
+securesocial.google.requestTokenURL=https://www.google.com/accounts/OAuthGetRequestToken
+securesocial.google.accessTokenURL=https://www.google.com/accounts/OAuthGetAccessToken
+securesocial.google.authorizationURL=https://www.google.com/accounts/OAuthAuthorizeToken
+securesocial.google.scope=http://www-opensocial.googleusercontent.com/api/people
+securesocial.google.consumerKey=
+securesocial.google.consumerSecret=
+securesocial.google.profileURL=http://www.google.com/profiles/
+
+# LinkedIn
+securesocial.linkedin.requestTokenURL=https://api.linkedin.com/uas/oauth/requestToken
+securesocial.linkedin.accessTokenURL=https://api.linkedin.com/uas/oauth/accessToken
+securesocial.linkedin.authorizationURL=https://api.linkedin.com/uas/oauth/authenticate
+securesocial.linkedin.consumerKey=
+securesocial.linkedin.consumerSecret=
+securesocial.linkedin.profileURL=http://www.linkedin.com/profile/view?id=
+
+# GitHub
+securesocial.github.authorizationURL=https://github.com/login/oauth/authorize
+securesocial.github.accessTokenURL=https://github.com/login/oauth/access_token
+securesocial.github.clientid=
+securesocial.github.secret=
+securesocial.github.organization=LogiSima
+securesocial.github.profileURL=https://github.com/
 
 # Application mode
 # ~~~~~
@@ -24,13 +67,13 @@ application.mode=dev
 # ~~~~~
 # The secret key is used to secure cryptographics functions
 # If you deploy your application to several instances be sure to use the same key !
-application.secret=onFJm3Xdrg0CLArCGXrffd2GnShbO8yjROzYsAseB4iTAoxKbNJlQkoW8jL5QlBU
+application.secret=
 
 # i18n
 # ~~~~~
 # Define locales used by your application.
 # You can then place localized messages in conf/messages.{locale} files
-# application.langs=fr,en,ja
+application.langs=fr,en
 
 # Date format
 # ~~~~~
@@ -74,13 +117,13 @@ http.port=9001
 # jpda.port=8000
 #
 # Java source level => 1.5, 1.6 or 1.7 (experimental)
-ava.source=1.6
+java.source=1.6
 
 # Log level
 # ~~~~~
 # Specify log level for your application.
 # If you want a very customized log, create a log4j.properties file in the conf directory
-application.log=DEBUG
+application.log=ERROR
 #
 # More logging configuration
 # application.log.path=/log4j.properties
@@ -89,23 +132,11 @@ application.log=DEBUG
 # Database configuration
 # ~~~~~ 
 # Enable a database engine if needed.
-#
-# To quickly set up a development database, use either:
-#   - mem : for a transient in memory database (H2 in memory)
-#   - fs  : for a simple file written database (H2 file stored)
-#db=mem
-#
-# To connect to a local MySQL5 database, use:
-# db=mysql://user:pwd@host/database
-#
-# To connect to a local PostgreSQL9 database, use:
-db=postgres://opendata:opendata@localhost/opendata
-#
 # If you need a full JDBC configuration use the following :
-#db.url=jdbc:postgresql:opendata
-#db.driver=org.postgresql.Driver
-#db.user=opendata
-#db.pass=opendata
+db.url=
+db.driver=org.postgis.DriverWrapper
+db.user=
+db.pass=opendata
 
 #
 # Connections pool configuration :
@@ -125,14 +156,14 @@ db=postgres://opendata:opendata@localhost/opendata
 # ~~~~~
 #
 # Specify the custom JPA dialect to use here (default to guess):
-jpa.dialect=org.hibernate.dialect.PostgreSQLDialect
+jpa.dialect=org.hibernatespatial.postgis.PostgisDialect
 #
 # Specify the ddl generation pattern to use. Set to none to disable it 
 # (default to update in DEV mode, and none in PROD mode):
-#jpa.ddl=none
+jpa.ddl=update
 #
 # Debug SQL statements (logged using DEBUG level):
-jpa.debugSQL=true
+jpa.debugSQL=false
 #
 # You can even specify additional hibernate properties here:
 # hibernate.use_sql_comments=true
@@ -166,21 +197,10 @@ attachments.path=data/attachments
 
 # If enabled, Play will generate entity tags automatically and send a 304 when needed.
 # Default is true, set it to false to deactivate use of entity tags.
-# http.useETag=true
+http.useETag=true
 
 # Custom mime types
 # mimetype.xpi=application/x-xpinstall
-
-# WS configuration
-# ~~~~~
-# Default engine is Async Http Client, uncomment to use
-# the JDK's internal implementation
-# webservice = urlfetch
-# If you need to set proxy params for WS requests
-# http.proxyHost = localhost
-# http.proxyPort = 3128
-# http.proxyUser = jojo
-# http.proxyPassword = jojo
 
 # Mail configuration
 # ~~~~~ 
