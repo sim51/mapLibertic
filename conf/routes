@@ -12,8 +12,8 @@ POST    /contact                                													Application.sendCon
 GET		/map																						Map.index
 GET		/map/info																					Map.onClick
 
-GET 	/geozone/search																				Search.geoZoneForm
-POST 	/geozone/search																				Search.geoZoneResult
+GET 	/participate																				Search.geoZoneForm
+POST 	/participate																				Search.geoZoneResult
 
 GET		/card/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}												Card.view
 GET		/card/edit/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}										Card.edit
