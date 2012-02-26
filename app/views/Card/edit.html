@@ -30,15 +30,15 @@
                         #{if card?.status > 0}
                             #{select 'card.status', value:card.status, id:'status', class:'medium'}
                                 #{option 0}N/A#{/option}
-                                #{option 1}&{'page.opendataCard.status.ok'}#{/option}
-                                #{option 2}&{'page.opendataCard.status.inprogress'}#{/option}
+                                #{option 1}&{'page.opendataCard.status.inprogress'}#{/option}
+                                #{option 2}&{'page.opendataCard.status.ok'}#{/option}
                             #{/select}
                         #{/if}
                         #{else}
                             #{select 'card.status', id:'status', class:'medium'}
                                 #{option 0}N/A#{/option}
-                                #{option 1}&{'page.opendataCard.status.ok'}#{/option}
-                                #{option 2}&{'page.opendataCard.status.inprogress'}#{/option}
+                                #{option 1}&{'page.opendataCard.status.inprogress'}#{/option}
+                                #{option 2}&{'page.opendataCard.status.ok'}#{/option}
                             #{/select}
                         #{/else}
                         #{if errors.forKey('card.status')}

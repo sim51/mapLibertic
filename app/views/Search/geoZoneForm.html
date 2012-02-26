@@ -91,8 +91,8 @@
                 <tbody>  
                     #{list items:countries, as:'country'}
                         <tr>
-                            <td><a href="@{Card.edit(params.level, country.id)}" title="${country.name}">${country.countryCode}</a></td>
-                            <td><a href="@{Card.edit(params.level, country.id)}" title="${country.name}">${country.name}</a></td>
+                            <td><a href="@{Card.edit(country.id, params.level)}" title="${country.name}">${country.countryCode}</a></td>
+                            <td><a href="@{Card.edit(country.id, params.level)}" title="${country.name}">${country.name}</a></td>
                         </tr>
                     #{/list}
                 </tbody>
@@ -109,8 +109,8 @@
                 <tbody>  
                     #{list items:zone1, as:'zone'}
                         <tr>
-                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
-                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                            <td><a href="@{Card.edit(zone.id,params.level)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{Card.edit(zone.id,params.level)}" title="${zone.name}">${zone.name}</a></td>
                         </tr>
                     #{/list}
                 </tbody>
@@ -127,8 +127,8 @@
                 <tbody>  
                     #{list items:zone2, as:'zone'}
                         <tr>
-                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.countryCode}</a></td>
-                            <td><a href="@{Card.edit(params.level, zone.id)}" title="${zone.name}">${zone.name}</a></td>
+                            <td><a href="@{Card.edit(zone.id, params.level)}" title="${zone.name}">${zone.countryCode}</a></td>
+                            <td><a href="@{Card.edit(zone.id, params.level)}" title="${zone.name}">${zone.name}</a></td>
                          </tr>
                     #{/list}
                 </tbody>
@@ -148,8 +148,8 @@
                 <tbody>  
                     #{list items:cities, as:'city'}
                         <tr>
-                            <td><a href="@{Card.edit(params.level, city.id)}" title="${city.name}">${city.countryCode}</a></td>
-                            <td><a href="@{Card.edit(params.level, city.id)}" title="${city.name}">${city.name}</a></td>
+                            <td><a href="@{Card.edit(city.id, params.level)}" title="${city.name}">${city.countryCode}</a></td>
+                            <td><a href="@{Card.edit(city.id, params.level)}" title="${city.name}">${city.name}</a></td>
                             #{if isAdmin}
                             <td>
                                 <a href="@{City.edit(city.id)}" title="${city.name}"><i class="icon-edit"></i></a>
