@@ -76,7 +76,7 @@ public class City extends GenericModel {
                             "FROM " +
                                 "city_opendatacard INNER JOIN city ON city_opendatacard.city_id=city.id INNER JOIN opendatacard ON opendatacard.id=city_opendatacard.cards_id " +
                             "WHERE " +
-                                "opendatacard.status>0 AND " +
+                                "(opendatacard.status>0 OR opendatacard.istherecitizenmvt = '1') AND " +
                                 "distance(PointFromText('POINT("+ longitude + " " + latitude + ")', 900913), the_geom) < 0.1 " +
                             "ORDER BY " +
                                 "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1"
