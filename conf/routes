@@ -28,7 +28,8 @@ POST	/city																						City.save
 GET		/user/{<[0-9]+>userId}																		User.view
 GET		/user/myprofile																				User.myProfile
 GET		/user/edit/myprofile																		User.edit
-GET		
+
+GET		/job/csv																					Job.csv
 
 # Ignore favicon requests
 GET     /favicon.ico                            													404

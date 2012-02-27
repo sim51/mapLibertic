@@ -2,6 +2,7 @@ package jobs;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.List;
 
 import models.City;
@@ -23,100 +24,32 @@ public class ExportCSV extends Job {
         List<Country> countries = Country.findAllOpen();
         for (Country country : countries) {
             OpenDataCard card = country.getOpenDataCard(Lang.get());
-            //@formatter:off
-            fileText += "\n";
-            fileText += "1;";                           // LEVEL
-            fileText += country.countryCode + ";";      // COUNTRY
-            fileText += country.name + ";";             // NAME
-            fileText += card.status + ";";              // STATUS
-            fileText += card.isThereCitizenMvt + ";";   // CITIZEN_MVT
-            fileText += card.url + ";";                 // URL
-            fileText += card.plateform + ";";           // PLATEFORME
-            fileText += card.numOfData + ";";           // N° DATA
-            fileText += card.opening + ";";             // OPENING
-            fileText += card.lastUpdate + ";";          // UPDATED
-            fileText += card.bernersLeeRate + ";";      // RATE
-            fileText += card.license + ";";             // LICENSE
-            fileText += card.thematic + ";";            // THEMATIC
-            fileText += card.dataOwners + ";";          // DATA_OWNER
-            fileText += card.formats + ";";             // FORMAT
-            fileText += card.contacts + ";";            // CONTACT
-            fileText += card.description;               // COMMENT
-            //@formatter:on
+            fileText += getLine(card.level, country.countryCode, card.name, card.status, card.isThereCitizenMvt,
+                    card.url, card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate,
+                    card.license, card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
         }
         List<ZoneAdmin1> zone1 = ZoneAdmin1.findAllOpen();
         for (ZoneAdmin1 zone : zone1) {
             OpenDataCard card = zone.getOpenDataCard(Lang.get());
-            //@formatter:off
-            fileText += "\n";
-            fileText += "1;";                           // LEVEL
-            fileText += zone.countryCode + ";";         // COUNTRY
-            fileText += zone.name + ";";                // NAME
-            fileText += card.status + ";";              // STATUS
-            fileText += card.isThereCitizenMvt + ";";   // CITIZEN_MVT
-            fileText += card.url + ";";                 // URL
-            fileText += card.plateform + ";";           // PLATEFORME
-            fileText += card.numOfData + ";";           // N° DATA
-            fileText += card.opening + ";";             // OPENING
-            fileText += card.lastUpdate + ";";          // UPDATED
-            fileText += card.bernersLeeRate + ";";      // RATE
-            fileText += card.license + ";";             // LICENSE
-            fileText += card.thematic + ";";            // THEMATIC
-            fileText += card.dataOwners + ";";          // DATA_OWNER
-            fileText += card.formats + ";";             // FORMAT
-            fileText += card.contacts + ";";            // CONTACT
-            fileText += card.description;               // COMMENT
-            //@formatter:on
+            fileText += getLine(card.level, zone.countryCode, card.name, card.status, card.isThereCitizenMvt, card.url,
+                    card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate, card.license,
+                    card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
         }
 
         List<ZoneAdmin2> zone2 = ZoneAdmin2.findAllOpen();
         for (ZoneAdmin2 zone : zone2) {
             OpenDataCard card = zone.getOpenDataCard(Lang.get());
-            //@formatter:off
-            fileText += "\n";
-            fileText += "1;";                           // LEVEL
-            fileText += zone.countryCode + ";";         // COUNTRY
-            fileText += zone.name + ";";                // NAME
-            fileText += card.status + ";";              // STATUS
-            fileText += card.isThereCitizenMvt + ";";   // CITIZEN_MVT
-            fileText += card.url + ";";                 // URL
-            fileText += card.plateform + ";";           // PLATEFORME
-            fileText += card.numOfData + ";";           // N° DATA
-            fileText += card.opening + ";";             // OPENING
-            fileText += card.lastUpdate + ";";          // UPDATED
-            fileText += card.bernersLeeRate + ";";      // RATE
-            fileText += card.license + ";";             // LICENSE
-            fileText += card.thematic + ";";            // THEMATIC
-            fileText += card.dataOwners + ";";          // DATA_OWNER
-            fileText += card.formats + ";";             // FORMAT
-            fileText += card.contacts + ";";            // CONTACT
-            fileText += card.description;               // COMMENT
-            //@formatter:on
+            fileText += getLine(card.level, zone.countryCode, card.name, card.status, card.isThereCitizenMvt, card.url,
+                    card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate, card.license,
+                    card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
         }
 
         List<City> cities = City.findAllOpen();
         for (City city : cities) {
             OpenDataCard card = city.getOpenDataCard(Lang.get());
-            //@formatter:off
-            fileText += "\n";
-            fileText += "1;";                           // LEVEL
-            fileText += city.countryCode + ";";         // COUNTRY
-            fileText += city.name + ";";                // NAME
-            fileText += card.status + ";";              // STATUS
-            fileText += card.isThereCitizenMvt + ";";   // CITIZEN_MVT
-            fileText += card.url + ";";                 // URL
-            fileText += card.plateform + ";";           // PLATEFORME
-            fileText += card.numOfData + ";";           // N° DATA
-            fileText += card.opening + ";";             // OPENING
-            fileText += card.lastUpdate + ";";          // UPDATED
-            fileText += card.bernersLeeRate + ";";      // RATE
-            fileText += card.license + ";";             // LICENSE
-            fileText += card.thematic + ";";            // THEMATIC
-            fileText += card.dataOwners + ";";          // DATA_OWNER
-            fileText += card.formats + ";";             // FORMAT
-            fileText += card.contacts + ";";            // CONTACT
-            fileText += card.description;               // COMMENT
-            //@formatter:on
+            fileText += getLine(card.level, city.countryCode, card.name, card.status, card.isThereCitizenMvt, card.url,
+                    card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate, card.license,
+                    card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
         }
 
         // we create the file
@@ -125,5 +58,102 @@ public class ExportCSV extends Job {
         fop.write(fileText.getBytes());
         fop.flush();
         fop.close();
+    }
+
+    private String getLine(Integer level, String country, String name, Integer status, Boolean mvtCitizen, String url,
+            String plateform, Integer numData, Date opening, Date updated, Float rate, String license, String thematic,
+            String owner, String format, String contact, String comment) {
+        String fileText = "\n";
+        fileText += "\"" + level + "\";";
+        fileText += "\"" + country + "\";";
+        fileText += "\"" + name + "\";";
+
+        fileText += "\"" + status + "\";";
+        if (mvtCitizen == null) {
+            mvtCitizen = Boolean.FALSE;
+        }
+
+        fileText += "\"" + mvtCitizen + "\";";
+        if (url == null) {
+            url = "";
+        }
+        fileText += "\"" + url + "\";";
+
+        if (plateform == null) {
+            plateform = "";
+        }
+        fileText += "\"" + plateform + "\";";
+
+        if (numData == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + numData + "\";";
+        }
+
+        if (opening == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + opening + "\";";
+        }
+
+        if (updated == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + updated + "\";";
+        }
+
+        if (rate == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + rate + "\";";
+        }
+
+        if (license == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + license + "\";";
+        }
+
+        if (thematic == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + thematic + "\";";
+        }
+
+        if (owner == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + owner + "\";";
+        }
+
+        if (format == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + format + "\";";
+        }
+
+        if (contact == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + contact + "\";";
+        }
+
+        if (comment == null) {
+            fileText += "\"\";";
+        }
+        else {
+            fileText += "\"" + comment + "\";";
+        }
+
+        return fileText;
     }
 }
