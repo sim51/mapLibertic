@@ -19,7 +19,7 @@
                 </div>
             #{/if}
             
-    	    #{if city && city.id != ""}
+    	    #{if city && city.id != "" && city.id > 0}
     	      <input type="hidden" name="city.id" value="${city?.id}"/>
     	    #{/if}
             
