@@ -7,7 +7,6 @@ import models.ZoneAdmin2;
 import play.Play;
 import play.cache.CacheFor;
 import play.i18n.Messages;
-import play.mvc.Controller;
 import play.mvc.With;
 import securesocial.provider.SocialUser;
 import controllers.securesocial.SecureSocial;
@@ -53,6 +52,14 @@ public class Map extends AbstractController {
             Card.view(cardId, level);
         }
         renderText(Messages.get("page.map.nodata"));
+    }
+
+    public static void admin() {
+        hasAdminRight();
+        String wmsurl = Play.configuration.getProperty("map.wms.url");
+        String menu = "mapAdmin";
+        SocialUser user = SecureSocial.getCurrentUser();
+        render(menu, wmsurl, user);
     }
 
 }

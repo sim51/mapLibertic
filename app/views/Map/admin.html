@@ -1,0 +1,24 @@
+#{extends 'main.html' /} 
+#{set title: messages.get('page.map.admin') /}
+
+#{set 'moreStyles' }
+    <link rel="stylesheet" href="@{'/public/javascripts/openlayers/theme/default/style.css'}" type="text/css" />
+    
+#{/set}
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/openlayers/OpenLayers.js'}"></script>
+    <script src="@{'/public/javascripts/opendata-map-adm.js'}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	init('${wmsurl}', '&{'page.map.dataloading'}');
+    });        	
+    </script>
+#{/set}
+
+
+<div class="row">
+    <div class="span12">
+        <div id="map" class="smallmap"></div>
+        <div id="scale"></div>
+    </div>
+</div>

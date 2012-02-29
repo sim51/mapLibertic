@@ -34,7 +34,8 @@ Merci aux personnes suivantes d'avoir représenté la France au hackathon intern
     
 TODO:
 * print de la carte
-* ou ajouter la recherche
 * carte en vector pour les admins
+* revoir export CSV => echaper les " , format des dates et la requête pour les doublons ...
+* envoi des mails aux administrateurs
 
 

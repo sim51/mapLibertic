@@ -11,6 +11,7 @@ POST    /contact                                													Application.sendCon
 
 GET		/map																						Map.index
 GET		/map/info																					Map.onClick
+GET		/admin/map																						Map.admin
 
 GET 	/participate																				Search.geoZoneForm
 POST 	/participate																				Search.geoZoneResult
