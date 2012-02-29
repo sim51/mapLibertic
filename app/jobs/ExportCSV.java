@@ -24,32 +24,40 @@ public class ExportCSV extends Job {
         List<Country> countries = Country.findAllOpen();
         for (Country country : countries) {
             OpenDataCard card = country.getOpenDataCard(Lang.get());
-            fileText += getLine(card.level, country.countryCode, card.name, card.status, card.isThereCitizenMvt,
-                    card.url, card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate,
-                    card.license, card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            if (card.status > 0) {
+                fileText += getLine(card.level, country.countryCode, card.name, card.status, card.isThereCitizenMvt,
+                        card.url, card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate,
+                        card.license, card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            }
         }
         List<ZoneAdmin1> zone1 = ZoneAdmin1.findAllOpen();
         for (ZoneAdmin1 zone : zone1) {
             OpenDataCard card = zone.getOpenDataCard(Lang.get());
-            fileText += getLine(card.level, zone.countryCode, card.name, card.status, card.isThereCitizenMvt, card.url,
-                    card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate, card.license,
-                    card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            if (card.status > 0) {
+                fileText += getLine(card.level, zone.countryCode, card.name, card.status, card.isThereCitizenMvt,
+                        card.url, card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate,
+                        card.license, card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            }
         }
 
         List<ZoneAdmin2> zone2 = ZoneAdmin2.findAllOpen();
         for (ZoneAdmin2 zone : zone2) {
             OpenDataCard card = zone.getOpenDataCard(Lang.get());
-            fileText += getLine(card.level, zone.countryCode, card.name, card.status, card.isThereCitizenMvt, card.url,
-                    card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate, card.license,
-                    card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            if (card.status > 0) {
+                fileText += getLine(card.level, zone.countryCode, card.name, card.status, card.isThereCitizenMvt,
+                        card.url, card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate,
+                        card.license, card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            }
         }
 
         List<City> cities = City.findAllOpen();
         for (City city : cities) {
             OpenDataCard card = city.getOpenDataCard(Lang.get());
-            fileText += getLine(card.level, city.countryCode, card.name, card.status, card.isThereCitizenMvt, card.url,
-                    card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate, card.license,
-                    card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            if (card.status > 0) {
+                fileText += getLine(card.level, city.countryCode, card.name, card.status, card.isThereCitizenMvt,
+                        card.url, card.plateform, card.numOfData, card.opening, card.lastUpdate, card.bernersLeeRate,
+                        card.license, card.thematic, card.dataOwners, card.formats, card.contacts, card.description);
+            }
         }
 
         // we create the file
