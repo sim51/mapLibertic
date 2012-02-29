@@ -6,7 +6,7 @@ OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 // make OL compute scale according to WMS spec
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
-function init(wmsurl, loading) {
+function init(wmsurl, wfsurl, loading) {
 	// Map is in mercator this time, so over-ride the default
 	// options that assume lat/lon.
 	var bounds = new OpenLayers.Bounds(

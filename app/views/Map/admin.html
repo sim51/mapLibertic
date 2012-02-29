@@ -10,7 +10,7 @@
     <script src="@{'/public/javascripts/opendata-map-adm.js'}"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-    	init('${wmsurl}', '&{'page.map.dataloading'}');
+    	init('${wmsurl}', '${wfsurl}', '&{'page.map.dataloading'}');
     });        	
     </script>
 #{/set}
