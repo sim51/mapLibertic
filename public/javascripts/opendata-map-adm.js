@@ -46,7 +46,7 @@ function init(wmsurl, loading) {
   	
   	// create WFS point layer
   	var wfslayer = new OpenLayers.Layer.WFS( "couche geoserver",
-            "http://odhd.logisima.com/geoserver/wfs",
+  			wfsurl,
             {typename: "libertic:libertic_city_ok", maxfeatures: 10},
             { featureClass: OpenLayers.Feature.WFS});
   	
