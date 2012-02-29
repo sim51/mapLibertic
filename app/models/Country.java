@@ -63,7 +63,7 @@ public class Country extends Model {
     }
 
     public static List<Country> findAllOpen() {
-        return Country.find("SELECT z FROM Country z JOIN z.cards c WHERE c.status>0").fetch();
+        return Country.find("SELECT DISTINCT z FROM Country z JOIN z.cards c WHERE c.status>0").fetch();
     }
 
 }

@@ -95,6 +95,6 @@ public class City extends GenericModel {
     }
 
     public static List<City> findAllOpen() {
-        return City.find("SELECT z FROM City z JOIN z.cards c WHERE c.status>0").fetch();
+        return City.find("SELECT DISTINCT z FROM City z JOIN z.cards c WHERE c.status>0").fetch();
     }
 }

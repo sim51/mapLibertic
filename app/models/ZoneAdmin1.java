@@ -63,6 +63,6 @@ public class ZoneAdmin1 extends Model {
     }
 
     public static List<ZoneAdmin1> findAllOpen() {
-        return ZoneAdmin1.find("SELECT z FROM ZoneAdmin1 z JOIN z.cards c WHERE c.status>0").fetch();
+        return ZoneAdmin1.find("SELECT DISTINCT z FROM ZoneAdmin1 z JOIN z.cards c WHERE c.status>0").fetch();
     }
 }
