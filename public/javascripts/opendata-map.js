@@ -29,7 +29,7 @@ function init(wmsurl, loading) {
             "Countries",
             wmsurl, 
             {
-            	'layers': 'libertic:country', 
+            	'layers': 'libertic:countries', 
             	'format':format, 
             	'transparent':'true',
             	'tiled': !pureCoverage,
@@ -136,7 +136,7 @@ function init(wmsurl, loading) {
     map.zoomToExtent(bounds);
     
     // on click feature
-  //declare Openlayer Click Control
+	//declare Openlayer Click Control
 	OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {               
         defaultHandlerOptions: {
             'single': true,

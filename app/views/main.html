@@ -27,7 +27,12 @@
                 </li>
                 #{if menu.equals('map')}<li class="active">#{/if}#{else}<li>#{/else} 
                     <a href="@{Map.index()}">&{'page.map'}</a>
+                </li>
+                #{if isAdmin}
+                #{if menu.equals('mapAdmin')}<li class="active">#{/if}#{else}<li>#{/else} 
+                    <a href="@{Map.admin()}">&{'page.map.admin'}</a>
                 </li> 
+                #{/if}
                 #{if menu.equals('participate')}<li class="active">#{/if}#{else}<li>#{/else} 
                     <a href="@{Search.geoZoneForm()}">&{'page.participate'}</a>
                 </li> 
@@ -37,6 +42,7 @@
                 #{if menu.equals('contact')}<li class="active">#{/if}#{else}<li>#{/else} 
                     <a href="@{Application.contact()}">&{'page.contact'}</a>
                 </li>
+                
             </ul>
             <ul class="nav" id="user-menu">
                     #{if user != null}

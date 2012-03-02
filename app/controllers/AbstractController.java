@@ -1,6 +1,7 @@
 package controllers;
 
 import play.Logger;
+import play.mvc.Before;
 import play.mvc.Controller;
 import securesocial.provider.SocialUser;
 import service.UserService;
@@ -32,6 +33,19 @@ public class AbstractController extends Controller {
         if (!member.isAdmin) {
             forbidden();
         }
+    }
+
+    @Before
+    public static void setAdminRight() {
+        Boolean isAdmin = Boolean.FALSE;
+        SocialUser user = SecureSocial.getCurrentUser();
+        if (user != null && user.id != null) {
+            models.User member = UserService.findUser(user.id);
+            if (member != null) {
+                isAdmin = Boolean.TRUE;
+            }
+        }
+        renderArgs.put("isAdmin", isAdmin);
     }
 
     public static Boolean hasAdminRight() {
