@@ -33,6 +33,40 @@ var DeleteFeature = OpenLayers.Class(OpenLayers.Control, {
     CLASS_NAME: "OpenLayers.Control.DeleteFeature"
 });
 
+
+OpenLayers.Strategy.Save.prototype.save= function(features) {
+    if(!features) {
+        features = this.layer.features;
+    }
+    var len = features.length;
+    var srsidTo = new OpenLayers.Projection("EPSG:4326")
+    var srsidFrom = new OpenLayers.Projection("EPSG:900913")
+    var orig;
+    for(var i=0; i<len; ++i) 
+    {
+        orig = features[i];
+        if(orig.state == 'Update')
+        {
+        	orig.geometry.transform(srsidFrom, srsidTo);
+        	// do a call to the server !
+        	$.ajax({
+				type: 'GET',
+				url: '/admin/city?fid=' + orig.fid + '&latitude=' +  orig.geometry.y + '&longitude=' + orig.geometry.x,
+				async: 'false',
+				context : $(this),
+				dataType: 'html',
+				success: function(data){
+  					alert('Enregistrement effectué !');
+  				},
+  				error: function(XMLHttpRequest, textStatus, errorThrown){
+  					alert('Erreur !' + textStatus + ' ' + errorThrown);;
+  				}
+				
+			}) 
+        }
+    }
+};
+
 function init(wmsurl, wfsurl, loading) {
 	
 	var bounds = new OpenLayers.Bounds(
@@ -80,9 +114,8 @@ function init(wmsurl, wfsurl, loading) {
             srsName: "EPSG:900913",
             url: wfsurl,
             featureNS :  "http://www.libertic.org",
-            featureType: "libertic_city_ok",
-            geometryName: "the_geom",
-            schema: wfsurl + "/DescribeFeatureType?version=1.1.0&typename=libertic:libertic_city_ok"
+            featureType: "cities",
+            geometryName: "the_geom"
         })
     }); 
    
@@ -129,7 +162,7 @@ function init(wmsurl, wfsurl, loading) {
     map.addControl(new OpenLayers.Control.Navigation());
     map.zoomToExtent(bounds);
     
- // map position
+    // map position
     map.setCenter(new OpenLayers.LonLat(1.2, 46.8).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), 12);
     if (navigator.geolocation)
     {

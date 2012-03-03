@@ -55,7 +55,7 @@ public class Map extends AbstractController {
     }
 
     public static void admin() {
-        hasAdminRight();
+        isAdminUser();
         String wmsurl = Play.configuration.getProperty("map.wms.url");
         String wfsurl = Play.configuration.getProperty("map.wfs.url");
         String menu = "mapAdmin";

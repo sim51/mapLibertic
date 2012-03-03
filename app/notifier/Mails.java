@@ -16,8 +16,10 @@
  */
 package notifier;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import models.User;
 import play.Logger;
 import play.Play;
 import play.mvc.Mailer;
@@ -46,7 +48,12 @@ public class Mails extends Mailer {
                 + "] %s souhaite vous contacter", author);
         setFrom(Play.configuration.getProperty("mail.noreply"));
         setReplyTo(email);
-        addRecipient(Play.configuration.getProperty("mail.reply"));
+        List<User> admins = User.find("SELECT u FROM User u WHERE isAdmin = true").fetch();
+        for (User admin : admins) {
+            if (admin.email != null && admin.email.contains("@")) {
+                addRecipient(admin.email);
+            }
+        }
         send(author, message);
     }
 

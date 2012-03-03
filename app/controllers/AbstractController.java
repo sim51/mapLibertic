@@ -30,7 +30,7 @@ public class AbstractController extends Controller {
         isValidUser();
         SocialUser user = SecureSocial.getCurrentUser();
         models.User member = UserService.findUser(user.id);
-        if (!member.isAdmin) {
+        if (member == null || member.isAdmin == null || !member.isAdmin) {
             forbidden();
         }
     }
@@ -42,7 +42,7 @@ public class AbstractController extends Controller {
         if (user != null && user.id != null) {
             models.User member = UserService.findUser(user.id);
             if (member != null) {
-                isAdmin = Boolean.TRUE;
+                isAdmin = member.isAdmin;
             }
         }
         renderArgs.put("isAdmin", isAdmin);

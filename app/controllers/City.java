@@ -2,6 +2,7 @@ package controllers;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 
+import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.mvc.With;
 
@@ -44,6 +45,22 @@ public class City extends AbstractController {
         city.save();
         flash.success("Enregistrement réussi");
         edit(city.id);
+    }
+
+    public static void updateGeo(@Required String fid, @Required Float latitude, @Required Float longitude) {
+        isAdminUser();
+        Long id = Long.valueOf(fid.replace("cities.", ""));
+        models.City city = models.City.findById(id);
+        if (city != null) {
+            GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+            city.location = geometryFactory.createPoint(new Coordinate(longitude, latitude));
+            city.location.setSRID(900913);
+            city.save();
+            renderText("OK");
+        }
+        else {
+            notFound("City not found");
+        }
     }
 
 }
