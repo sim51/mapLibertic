@@ -15,64 +15,16 @@
     </script>
 #{/set}
 
+<div class="row">
+    <div class="span12">
+        <div class="alert alert-info">
+            &{'page.map.admin.help'}
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="span12">
         <div id="map" class="smallmap"></div>
-        <div id="scale"></div>
     </div>
 </div>
-
-<style>
-        .customEditingToolbar {
-            float: right;
-            right: 0px;
-            height: 30px; 
-        }
-        .customEditingToolbar div {
-            float: right;
-            margin: 5px;
-            width: 24px;
-            height: 24px;
-        }
-        .olControlNavigationItemActive { 
-            background-image: url("../theme/default/img/editing_tool_bar.png");
-            background-repeat: no-repeat;
-            background-position: -103px -23px; 
-        }
-        .olControlNavigationItemInactive { 
-            background-image: url("/public/javascripts/openlayers/theme/default/img/editing_tool_bar.png");
-            background-repeat: no-repeat;
-            background-position: -103px -0px; 
-        }
-        .olControlDrawFeaturePolygonItemInactive { 
-            background-image: url("/public/javascripts/openlayers/theme/default/img/editing_tool_bar.png");
-            background-repeat: no-repeat;
-            background-position: -26px 0px; 
-        }
-        .olControlDrawFeaturePolygonItemActive { 
-            background-image: url("/public/javascripts/openlayers/theme/default/img/editing_tool_bar.png");
-            background-repeat: no-repeat;
-            background-position: -26px -23px ;                                                                   
-        }
-        .olControlModifyFeatureItemActive { 
-            background-image: url(/public/javascripts/openlayers/theme/default/img/move_feature_on.png);
-            background-repeat: no-repeat;
-            background-position: 0px 1px;
-        }
-        .olControlModifyFeatureItemInactive { 
-            background-image: url(/public/javascripts/openlayers/theme/default/img/move_feature_off.png);
-            background-repeat: no-repeat;
-            background-position: 0px 1px;
-        }
-        .olControlDeleteFeatureItemActive { 
-            background-image: url(/public/javascripts/openlayers/theme/default/img/remove_point_on.png);
-            background-repeat: no-repeat;
-            background-position: 0px 1px;
-        }
-        .olControlDeleteFeatureItemInactive { 
-            background-image: url(/public/javascripts/openlayers/theme/default/img/remove_point_off.png);
-            background-repeat: no-repeat;
-            background-position: 0px 1px;
-        }
-    </style>

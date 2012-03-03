@@ -57,9 +57,11 @@ OpenLayers.Strategy.Save.prototype.save= function(features) {
 				dataType: 'html',
 				success: function(data){
   					alert('Enregistrement effectué !');
+  					window.location.reload();
   				},
   				error: function(XMLHttpRequest, textStatus, errorThrown){
-  					alert('Erreur !' + textStatus + ' ' + errorThrown);;
+  					alert('Erreur !' + textStatus + ' ' + errorThrown);
+  					window.location.reload()
   				}
 				
 			}) 
@@ -83,9 +85,10 @@ function init(wmsurl, wfsurl, loading) {
             projection: new OpenLayers.Projection("EPSG:900913"),
             units: 'm'
         };
-    map = new OpenLayers.Map('map', options);
     
-    var countries = new OpenLayers.Layer.WMS(
+    // Create the map object
+  	map = new OpenLayers.Map('map', options);
+  	var countries = new OpenLayers.Layer.WMS(
             "Countries",
             wmsurl, 
             {
@@ -101,6 +104,89 @@ function init(wmsurl, wfsurl, loading) {
             	'opacity': 1.0, 
             	'isBaseLayer': true, 
             	'visibility': true
+            }
+    );
+  	var libertic_country = new OpenLayers.Layer.WMS(
+            "Countries",
+            wmsurl, 
+            {
+            	'layers': 'libertic_country', 
+            	'format':format, 
+            	'transparent':'true',
+            	'tiled': !pureCoverage,
+                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+            },
+            {
+            	'singleTile': true,
+            	'ratio': 1,
+            	'buffer': 0,
+                'displayOutsideMaxExtent': true, 
+            	'isBaseLayer': false, 
+            	'visibility': true,
+            	'units': 'm',
+            	'maxResolution': "auto",
+            	'minScale': 200000000,
+                'maxScale': 20000000
+            }
+    );
+  	var libertic_zone1 = new OpenLayers.Layer.WMS(
+            "Administrative Zone level 1",
+            wmsurl, 
+            {
+            	'layers': 'libertic_zone1', 
+            	'format':format,
+            	'transparent':'true',
+            	'tiled': !pureCoverage,
+                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+            },
+            {
+            	'singleTile': true,
+            	'ratio': 1,
+            	'opacity': 1.0, 
+            	'isBaseLayer': false, 
+            	'visibility': true,
+            	'minScale': 20000000,
+                'maxScale': 5000000
+            }
+    );
+  	var libertic_zone2 = new OpenLayers.Layer.WMS(
+            "Administrative Zone level 2",
+            wmsurl, 
+            {
+            	'layers': 'libertic_zone2', 
+            	'format':format, 
+            	'transparent':'true',
+            	'tiled': !pureCoverage,
+                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+            },
+            {
+            	'singleTile': true,
+            	'ratio': 1,
+            	'opacity': 1.0, 
+            	'isBaseLayer': false, 
+            	'visibility': true,
+            	'minScale': 15000000,
+                'maxScale': 5000000
+            }
+    );
+  	var libertic_city = new OpenLayers.Layer.WMS(
+            "Cities",
+            wmsurl, 
+            {
+            	'layers': 'libertic_city', 
+            	'format':format,
+            	'transparent':'true',
+            	'tiled': !pureCoverage,
+                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
+            },
+            {
+            	'singleTile': true,
+            	'ratio': 1,
+            	'opacity': 1.0, 
+            	'isBaseLayer': false, 
+            	'visibility': true,
+            	'minScale': 15000000,
+                'maxScale': 5000000
             }
     );
 
@@ -119,29 +205,19 @@ function init(wmsurl, wfsurl, loading) {
         })
     }); 
    
-    map.addLayers([countries, wfs]);
+    // Add layer to map
+  	map.addLayers([countries, libertic_country, libertic_zone1, libertic_zone2, libertic_city, wfs]);
 
     var panel = new OpenLayers.Control.Panel({
         displayClass: 'customEditingToolbar',
         allowDepress: true
     });
     
-    var draw = new OpenLayers.Control.DrawFeature(
-        wfs, OpenLayers.Handler.Polygon,
-        {
-            title: "Draw Feature",
-            displayClass: "olControlDrawFeaturePolygon",
-            multi: true
-        }
-    );
-    
     var edit = new OpenLayers.Control.ModifyFeature(wfs, {
         title: "Modify Feature",
         displayClass: "olControlModifyFeature"
     });
 
-    var del = new DeleteFeature(wfs, {title: "Delete Feature"});
-   
     var save = new OpenLayers.Control.Button({
         title: "Save Changes",
         trigger: function() {
@@ -153,7 +229,7 @@ function init(wmsurl, wfsurl, loading) {
         displayClass: "olControlSaveFeatures"
     });
 
-    panel.addControls([save, del, edit, draw]);
+    panel.addControls([save, edit]);
     map.addControl(panel);
     // build up all controls
     map.addControl(new OpenLayers.Control.PanZoomBar({

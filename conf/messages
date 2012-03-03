@@ -5,7 +5,7 @@ project.name=Libertic
 error=Erreur !
 error.checkform=Veuillez vérifier les informations que vous avez saisi.
 cancel=Annuler
-footer1=Ce projet est sous la <a target="_blank" title="Licence GPL"href="http://www.gnu.org/licenses/gpl.html">GNU General Public Licence (GPL)</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">github</a>. 
+footer1=Ce projet est sous la <a target="_blank" title="Licence GPL" href="http://www.gnu.org/licenses/gpl.html">GNU General Public Licence (GPL)</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">github</a>. 
 footer2=Les données du site sont sous la licence <a target="_blank" title="Licence ODbL" href="http://opendatacommons.org/licenses/odbl/">Open Database Licence (ODbL)</a>. Vous pouvez les télécharger en cliquant <a href="/public/opendata-map.csv">ici</a>.
 
 page.home=Accueil
@@ -20,6 +20,7 @@ page.login=Se connecter
 
 page.map=La carte
 page.map.admin=Admin Carte
+page.map.admin.help=<strong>Attention !</strong> Cette carte de modifier les coordonnées des villes. Il est IMPERATIF d'effectuer un enregistrement modification unitaire par modification unitaire. De plus, cette opération de mise à jour ne change pas les lat./long. affichées lors de la fiche d'édition d'une ville. 
 page.map.help=<div class="span4"><h2>Aide</h2><p>Cette carte est intéractive, vous pouvez vous déplacer, zoomer et cliquer.</p><p>En cliquant sur la carte, des informations supplémentaires apparaitrons dans ce cadre</p></div>
 page.map.dataloading=<h2>Recherche des données</h2><div class="progress progress-info progress-striped active"><div id="barfull" class="bar bar-full"></div></div>
 page.map.nodata=<div class="span4"><h2>Information</h2><p class="center">Aucune données n'a été trouvée</p></div>
