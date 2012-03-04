@@ -14,6 +14,7 @@ import org.apache.commons.io.IOUtils;
 import org.im4java.core.CompositeCmd;
 import org.im4java.core.IMOperation;
 
+import play.Logger;
 import play.Play;
 import play.i18n.Messages;
 import play.libs.Codec;
@@ -78,6 +79,7 @@ public class Map extends AbstractController {
         try {
             String wmsurl = Play.configuration.getProperty("map.wmsimage.url");
             wmsurl = wmsurl.replace("@@BBOX@@", bbox);
+            Logger.info("Calling url " + wmsurl);
             HttpResponse res = WS.url(wmsurl).get();
             if (res.getStatus() == 200) {
                 InputStream is = res.getStream();
@@ -94,8 +96,9 @@ public class Map extends AbstractController {
                 op.addImage();
                 op.addImage();
 
-                // op.addImage(Play.tmpDir + "/" + uuid2);
+                Logger.debug("Generating composite image");
                 String scriptName = Play.tmpDir + "/" + Codec.UUID() + ".sh";
+                Logger.debug("Script name is " + scriptName);
                 cmd.createScript(scriptName, op);
                 cmd.run(op, Play.applicationPath + "/public/images/map-overlay.png", Play.tmpDir + "/" + uuid + ".png",
                         Play.tmpDir + "/" + uuid2 + ".png");
