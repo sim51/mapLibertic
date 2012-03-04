@@ -17,7 +17,7 @@
             <link>@{Application.index()}</link>
             <guid>@{Application.index()}</guid>
             <pubDate>${card.created.format('E, dd MMM yyyy HH:mm:ss Z')}</pubDate>
-            <description><![CDATA[ #{card card:card, rss:"true"/} ]]></description>
+            <description><![CDATA[ #{card card:card, rss:"true", status:"true"/} ]]></description>
         </item>
     #{/list}
   </channel>

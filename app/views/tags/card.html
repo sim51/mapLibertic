@@ -1,6 +1,6 @@
 <h2>
     ${_card?.name} 
-    #{if !rss}
+    #{if _rss!="true"}
         <a href="@{Card.edit(_zoneId, _level)}" title="&{'page.opendataCard.edit'}">
             <i class="icon-edit"></i>
         </a>
@@ -10,16 +10,16 @@
      #{/if}
 </h2>
 <ul class="unstyled">
-    #{if rss}
+    #{if _status=='true'}
      <li>
             <strong>&{'page.opendataCard.status'} :</strong>
-            #{if card?.status == 0}
+            #{if _card?.status == 0}
                 N/A
             #{/if}
-            #{if card?.status == 1}
+            #{if _card?.status == 1}
                 &{'page.opendataCard.status.inprogress'}
             #{/if}
-            #{if card?.status == 2}
+            #{if _card?.status == 2}
                 &{'page.opendataCard.status.ok'}
             #{/if}
         </li>

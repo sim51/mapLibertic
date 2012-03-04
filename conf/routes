@@ -22,7 +22,7 @@ GET		/card/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}												Card.view
 GET		/card/edit/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}										Card.edit
 GET		/card/history/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}										Card.history
 GET		/card/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}/version/{<[0-9]+>cardId}					Card.version
-GET		/card/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}/from/{<[0-9]+>fromId}/to/{<[0-9]+>toId}		Card.version
+GET		/card/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}/from/{<[0-9]+>fromId}/to/{<[0-9]+>toId}		Card.compare
 POST	/card/level/{<[0-9]+>level}/id/{<[0-9]+>zoneId}												Card.save
 
 GET 	/city/{<[0-9]+>id}																			City.edit
