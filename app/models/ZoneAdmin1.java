@@ -47,7 +47,7 @@ public class ZoneAdmin1 extends Model {
                             "opendatacard.status>0 AND " +
                             "distance(PointFromText('POINT("+ longitude + " " + latitude + ")', 900913), the_geom) < 0.1 " +
                         "ORDER BY " +
-                            "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1"
+                            "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC, opendatacard.id DESC LIMIT 1"
                 ).getResultList();
             //@formatter:on
             if (cards.size() > 0) {

@@ -27,7 +27,14 @@
     #{if _card?.url}
         <li>
             <strong>&{'page.opendataCard.url'} :</strong>
-            <a href="${_card?.url}" title="${_card?.name}">${_card?.url}</a>
+            #{if _card2?.url}
+                <a href="${_card?.url}" title="${_card?.name}">
+                    ${_card?.url.compare(_card2?.url).raw()}
+                </a>
+            #{/if}
+            #{else}
+                <a href="${_card?.url}" title="${_card?.name}">${_card?.url}</a>
+            #{/else}
         </li>
     #{/if}
     #{if _card?.plateform}

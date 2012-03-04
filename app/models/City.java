@@ -79,7 +79,7 @@ public class City extends GenericModel {
                                 "(opendatacard.status>0 OR opendatacard.istherecitizenmvt = '1') AND " +
                                 "distance(PointFromText('POINT("+ longitude + " " + latitude + ")', 900913), the_geom) < 0.1 " +
                             "ORDER BY " +
-                                "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC LIMIT 1"
+                                "distance(PointFromText('POINT(" + longitude + " " + latitude + ")', 900913), the_geom) ASC, opendatacard.id DESC LIMIT 1"
                     ).getResultList();
             //@formatter:on
             if (cards.size() > 0) {
