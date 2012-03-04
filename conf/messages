@@ -84,7 +84,7 @@ page.opendataCard.opening=Date d'ouverture
 page.opendataCard.lastUpdate=Dernière mise à jour de la plateforme
 page.opendataCard.bernersLeeRate=Note  de Berners Lee
 page.opendataCard.license=Licence des données
-page.opendataCard.description=Description
+page.opendataCard.description=Commentaire
 page.opendataCard.thematic=Thématique
 page.opendataCard.formats=Formats disponibles pour les données
 page.opendataCard.dataOwners=Gestionnaire des données
@@ -123,6 +123,7 @@ page.myprofile=Mon Profil
 
 page.history.compare=Comparez les versions
 page.compare.title=Comparaison de version
+page.compare.diff=Différences
 
 page.version.title=Version du  
 

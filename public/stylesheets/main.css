@@ -33,6 +33,8 @@ footer p{
 	text-align: center;
 }
 
+.breaker{clear:both;height: 1px;}
+
 /*
  * rating
  */
@@ -69,6 +71,10 @@ img.icone{width:20px;}
 .label-link{color:#FFFFFF;}
 div#legende{float:left;}
 div#mapbar{float:right;}
+span.added{background-color:aqua;color:black;}
+span.removed{background-color:red; text-decoration:line-through; color:black;}
+span.changed{background-color:lime;color:black;}
+span.oldValue{text-decoration:line-through;}
 
 .customEditingToolbar {
     float: right;

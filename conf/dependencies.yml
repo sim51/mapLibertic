@@ -5,6 +5,7 @@ require:
     - play -> securesocial 0.2.4
     - rome -> rome 1.0
     - org.im4java -> im4java 1.2.0
+    - jlibdiff -> jlibdiff 1.01
     - org.geotools -> gt-shapefile 8.0-M4:
         exclude:
             - javax.media -> *

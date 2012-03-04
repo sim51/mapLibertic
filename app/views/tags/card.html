@@ -33,31 +33,56 @@
     #{if _card?.plateform}
         <li>
             <strong>&{'page.opendataCard.plateforme'} :</strong>
-            ${_card?.plateform}
+            #{if _card2?.plateform}
+                ${_card?.plateform.compare(_card2?.plateform).raw()}
+            #{/if}
+            #{else}
+                ${_card?.plateform}
+            #{/else}
         </li>
     #{/if}
     #{if _card?.license}
         <li>
             <strong>&{'page.opendataCard.license'} :</strong>
-            ${_card?.license}
+            #{if _card2?.license}
+                ${_card?.license.compare(_card2?.license).raw()}
+            #{/if}
+            #{else}
+                ${_card?.license}
+            #{/else}
         </li>
     #{/if}
     #{if _card?.numOfData}
         <li>
             <strong>&{'page.opendataCard.numOfData'} :</strong>
-            ${_card?.numOfData}
+            #{if _card2?.numOfData}
+                ${_card?.numOfData.compare(_card2?.numOfData).raw()}
+            #{/if}
+            #{else}
+                ${_card?.numOfData}
+            #{/else}
         </li>
     #{/if}
     #{if _card?.opening}
         <li>
             <strong>&{'page.opendataCard.opening'} :</strong>
-             ${_card?.opening?.format('dd/MM/yyyy')}
+            #{if _card2?.opening}
+                ${_card?.opening?.format('dd/MM/yyyy').compare(_card2?.opening?.format('dd/MM/yyyy')).raw()}
+            #{/if}
+            #{else}
+                ${_card?.opening?.format('dd/MM/yyyy')}
+            #{/else}
         </li>
     #{/if}
     #{if _card?.lastUpdate}
         <li>
             <strong>&{'page.opendataCard.lastUpdate'} :</strong>
-             ${_card?.lastUpdate?.format('dd/MM/yyyy')}
+             #{if _card2?.lastUpdate}
+                ${_card?.lastUpdate?.format('dd/MM/yyyy').compare(_card2?.lastUpdate?.format('dd/MM/yyyy')).raw()}
+            #{/if}
+            #{else}
+                ${_card?.lastUpdate?.format('dd/MM/yyyy')}
+            #{/else}
         </li>
     #{/if}
     #{if _card?.bernersLeeRate}
@@ -78,39 +103,64 @@
             #{/else}
         </li>
     #{/if}
-    <li>&nbsp;</li>
+    <li><br class="breaker" /></li>
     #{if card?.contacts}
         <li>
             <strong>&{'page.opendataCard.contacts'}</strong><br/>
-            ${_card?.contacts}
+            #{if _card2?.contacts}
+                ${_card?.contacts.compare(_card2?.contacts).raw()}
+            #{/if}
+            #{else}
+                ${_card?.contacts}
+            #{/else}
             <br/><br/>
         </li>
     #{/if}
     #{if _card?.dataOwners}
         <li>
             <strong>&{'page.opendataCard.dataOwners'}</strong><br/>
-            ${_card?.dataOwners}
+            #{if _card2?.dataOwners}
+                ${_card?.dataOwners.compare(_card2?.dataOwners).raw()}
+            #{/if}
+            #{else}
+                ${_card?.dataOwners}
+            #{/else}
             <br/><br/>
         </li>
     #{/if}
     #{if _card?.formats}
         <li>
             <strong>&{'page.opendataCard.formats'}</strong><br/>
-            ${_card?.formats}
+            #{if _card2?.formats}
+                ${_card?.formats.compare(_card2?.formats).raw()}
+            #{/if}
+            #{else}
+                ${_card?.formats}
+            #{/else}
             <br/><br/>
         </li>
     #{/if}
     #{if _card?.thematic}
         <li>
             <strong>&{'page.opendataCard.thematic'}</strong><br/>
-            ${_card?.thematic}
+            #{if _card2?.thematic}
+                ${_card?.thematic.compare(_card2?.thematic).raw()}
+            #{/if}
+            #{else}
+                ${_card?.thematic}
+            #{/else}
             <br/><br/>
         </li>
     #{/if}
     #{if _card?.description}
          <li>
             <strong>&{'page.opendataCard.description'}</strong><br/>
-            ${_card?.description}
+            #{if _card2?.description}
+                ${_card?.description.compare(_card2?.description).raw()}
+            #{/if}
+            #{else}
+                ${_card?.description}
+            #{/else}
         </li>
     #{/if}
 </ul>

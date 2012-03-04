@@ -2,13 +2,21 @@
 #{set title: messages.get('page.compare.title') /}
 
 <div class="row">
-    <div class="span6">
-        <h1>&{'page.version.title'} ${cardFrom?.created?.format('dd MMM yyyy')}</h1>
+    <div class="span4">
+        <h1>${cardFrom?.created}</h1>
+        <br/>
         #{card zoneId:zoneId, level:level, card:cardFrom, status:"true"/}
     </div>
     
-    <div class="span6">
-        <h1>&{'page.version.title'} ${cardTo?.created?.format('dd MMM yyyy')}</h1>
+    <div class="span4">
+        <h1>&{'page.compare.diff'}</h1>
+        <br/>
+        #{card zoneId:zoneId, level:level, card:cardTo, status:"true", card2:cardFrom/}
+    </div>
+    
+    <div class="span4">
+        <h1>${cardTo?.created}</h1>
+        <br/>
         #{card zoneId:zoneId, level:level, card:cardTo, status:"true"/}
     </div>
 </div>

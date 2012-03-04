@@ -15,7 +15,6 @@ import org.im4java.core.CompositeCmd;
 import org.im4java.core.IMOperation;
 
 import play.Play;
-import play.cache.CacheFor;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.libs.WS;
@@ -35,7 +34,6 @@ public class Map extends AbstractController {
         render(menu, wmsurl, user);
     }
 
-    @CacheFor
     public static void onClick(Float scale, Float latitude, Float longitude) {
 
         if (latitude == null | longitude == null | scale == null) {
