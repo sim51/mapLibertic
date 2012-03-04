@@ -1,12 +1,25 @@
 package controllers;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
 import models.City;
 import models.Country;
 import models.ZoneAdmin1;
 import models.ZoneAdmin2;
+
+import org.apache.commons.io.IOUtils;
+import org.im4java.core.CompositeCmd;
+import org.im4java.core.IMOperation;
+
 import play.Play;
 import play.cache.CacheFor;
 import play.i18n.Messages;
+import play.libs.Codec;
+import play.libs.WS;
+import play.libs.WS.HttpResponse;
 import play.mvc.With;
 import securesocial.provider.SocialUser;
 import controllers.securesocial.SecureSocial;
@@ -63,4 +76,38 @@ public class Map extends AbstractController {
         render(menu, wmsurl, wfsurl, user);
     }
 
+    public static void image(String bbox) {
+        try {
+            String wmsurl = Play.configuration.getProperty("map.wmsimage.url");
+            wmsurl = wmsurl.replace("@@BBOX@@", bbox);
+            HttpResponse res = WS.url(wmsurl).get();
+            if (res.getStatus() == 200) {
+                InputStream is = res.getStream();
+                String uuid = Codec.UUID();
+                FileOutputStream geoServerOut;
+                String uuid2 = Codec.UUID();
+                geoServerOut = new FileOutputStream(Play.tmpDir + "/" + uuid + ".png");
+                IOUtils.copy(is, geoServerOut);
+
+                CompositeCmd cmd = new CompositeCmd();
+                IMOperation op = new IMOperation();
+                op.gravity("SouthWest");
+                op.addImage();
+                op.addImage();
+                op.addImage();
+
+                // op.addImage(Play.tmpDir + "/" + uuid2);
+                String scriptName = Play.tmpDir + "/" + Codec.UUID() + ".sh";
+                cmd.createScript(scriptName, op);
+                cmd.run(op, Play.applicationPath + "/public/images/map-overlay.png", Play.tmpDir + "/" + uuid + ".png",
+                        Play.tmpDir + "/" + uuid2 + ".png");
+
+                InputStream is2 = new BufferedInputStream(new FileInputStream(Play.tmpDir + "/" + uuid2 + ".png"));
+                renderBinary(is2, "opendata-map.png");
+            }
+        } catch (Exception e) {
+            error();
+        }
+        error();
+    }
 }

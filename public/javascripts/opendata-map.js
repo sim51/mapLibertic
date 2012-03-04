@@ -197,7 +197,7 @@ function init(wmsurl, loading) {
 }
 
 function getImageMap(){
-	var wmsimgurl="/geoserver/wms?LAYERS=libertic&FORMAT=image%2Fpng&TRANSPARENT=true&TILED=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG%3A900913&BBOX=@@BBOX@@&WIDTH=670&HEIGHT=500";
+	var wmsimgurl="/map/image?bbox=@@BBOX@@";
 	var BBOX = map.getExtent().toBBOX();
 	var url = wmsimgurl.replace("@@BBOX@@", BBOX);
 	window.location=url;
