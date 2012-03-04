@@ -67,6 +67,8 @@ p.center{ text-align: center; }
 img.icone{width:20px;}
 .alert a{text-decoration: underline;}
 .label-link{color:#FFFFFF;}
+div#legende{float:left;}
+div#mapbar{float:right;}
 
 .customEditingToolbar {
     float: right;

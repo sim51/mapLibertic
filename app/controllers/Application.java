@@ -31,9 +31,14 @@ public class Application extends AbstractController {
         SocialUser user = SecureSocial.getCurrentUser();
         List<SyndFeed> myFeeds = null;
         try {
-            URL urlRSS = new URL(Play.configuration.getProperty("libertic.rss"));
-            SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed = input.build(new XmlReader(urlRSS));
+            SyndFeed feed = null;
+            feed = (SyndFeed) Cache.get("liberticFeed");
+            if (feed == null) {
+                URL urlRSS = new URL(Play.configuration.getProperty("libertic.rss"));
+                SyndFeedInput input = new SyndFeedInput();
+                feed = input.build(new XmlReader(urlRSS));
+                Cache.add("liberticFeed", feed, "24h");
+            }
             myFeeds = feed.getEntries().subList(0, 5);
         } catch (Exception e) {
             Logger.error("Lecture flus RSS", e);

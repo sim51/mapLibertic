@@ -21,7 +21,7 @@ page.login=Se connecter
 page.map=La carte
 page.map.admin=Admin Carte
 page.map.admin.help=<strong>Attention !</strong> Cette carte de modifier les coordonnées des villes. Il est IMPERATIF d'effectuer un enregistrement modification unitaire par modification unitaire. De plus, cette opération de mise à jour ne change pas les lat./long. affichées lors de la fiche d'édition d'une ville. 
-page.map.help=<div class="span4"><h2>Aide</h2><p>Cette carte est intéractive, vous pouvez vous déplacer, zoomer et cliquer.</p><p>En cliquant sur la carte, des informations supplémentaires apparaitrons dans ce cadre</p><p>Vous pouvez aussi télécharger l'image de cette carte en <a href="javascript:getImageMap()" title="Télécharger la carte" >cliquant ici</a></p></div>
+page.map.help=<div class="span4"><h2>Aide</h2><p>Cette carte est intéractive, vous pouvez vous déplacer, zoomer et cliquer.</p><p>En cliquant sur la carte, des informations supplémentaires apparaitrons dans ce cadre</p><p>Vous pouvez aussi télécharger l'image de cette carte en cliquant <a href="javascript:getImageMap()" title="Télécharger la carte" >ici</a> ou sur l'icône <i class="icon-camera"></i> a coté de la légende.</div>
 page.map.dataloading=<h2>Recherche des données</h2><div class="progress progress-info progress-striped active"><div id="barfull" class="bar bar-full"></div></div>
 page.map.nodata=<div class="span4"><h2>Information</h2><p class="center">Aucune données n'a été trouvée</p></div>
 page.map.legende=Légende
