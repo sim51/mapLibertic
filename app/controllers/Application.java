@@ -57,6 +57,10 @@ public class Application extends AbstractController {
         String menu = "contact";
         String randomID = Codec.UUID();
         SocialUser user = SecureSocial.getCurrentUser();
+        if (user != null) {
+            params.put("author", user.displayName);
+            params.put("email", user.email);
+        }
         render(menu, randomID, user);
     }
 
