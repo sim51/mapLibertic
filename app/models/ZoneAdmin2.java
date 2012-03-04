@@ -35,7 +35,7 @@ public class ZoneAdmin2 extends Model {
 
     public static Long getCardIdFromLongLat(float scale, float longitude, float latitude) {
         Long id = null;
-        if (scale > 5000000 && scale < 20000000) {
+        if (scale > 5000000 && scale < 25000000) {
             //@formatter:off
             List<Object[]> cards = JPA.em().createNativeQuery(
                         "SELECT " +

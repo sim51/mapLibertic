@@ -25,11 +25,11 @@ function init(wmsurl, loading) {
   	
 	// Create the map object
   	map = new OpenLayers.Map('map', options);
-  	var countries = new OpenLayers.Layer.WMS(
-            "Countries",
+  	var libertic = new OpenLayers.Layer.WMS(
+            "libertic",
             wmsurl, 
             {
-            	'layers': 'libertic:countries', 
+            	'layers': 'libertic', 
             	'format':format, 
             	'transparent':'true',
             	'tiled': !pureCoverage,
@@ -43,91 +43,9 @@ function init(wmsurl, loading) {
             	'visibility': true
             }
     );
-  	var libertic_country = new OpenLayers.Layer.WMS(
-            "Countries",
-            wmsurl, 
-            {
-            	'layers': 'libertic_country', 
-            	'format':format, 
-            	'transparent':'true',
-            	'tiled': !pureCoverage,
-                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
-            },
-            {
-            	'singleTile': true,
-            	'ratio': 1,
-            	'buffer': 0,
-                'displayOutsideMaxExtent': true, 
-            	'isBaseLayer': false, 
-            	'visibility': true,
-            	'units': 'm',
-            	'maxResolution': "auto",
-            	'minScale': 200000000,
-                'maxScale': 20000000
-            }
-    );
-  	var libertic_zone1 = new OpenLayers.Layer.WMS(
-            "Administrative Zone level 1",
-            wmsurl, 
-            {
-            	'layers': 'libertic_zone1', 
-            	'format':format,
-            	'transparent':'true',
-            	'tiled': !pureCoverage,
-                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
-            },
-            {
-            	'singleTile': true,
-            	'ratio': 1,
-            	'opacity': 1.0, 
-            	'isBaseLayer': false, 
-            	'visibility': true,
-            	'minScale': 20000000,
-                'maxScale': 5000000
-            }
-    );
-  	var libertic_zone2 = new OpenLayers.Layer.WMS(
-            "Administrative Zone level 2",
-            wmsurl, 
-            {
-            	'layers': 'libertic_zone2', 
-            	'format':format, 
-            	'transparent':'true',
-            	'tiled': !pureCoverage,
-                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
-            },
-            {
-            	'singleTile': true,
-            	'ratio': 1,
-            	'opacity': 1.0, 
-            	'isBaseLayer': false, 
-            	'visibility': true,
-            	'minScale': 15000000,
-                'maxScale': 5000000
-            }
-    );
-  	var libertic_city = new OpenLayers.Layer.WMS(
-            "Cities",
-            wmsurl, 
-            {
-            	'layers': 'libertic_city', 
-            	'format':format,
-            	'transparent':'true',
-            	'tiled': !pureCoverage,
-                'tilesOrigin' : map.maxExtent.left + ',' + map.maxExtent.bottom
-            },
-            {
-            	'singleTile': true,
-            	'ratio': 1,
-            	'opacity': 1.0, 
-            	'isBaseLayer': false, 
-            	'visibility': true,
-            	'minScale': 15000000,
-                'maxScale': 5000000
-            }
-    );
+  	
   	// Add layer to map
-  	map.addLayers([countries, libertic_country, libertic_zone1, libertic_zone2, libertic_city]);
+  	map.addLayers([libertic]);
  	// build up all controls
     map.addControl(new OpenLayers.Control.PanZoomBar({
         position: new OpenLayers.Pixel(2, 15)
