@@ -13,6 +13,7 @@ import models.ZoneAdmin2;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.i18n.Lang;
+import play.i18n.Messages;
 import play.mvc.With;
 import service.UserService;
 import controllers.securesocial.SecureSocial;
@@ -94,7 +95,7 @@ public class Card extends AbstractController {
                 city.save();
                 break;
         }
-        flash.success("Enregistrement réussi");
+        flash.success(Messages.get("page.opendataCard.save.succes"));
         render("@edit", level, zoneId, name, card);
     }
 

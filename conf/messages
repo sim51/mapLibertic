@@ -90,6 +90,7 @@ page.opendataCard.formats=Formats disponibles pour les données
 page.opendataCard.dataOwners=Gestionnaire des données
 page.opendataCard.contacts=Contacts
 page.opendataCard.save=Enregistrer
+page.opendataCard.save.succes=Enregistrement réussi ! <strong>ATTENTION:</strong>Votre modification sera effective sur la carte dans 10 minute. 
 page.opendataCard.commit.isMajor=Changement majeur ?
 page.opendataCard.commit.description=Commentaire
 page.opendataCard.history=Voir l'historique
