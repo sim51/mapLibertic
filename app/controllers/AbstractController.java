@@ -41,6 +41,7 @@ public class AbstractController extends Controller {
         SocialUser user = SecureSocial.getCurrentUser();
         if (user != null && user.id != null) {
             models.User member = UserService.findUser(user.id);
+            response.setCookie("nocache", "nocache");
             if (member != null) {
                 isAdmin = member.isAdmin;
             }
