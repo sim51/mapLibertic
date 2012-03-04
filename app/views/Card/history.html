@@ -22,8 +22,8 @@
                         #{list items:cards, as:'card'}
                             <tr>
                                 <td>
-                                    <input type="radio" name="fromId" value="${card.id}" />
-                                    <input type="radio" name="toId" value="${card.id}" />
+                                    <input type="radio" name="fromId" value="${card.id}" #{if card_isFirst}checked#{/if}/>
+                                    <input type="radio" name="toId" value="${card.id}" #{if card_isLast}checked#{/if}/>
                                 </td>
                                 <td><a href="@{Card.version(card.id, zoneId, level)}" title="${card.name}">${card?.created?.format('dd MMM yyyy')}</a></td>
                                 <td><a href="@{User.view(card.commit.user.id)}" title="${card?.commit?.user?.displayName}">${card?.commit?.user?.displayName}</td>

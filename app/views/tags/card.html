@@ -62,34 +62,19 @@
     #{if _card?.numOfData}
         <li>
             <strong>&{'page.opendataCard.numOfData'} :</strong>
-            #{if _card2?.numOfData}
-                ${_card?.numOfData.compare(_card2?.numOfData).raw()}
-            #{/if}
-            #{else}
                 ${_card?.numOfData}
-            #{/else}
         </li>
     #{/if}
     #{if _card?.opening}
         <li>
             <strong>&{'page.opendataCard.opening'} :</strong>
-            #{if _card2?.opening}
-                ${_card?.opening?.format('dd/MM/yyyy').compare(_card2?.opening?.format('dd/MM/yyyy')).raw()}
-            #{/if}
-            #{else}
                 ${_card?.opening?.format('dd/MM/yyyy')}
-            #{/else}
         </li>
     #{/if}
     #{if _card?.lastUpdate}
         <li>
             <strong>&{'page.opendataCard.lastUpdate'} :</strong>
-             #{if _card2?.lastUpdate}
-                ${_card?.lastUpdate?.format('dd/MM/yyyy').compare(_card2?.lastUpdate?.format('dd/MM/yyyy')).raw()}
-            #{/if}
-            #{else}
                 ${_card?.lastUpdate?.format('dd/MM/yyyy')}
-            #{/else}
         </li>
     #{/if}
     #{if _card?.bernersLeeRate}
