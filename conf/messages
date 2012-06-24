@@ -10,7 +10,7 @@ footer2=Les données du site sont sous la licence <a target="_blank" title="Lice
 
 page.home=Accueil
 page.home.edito=Bienvenue
-page.home.edito.txt=<p>Bienvenue sur <strong>opendata-map.org</strong>!</p><p>Ce site a pour vocation de rencenser les initiatives publiques d'ouverture des données. C'est un projet <strong>participatif</strong>, ainsi vous êtes conviés à venir enreichir, modifier, partager, exploiter, ... les données de ce site !</p><ul><li>Si vous voulez savoir comment participer au projet, je vous invite à lire <a href="/participate" title="Participer">cette page</a></li><li>Pour voir la carte de l'ouverture des données, rendez-vous <a href="/map" title="La carte">ici</a></li><li>Vous pouvez vous abonner au flux RSS des dernières modifications <a href="/rss" title="Flux RSS des dernières modifications">ici</a></li></ul>
+page.home.edito.txt=<p>Bienvenue sur <strong>opendata-map.org</strong>!</p><p>Ce site a pour vocation de rencenser les initiatives publiques d'ouverture des données. C'est un projet <strong>participatif</strong>, ainsi vous êtes conviés à venir enrichir, modifier, partager, exploiter, ... les données de ce site !</p><ul><li>Si vous voulez savoir comment participer au projet, je vous invite à lire <a href="/participate" title="Participer">cette page</a></li><li>Pour voir la carte de l'ouverture des données, rendez-vous <a href="/map" title="La carte">ici</a></li><li>Vous pouvez vous abonner au flux RSS des dernières modifications <a href="/rss" title="Flux RSS des dernières modifications">ici</a></li></ul>
 page.home.libertic.rss=Libertic
 page.home.libertic.rss.txt=Les derniers tickets de Libertic
 page.home.lastupdate=Les derniers changements
