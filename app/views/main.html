@@ -16,11 +16,16 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
+          <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="brand" href="@{Application.index()}">
                 <span style="color:#84B6DE">Liber</span>TIC
                 <img src="@{'/public/images/logo_libertic.png'}" width="17" title = "Libertic"/>
           </a>
-          <div class="nav-collapse">
+          <div class="nav-collapse collapse">
             <ul class="nav">
                 #{if menu.equals('index')}<li class="active">#{/if}#{else}<li>#{/else} 
                     <a href="@{Application.index()}">&{'page.home'}</a>
