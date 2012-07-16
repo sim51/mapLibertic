@@ -37,9 +37,10 @@ function init(wmsurl, loading) {
             },
             {
             	'singleTile': true,
-            	'ratio': 1,
+            	'ratio': 1.5,
             	'opacity': 1.0, 
-            	'isBaseLayer': true, 
+            	'isBaseLayer': true,
+            	'transitionEffect': 'resize',
             	'visibility': true
             }
     );
