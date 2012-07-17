@@ -12,9 +12,9 @@ import models.ZoneAdmin1;
 import models.ZoneAdmin2;
 import play.i18n.Lang;
 import play.jobs.Job;
-import play.jobs.On;
+import play.jobs.Every;
 
-@On("0 0 12 * * ?")
+@Every("4h")
 public class ExportCSV extends Job {
 
     @Override

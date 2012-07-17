@@ -6,7 +6,7 @@ error=Erreur !
 error.checkform=Veuillez vérifier les informations que vous avez saisi.
 cancel=Annuler
 footer1=Ce projet est sous la <a target="_blank" title="Licence GPL" href="http://www.gnu.org/licenses/gpl.html">GNU General Public Licence (GPL)</a>. Les sources sont hébergées sur <a target="_blank" href="https://github.com/sim51/mapLibertic">github</a>. 
-footer2=Les données du site sont sous la licence <a target="_blank" title="Licence ODbL" href="http://opendatacommons.org/licenses/odbl/">Open Database Licence (ODbL)</a>. Vous pouvez les télécharger en cliquant <a href="/public/opendata-map.csv">ici</a>.
+footer2=Les données du site sont sous la licence <a target="_blank" title="Licence ODbL" href="http://opendatacommons.org/licenses/odbl/">Open Database Licence (ODbL)</a>. Vous pouvez les télécharger en cliquant <a href="/public/opendata-map.csv">ici</a> (fichier généré une fois par jour à 00h00).
 
 page.home=Accueil
 page.home.edito=Bienvenue
