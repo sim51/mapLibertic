@@ -10,6 +10,7 @@ GET     /contact                                													Application.contact
 POST    /contact                                													Application.sendContact
 
 GET		/map																						Map.index
+GET     /iframe/map                                                                                 Map.iframe
 GET		/map/info																					Map.onClick
 GET		/map/image																					Map.image
 GET		/admin/map																					Map.admin

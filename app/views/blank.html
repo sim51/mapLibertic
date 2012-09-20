@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>#{get 'title' /}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="Jg5LiCQf2mk-OmNC1JlxuvKB0IqNrg54S-Kc7j4oK9Y" />
+    <link rel="alternate" type="application/rss+xml" title="&{'page.rss.title'}" href="@{Card.rss()}" />
+    <link type="text/css" rel="stylesheet" href="@{'/public/bootstrap/css/bootstrap.min.css'}" />
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+    #{get 'moreStyles' /}
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+</head>
+    <body style="padding-top:0px">
+    
+        #{doLayout /}
+    
+        <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+        <script src="@{'/public/bootstrap/js/bootstrap.min.js'}"></script>
+        #{get 'moreScripts' /}
+        <script type="text/javascript">
+    		var _gaq = _gaq || [];
+    		_gaq.push([ '_setAccount', 'UA-27675683-1' ]);
+    		_gaq.push([ '_trackPageview' ]);
+    
+    		(function() {
+    			var ga = document.createElement('script');
+    			ga.type = 'text/javascript';
+    			ga.async = true;
+    			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+    					: 'http://www')
+    					+ '.google-analytics.com/ga.js';
+    			var s = document.getElementsByTagName('script')[0];
+    			s.parentNode.insertBefore(ga, s);
+    		})();
+    	</script>
+    </body>
+</html>

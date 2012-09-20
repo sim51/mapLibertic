@@ -6,7 +6,7 @@ OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 // make OL compute scale according to WMS spec
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
-function init(wmsurl, loading) {
+function init(wmsurl, loading, scaleLevel) {
 	// Map is in mercator this time, so over-ride the default
 	// options that assume lat/lon.
 	var bounds = new OpenLayers.Bounds(
@@ -104,7 +104,7 @@ function init(wmsurl, loading) {
     click.activate();
   	
     // map position
-    map.setCenter(new OpenLayers.LonLat(1.2, 46.8).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), 12);
+    map.setCenter(new OpenLayers.LonLat(1.2, 46.8).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), scaleLevel);
     if (navigator.geolocation)
     {
       navigator.geolocation.getCurrentPosition(function(position)

@@ -35,6 +35,13 @@ public class Map extends AbstractController {
         render(menu, wmsurl, user);
     }
 
+    public static void iframe() {
+        String wmsurl = Play.configuration.getProperty("map.wms.url");
+        String menu = "map";
+        SocialUser user = SecureSocial.getCurrentUser();
+        render(menu, wmsurl, user);
+    }
+
     public static void onClick(Float scale, Float latitude, Float longitude) {
 
         if (latitude == null | longitude == null | scale == null) {
